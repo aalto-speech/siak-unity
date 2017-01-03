@@ -3,8 +3,8 @@ using System.Collections;
 
 public class WordGlue : MonoBehaviour {
 
-    public Sprite picture;
+    public Texture picture;
     public AudioClip clip;
     [Range(0,1)]
-    public float volume;
+    public float volume = 1.0f;
 }

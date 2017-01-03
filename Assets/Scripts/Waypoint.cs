@@ -45,6 +45,8 @@ public class Waypoint : BaseNode, Interactable {
 
     public void SetInteractable(bool canInteract) {
         _canInteract = canInteract;
+        if (activateable != null)
+            activateable.SetActivateable(canInteract);
 
         if (canInteract)
             model.FindChild("CanMoveRing").gameObject.SetActive(true);

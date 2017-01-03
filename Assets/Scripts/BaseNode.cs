@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public abstract class BaseNode : MonoBehaviour {
 
-    float spreadDelay = 0.25f; 
+    float spreadDelay = 0.1f; 
     public List<BaseNode> adjacentNodes;
     public bool canPass;
     public Transform walkPoint;

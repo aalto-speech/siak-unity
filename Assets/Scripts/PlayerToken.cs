@@ -10,6 +10,7 @@ public class PlayerToken : MonoBehaviour {
     public float bounceHeight;
     public Transform model;
 
+    bool _pause;
     bool _midBounce;
 
     Stack<BaseNode> _pathToPoint = new Stack<BaseNode>();
@@ -36,18 +37,24 @@ public class PlayerToken : MonoBehaviour {
         while (bfsQueue.Count != 0) {
             BaseNode node = bfsQueue.Dequeue();
             BaseNode[] adjacents = node.adjacentNodes.ToArray();
+
             for (int i = 0; i < adjacents.Length; i++) {
                 if (!distances.ContainsKey(adjacents[i])) {
                     parents.Add(adjacents[i], node);
+
                     if (adjacents[i] == target as BaseNode) {
                         bfsQueue.Clear();
                         break;
                     }
-                    distances.Add(adjacents[i], distances[node] + 1);
-                    bfsQueue.Enqueue(adjacents[i]);
+
+                    if (adjacents[i].canPass) {
+                        distances.Add(adjacents[i], distances[node] + 1);
+                        bfsQueue.Enqueue(adjacents[i]);
+                    }
                 }
             }
         }
+
 
         BaseNode next = target;
         while (parents.ContainsKey(next)) {
@@ -62,7 +69,8 @@ public class PlayerToken : MonoBehaviour {
         _midBounce = true;
         float PICollector = 0;
         while (PICollector <= 1) {
-            PICollector += bouncesPerSecond * Time.deltaTime;
+            if (!_pause)
+                PICollector += bouncesPerSecond * Time.deltaTime;
             model.localPosition = Vector3.up * bounceHeight * Mathf.Sin(Mathf.PI * PICollector);
             yield return new WaitForEndOfFrame();
         }
@@ -83,5 +91,9 @@ public class PlayerToken : MonoBehaviour {
                 current.TokenReached();
             }
         }
+    }
+
+    public void Pause(bool b) {
+        _pause = b;
     }
 }
