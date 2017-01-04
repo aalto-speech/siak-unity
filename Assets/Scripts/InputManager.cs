@@ -32,10 +32,13 @@ public class InputManager : MonoBehaviour {
 
             Ray ray = cam.ScreenPointToRay(Input.touches[i].position);
             RaycastHit hit;
-            Debug.Log("touch");
 
-            if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Interaction"))) {
-                hit.collider.GetComponent<Interactable>().Interact();
+            if (Physics.Raycast(ray, out hit, 1 << 10)) {
+                Interactable inter = hit.collider.GetComponent<Interactable>();
+                if (inter != null)
+                    inter.Interact();
+                else
+                    Debug.Log(hit.collider.name + " isn't interactable.");
             }
 
             return;
@@ -44,11 +47,13 @@ public class InputManager : MonoBehaviour {
         if (Input.GetMouseButtonDown(0)) {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Debug.Log("touch");
 
-            if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Interaction"))) {
-                hit.collider.GetComponent<Interactable>().Interact();
-                Debug.Log("hit");
+            if (Physics.Raycast(ray, out hit, float.PositiveInfinity,LayerMask.GetMask("Interaction"))) {
+                Interactable inter = hit.collider.GetComponent<Interactable>();
+                if (inter != null)
+                    inter.Interact();
+                else
+                    Debug.Log(hit.collider.name + " isn't interactable.");
             }
         }
     }

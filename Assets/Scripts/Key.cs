@@ -11,9 +11,9 @@ public class Key : BaseActivateable {
         if (!base.Activate())
             return false;
 
+        LevelManager.AddKey();
         if (_wayPoint != null)
             _wayPoint.MarkActivated();
-        LevelManager.AddKey();
         Destroy(this.gameObject);
 
         return true;

@@ -33,13 +33,14 @@ public class PlayerToken : MonoBehaviour {
 
         distances.Add(root, 0);
         bfsQueue.Enqueue(root);
+        parents.Add(root, root);
 
         while (bfsQueue.Count != 0) {
             BaseNode node = bfsQueue.Dequeue();
             BaseNode[] adjacents = node.adjacentNodes.ToArray();
 
             for (int i = 0; i < adjacents.Length; i++) {
-                if (!distances.ContainsKey(adjacents[i])) {
+                if (!parents.ContainsKey(adjacents[i])) {
                     parents.Add(adjacents[i], node);
 
                     if (adjacents[i] == target as BaseNode) {
@@ -59,7 +60,10 @@ public class PlayerToken : MonoBehaviour {
         BaseNode next = target;
         while (parents.ContainsKey(next)) {
             _pathToPoint.Push(next);
-            next = parents[next];
+            if (next != parents[next])
+                next = parents[next];
+            else
+                parents.Clear();
         }
 
         current = target;

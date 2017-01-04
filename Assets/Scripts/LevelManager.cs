@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour {
     public PlayerToken playerToken;
     public InputManager inputManager;
     public Transform wordHolder;
+    public GUIHandler starGUI;
+    public GUIHandler keyGUI;
 
     static LevelManager _lm;
     int _keys;
@@ -57,6 +59,8 @@ public class LevelManager : MonoBehaviour {
         if (amount < 0)
             return;
         _lm._stars += amount;
+        if (_lm.starGUI != null)
+            _lm.starGUI.ChangeNumberBy(amount);
     }
 
     public static bool SpendStars(int amount) {
@@ -64,11 +68,15 @@ public class LevelManager : MonoBehaviour {
             return false;
 
         _lm._stars -= amount;
+        if (_lm.starGUI != null)
+            _lm.starGUI.ChangeNumberBy(-amount);
         return true;
     }
 
     public static void AddKey() {
         _lm._keys++;
+        if (_lm.keyGUI != null)
+            _lm.keyGUI.ChangeNumberBy(1);
     }
 
     public static bool UseKey() {
@@ -76,6 +84,8 @@ public class LevelManager : MonoBehaviour {
             return false;
 
         _lm._keys--;
+        if (_lm.keyGUI != null)
+            _lm.keyGUI.ChangeNumberBy(-1);
         return true;
 
     }

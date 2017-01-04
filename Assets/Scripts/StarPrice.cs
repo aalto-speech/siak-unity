@@ -15,11 +15,15 @@ public class StarPrice : BaseActivateable {
     }
 
     public override bool Activate() {
-        if (!base.Activate())
-            return false;
 
-        if (!LevelManager.SpendStars(price))
+        if (!base.Activate()) {
             return false;
+        }
+
+        if (!LevelManager.SpendStars(price)) {
+            _active = false;
+            return false;
+        }
 
         if (_wayPoint != null) {
             if (secondary) {

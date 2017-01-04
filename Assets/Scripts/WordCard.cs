@@ -6,11 +6,14 @@ public class WordCard : BaseActivateable {
     public MeshRenderer picture;
     public bool getUsedWord;
 
+    [HideInInspector]
+    public GameObject[] stars; // Potential particles
+
     float _rotationsPerSecond = 0.1f;
-    Vector3 _startPos;
-    Quaternion _startRot;
+    float _standUpSpeed = 0.4f;
     PlayMakerFSM _myFSM;
     AudioSource _as;
+    int _myScore;
 
     void Awake() {
         _myFSM = GetComponent<PlayMakerFSM>();
@@ -31,7 +34,7 @@ public class WordCard : BaseActivateable {
             return false;
 
         SetWord(getUsedWord);
-        StartCoroutine(GoToCardPosition(true));
+        StartCoroutine(GoToPosition(true, CameraManager.GetCardLocation(), transform, model.GetChild(0)));
         LevelManager.ToggleInput(false);
 
         return true;
@@ -53,39 +56,25 @@ public class WordCard : BaseActivateable {
 
         float targetY = (_canActivate) ? 120 : 0;
         Transform stand = model.GetChild(0);
-        stand.localRotation = Quaternion.RotateTowards(stand.localRotation, Quaternion.Euler(0, targetY, 0), Time.deltaTime * _rotationsPerSecond * 360.0f);
+        stand.localRotation = Quaternion.RotateTowards(stand.localRotation, Quaternion.Euler(0, targetY, 0), Time.deltaTime * _standUpSpeed * 360.0f);
         model.Rotate(Vector3.up, _rotationsPerSecond * Time.deltaTime * 360.0f, Space.World);
     }
 
     public void EndCardGame(int score) {
-        LevelManager.AddStars(score);
-        StartCoroutine(GoToCardPosition(false));
-    }
-
-    IEnumerator GoToCardPosition(bool toCardLocation) {
-        Transform target = CameraManager.GetCardLocation();
-        Transform stand = model.GetChild(0);
-
-        if (toCardLocation)
-            _startRot = stand.rotation;
-
-        Quaternion start = (toCardLocation) ? _startRot : target.rotation;
-        Quaternion end = (!toCardLocation) ? _startRot : target.rotation;
-
-        Vector3 to = (toCardLocation) ? target.position : _startPos;
-        Vector3 from = (!toCardLocation) ? target.position : _startPos;
-        float tween = 0;
-        while (tween < 1) {
-            tween += Time.deltaTime;
-            transform.position = Vector3.Lerp(from, to, tween);
-            stand.rotation = Quaternion.Lerp(start, end, tween);
-            yield return new WaitForEndOfFrame();
+        if (score > _myScore) {
+            LevelManager.AddStars(score - _myScore);
+            _myScore = score;
         }
+        StartCoroutine(GoToPosition(false ,CameraManager.GetCardLocation(), transform, model.GetChild(0)));
 
-        transform.position = to;
-        stand.rotation = end;
-        if (toCardLocation) {
-            yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < stars.Length; i++) {
+            bool state = (i < _myScore) ? true : false;
+            stars[i].gameObject.SetActive(state);
+        }
+    }
+    
+    protected override void EndReached(bool toLocation) {
+        if (toLocation) {
             _as.Play();
             _myFSM.SendEvent("GameOn");
         } else

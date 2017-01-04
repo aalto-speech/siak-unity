@@ -5,7 +5,6 @@ public class CameraManager : MonoBehaviour {
 
     static CameraManager _cm;
     Camera _cam;
-    public Transform zoomLocation;
     public Transform leftInteractionLocation;
     public Transform rightInteractionLocation;
     public Transform cardInteractionLocation;
@@ -28,10 +27,6 @@ public class CameraManager : MonoBehaviour {
     }
 
     public static Transform GetRightLocation() {
-        return _cm.rightInteractionLocation;
-    }
-
-    public static Transform GetZoomLocation() {
         return _cm.rightInteractionLocation;
     }
 }

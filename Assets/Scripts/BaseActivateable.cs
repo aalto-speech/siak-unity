@@ -12,6 +12,8 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     protected bool _active;
     protected bool _canActivate;
     protected float _piCollector;
+    protected Quaternion _startRot;
+    protected Vector3 _startPos;
 
     void Start() {
 
@@ -33,11 +35,7 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
         return true;
     }
 
-
     protected void Floating() {
-        if (!_canActivate)
-            return;
-
         float speed = (_active) ? 0.5f * _floatingSpeed : _floatingSpeed;
         float radius = (_active) ? 0.5f * _floatingRadius : _floatingRadius;
 
@@ -54,5 +52,32 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
 
     public void SetWaypoint(Waypoint wp) {
         _wayPoint = wp;
+    }
+
+   protected IEnumerator GoToPosition(bool toLocation, Transform target, Transform mover, Transform rotater) {
+        if (toLocation)
+            _startRot = rotater.rotation;
+
+        Quaternion start = (toLocation) ? _startRot : target.rotation;
+        Quaternion end = (!toLocation) ? _startRot : target.rotation;
+
+        Vector3 to = (toLocation) ? target.position : _startPos;
+        Vector3 from = (!toLocation) ? target.position : _startPos;
+        float tween = 0;
+        while (tween < 1) {
+            tween += Time.deltaTime;
+            transform.position = Vector3.Lerp(from, to, tween);
+            rotater.rotation = Quaternion.Lerp(start, end, tween);
+            yield return new WaitForEndOfFrame();
+        }
+
+        mover.position = to;
+        rotater.rotation = end;
+        if (toLocation)
+            yield return new WaitForSeconds(0.5f);
+        EndReached(toLocation);
+    }
+
+    protected virtual void EndReached(bool toLocation) {
     }
 }
