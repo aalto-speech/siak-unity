@@ -29,6 +29,7 @@ public class StarPrice : BaseActivateable {
             if (secondary) {
                 _wayPoint.activateable = secondary;
                 secondary.SetWaypoint(_wayPoint);
+                secondary.SetActivateable(true);
             } else
                 _wayPoint.MarkActivated();
         }

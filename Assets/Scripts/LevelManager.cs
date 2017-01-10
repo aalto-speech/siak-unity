@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour {
 
     static LevelManager _lm;
     int _keys;
-    int _stars;
+    int _stars = 10;
     Dictionary<string, WordGlue> _idToGlue = new Dictionary<string, WordGlue>();
     Queue<string> _newWords = new Queue<string>();
     List<string> _usedWords = new List<string>();

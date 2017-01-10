@@ -1,50 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Lock : BaseActivateable {
-
+public class Crank : BaseActivateable {
     public BaseActivateable secondary;
+    public GameObject plank;
+    public BaseNode wayPointToConnect;
+    public BaseNode pathToConnectTo;
+    
     PlayMakerFSM _myFSM;
 
     void Start() {
         _myFSM = GetComponent<PlayMakerFSM>();
-        _startPos = transform.position;
-    }
-
-    void Update() {
-        Floating();
+        _myFSM.FsmVariables.FindFsmGameObject("spawnLocation").Value = CameraManager.GetCardLocation().gameObject;
+        _myFSM.FsmVariables.FindFsmGameObject("plank").Value = plank;
+        _myFSM.FsmVariables.FindFsmGameObject("model").Value = model.gameObject;
     }
 
     public override bool Activate() {
-
         if (!base.Activate()) {
             return false;
         }
-        
-        if (!LevelManager.UseKey()) {
-            _active = false;
-            return false;
-        }
-        
-        LevelManager.ToggleInput(false);
-        StartCoroutine(GoToPosition(true, CameraManager.GetRightLocation(), transform, model));
 
+        LevelManager.ToggleInput(false);
+        _myFSM.SendEvent("StartMiniGame");
         return true;
     }
-
-    protected override void EndReached(bool toLocation) {
-        if (toLocation) {
-            _myFSM.FsmVariables.FindFsmGameObject("keyPos").Value = CameraManager.GetLeftLocation().gameObject; 
-            _myFSM.SendEvent("StartMinigame");
-            Debug.Log("yeah");
-        } else
-            return;
-    }
+    
 
     public void EndMinigame() {
-        GetComponent<Rigidbody>().isKinematic = false;
         Deactivate();
-        Destroy(this.gameObject, 3.0f);
     }
 
     public override bool Deactivate() {
@@ -60,6 +44,12 @@ public class Lock : BaseActivateable {
                 secondary.SetWaypoint(_wayPoint);
                 secondary.SetActivateable(true);
             }
+        }
+
+        if (wayPointToConnect != null && pathToConnectTo != null) {
+            wayPointToConnect.adjacentNodes.Add(pathToConnectTo);
+            if (wayPointToConnect.canPass)
+                wayPointToConnect.SpreadActive();
         }
         return true;
     }

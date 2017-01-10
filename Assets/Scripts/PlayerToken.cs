@@ -19,7 +19,7 @@ public class PlayerToken : MonoBehaviour {
         if (_pathToPoint.Count != 0) {
 
             MoveToTarget();
-        } else if (!_midBounce)
+        } else if (!_midBounce && !_pause)
             StartCoroutine(BounceModel());
     }
 
@@ -73,8 +73,7 @@ public class PlayerToken : MonoBehaviour {
         _midBounce = true;
         float PICollector = 0;
         while (PICollector <= 1) {
-            if (!_pause)
-                PICollector += bouncesPerSecond * Time.deltaTime;
+            PICollector += bouncesPerSecond * Time.deltaTime;
             model.localPosition = Vector3.up * bounceHeight * Mathf.Sin(Mathf.PI * PICollector);
             yield return new WaitForEndOfFrame();
         }
