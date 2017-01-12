@@ -31,7 +31,8 @@ public class LevelManager : MonoBehaviour {
 
     public static void ToggleInput(bool b) {
         _lm.inputManager.SendInputs = b;
-        _lm.playerToken.Pause(!b);
+        if (_lm.playerToken != null)
+            _lm.playerToken.Pause(!b);
     }
 
     public static string GetNewID() {

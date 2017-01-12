@@ -17,11 +17,11 @@ public class WordCard : BaseActivateable {
 
     void Awake() {
         _myFSM = GetComponent<PlayMakerFSM>();
-        _startPos = transform.position;
         _as = GetComponent<AudioSource>();
     }
 
     void Start() {
+        SetStartPosition(transform.position);
     }
 
     void Update() {
@@ -47,6 +47,8 @@ public class WordCard : BaseActivateable {
         LevelManager.ToggleInput(true);
         if (_wayPoint != null)
             _wayPoint.MarkActivated();
+        if (_noGame != null)
+            _noGame.MarkActivated();
         return true;
     }
 

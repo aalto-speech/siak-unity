@@ -14,6 +14,7 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     protected float _piCollector;
     protected Quaternion _startRot;
     protected Vector3 _startPos;
+    protected NoGameInteractable _noGame;
 
     void Start() {
 
@@ -36,7 +37,7 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     }
 
     protected void Floating() {
-        float speed = (_active) ? 0.5f * _floatingSpeed : _floatingSpeed;
+        float speed = (_active) ? _floatingSpeed : _floatingSpeed;
         float radius = (_active) ? 0.5f * _floatingRadius : _floatingRadius;
 
         _piCollector += speed * Mathf.PI * 2 * Time.deltaTime;
@@ -54,9 +55,16 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
         _wayPoint = wp;
     }
 
-   protected IEnumerator GoToPosition(bool toLocation, Transform target, Transform mover, Transform rotater) {
+    public void SetNoGameInteractable(NoGameInteractable ngi) {
+        _noGame = ngi;
+    }
+
+    protected IEnumerator GoToPosition(bool toLocation, Transform target, Transform mover, Transform rotater) {
         if (toLocation)
             _startRot = rotater.rotation;
+        else if (_noGame != null) {
+            _startRot = model.rotation * Quaternion.AngleAxis(180.0f, rotater.up);
+        }
 
         Quaternion start = (toLocation) ? _startRot : target.rotation;
         Quaternion end = (!toLocation) ? _startRot : target.rotation;
@@ -79,5 +87,9 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     }
 
     protected virtual void EndReached(bool toLocation) {
+    }
+
+    public void SetStartPosition(Vector3 position) {
+        _startPos = position;
     }
 }

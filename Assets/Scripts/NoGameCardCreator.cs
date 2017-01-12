@@ -18,7 +18,8 @@ public class NoGameCardCreator : MonoBehaviour {
 
         for (int i = 0; i < amount; i++) {
             GameObject go = Instantiate(card);
-            go.transform.position = new Vector3((baseX + x) * spacing, (baseY + y) * spacing, 0);
+            go.transform.SetParent(this.transform, true);
+            go.transform.localPosition = new Vector3((baseX + x) * spacing, (baseY + y) * spacing, 0);
             x++;
             if (x == inRow) {
                 x = 0;
