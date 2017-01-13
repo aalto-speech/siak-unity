@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class LevelManager : MonoBehaviour {
 
+    public Level level;
+    public int maximumStars;
     public PlayerToken playerToken;
     public InputManager inputManager;
     public Transform wordHolder;
@@ -23,6 +25,11 @@ public class LevelManager : MonoBehaviour {
         for (int i = 0; i < wgs.Length; i++) {
             ProcessGlue(wgs[i]);
         }
+    }
+
+    void Start() {
+        if (starGUI != null)
+            starGUI.SetNumber(GameManager.TotalStars());
     }
 
     public static PlayerToken GetPlayerToken() {
@@ -71,6 +78,7 @@ public class LevelManager : MonoBehaviour {
         _lm._stars -= amount;
         if (_lm.starGUI != null)
             _lm.starGUI.ChangeNumberBy(-amount);
+        
         return true;
     }
 

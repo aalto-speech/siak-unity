@@ -89,8 +89,8 @@ public class WordCard : BaseActivateable {
 
         wordID = (getUsed) ? LevelManager.GetUsedID() : LevelManager.GetNewID();
         WordGlue _wg = LevelManager.GetWord(wordID);
-        _as.volume = _wg.volume;
-        _as.clip = _wg.clip;
+        _as.volume = (getUsed) ? _wg.localVolume : _wg.foreignVolume;
+        _as.clip = (getUsed) ? _wg.localClip : _wg.foreignClip;
         picture.material.SetTexture("_MainTex", _wg.picture);
         picture.material.color = Color.white;
     }

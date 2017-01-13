@@ -17,7 +17,6 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     protected NoGameInteractable _noGame;
 
     void Start() {
-
     }
 
     public virtual bool Activate() {

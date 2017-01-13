@@ -5,6 +5,7 @@ public class NoGameManager : MonoBehaviour {
     public GameObject finalCard;
     public GameObject noGameHolder;
     public int amountOfCards;
+    public BaseActivateable nextLevel;
 
     static NoGameManager _ngm;
 
@@ -43,7 +44,20 @@ public class NoGameManager : MonoBehaviour {
         _ngm._usedCards++;
         if (_ngm._usedCards == _ngm.amountOfCards)
             _ngm.CreateFinal();
+        else if (_ngm._usedCards > _ngm.amountOfCards) {
+            _ngm.CreateNext();
+        }
     }
+    
+    void CreateNext() {
+        Transform t = Instantiate(noGameHolder).transform;
+        t.rotation = nextLevel.transform.rotation;
+        t.position = nextLevel.transform.position;
+        nextLevel.gameObject.SetActive(true);
+        t.GetComponent<NoGameInteractable>().SetActivateable(nextLevel);
+        t.GetComponent<NoGameInteractable>().glidingPoint = nextLevel.transform.position + -t.forward * 12.0f;
+    }
+
 
     void CreateFinal() {
         Transform t = Instantiate(noGameHolder).transform;

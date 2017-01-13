@@ -8,6 +8,8 @@ public class StarPrice : BaseActivateable {
 
     void Start() {
         model.GetComponentInChildren<TextMesh>().text = price.ToString();
+        if (GameManager.IsSpent(gameObject.name))
+            Use();
     }
 
     void Update() {
@@ -25,6 +27,12 @@ public class StarPrice : BaseActivateable {
             return false;
         }
 
+        Use();
+
+        return true;
+    }
+
+    void Use() {
         if (_wayPoint != null) {
             if (secondary) {
                 _wayPoint.activateable = secondary;
@@ -34,7 +42,5 @@ public class StarPrice : BaseActivateable {
                 _wayPoint.MarkActivated();
         }
         Destroy(this.gameObject);
-
-        return true;
     }
 }
