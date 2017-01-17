@@ -73,7 +73,7 @@ public class client_script : MonoBehaviour {
   int maxAudioLen = 4; //seconds
 
   string currentword = "choose"; 
-  string currentlevel = 'L0-0';
+  string currentlevel = "L0-0";
 
   // Variables for recording:
   String micstring;
@@ -244,7 +244,7 @@ public class client_script : MonoBehaviour {
     StartCoroutine(patientlyDefineWord(recUrl, customheaders));
   }
 
-  void getWordList(newlevel)
+  void getWordList(string newlevel)
   {
     currentlevel = newlevel;
 
