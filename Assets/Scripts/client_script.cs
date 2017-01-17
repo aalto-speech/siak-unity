@@ -250,7 +250,6 @@ public class client_script : MonoBehaviour {
 
     WWWForm getWordListForm = new WWWForm();
     var customheaders = addCustomHeaders(getWordListForm.headers, "-2", currentword);
-    customheaders["X-siak-level"] = currentlevel;
 
     // Start the upload in a new thread:
     StartCoroutine(patientlyGetWordList(wordListUrl, customheaders));
@@ -353,7 +352,7 @@ public class client_script : MonoBehaviour {
 
     customheaders["X-siak-user"] = playername;
     customheaders["X-siak-password"] = playerpassword;
-    customheaders["X-siak-level"] = "1";
+    customheaders["X-siak-level"] = currentlevel;
     customheaders["X-siak-region"] = "2";
     customheaders["X-siak-current-word-id"] = wordID;
 
