@@ -6,304 +6,367 @@ using System.Text;
 
 using SimpleJSON;
 
+
+
+/*
+
+A class that communicates with the speech server:
+
+Relevant functions:
+
+  startSession()
+  - checks that server is up and username and password are ok
+  - returns 200, 401 or 500.
+
+  defineWord(String newword)
+  - define the word to be repeated
+  - returns unique id number
+
+  startRec()
+  - starts upload for the chosen word
+  - returns integer:
+      1-5: score for successful evaluation
+        0: package_received
+       -1: audio_end (time to stop recording!)
+       -2: segmentation failure
+       -3: segmentation_error 
+       -4  classification_error
+       -5: no_audio_activity
+       -6: mic_off
+       -7: late_arrival
+       -8: duplicate
+       -9: network_lag_error
+     -100  generic_server_error
+
+  getWordlist()
+  - get a list of words from the server
+  - returns a list of words in JSON
+
+ */
+
+
 public class client_script : MonoBehaviour {
 
-    // Variables for the game project:
-    String recUrl = "http://asr.aalto.fi/siak-debug/asr";
-    String logUrl = "http://asr.aalto.fi/siak-debug/log-action";
-    String loginUrl = "http://asr.aalto.fi/siak-debug/login";
-    String logoutUrl = "http://asr.aalto.fi/siak-debug/logout";
+  // Variables for the game project:
+  String recUrl = "http://asr.aalto.fi/siak-devel/asr";
+  String logUrl = "http://asr.aalto.fi/siak-devel/log-action";
+  String loginUrl = "http://asr.aalto.fi/siak-devel/login";
+  String wordListUrl = "http://asr.aalto.fi/siak-devel/start-level";
 
-    String playername = "foo";
-    String playerpassword = "bar";
+  String playername = "foo";
+  String playerpassword = "bar";
 
-	public String serverState = "not ok";
-	public String wordOnServer = "not duck";
-	public String scoreFromServer = "-1.0";
-
-	public Boolean stopRecordingSignal = false;
-
-    // if or when the server crashes during the game session, the password will
-    // be useful to avoid logging in again. Should be strongly encrypted in https anyway!
-
-    // Variables for defining audio:
-    int fs = 16000;
-    int packetspersecond = 3;
-    int maxAudioLen = 4; 
-
-    string currentword = "choose";
+  public String serverState = "not ok";
+  public String wordID = "-1";
+  public String scoreFromServer = "-1.0";					
+  public String wordListJSON = "[]";
 
 
-    // Variables for recording:
-    String micstring;
-    AudioSource aud;    
-    bool micOn = false;
-    int recstart;
+  public Boolean stopRecordingSignal = false;
+
+  // if or when the server crashes during the game session, the password will
+  // be useful to avoid logging in again. Should be strongly encrypted in https anyway!
+
+  // Variables for defining audio:
+  int fs = 16000;
+  int packetspersecond = 3;
+  int maxAudioLen = 4; //seconds
+
+  string currentword = "choose"; 
+  string currentlevel = 'L0-0';
+
+  // Variables for recording:
+  String micstring;
+  AudioSource aud;    
+  bool micOn = false;
+  int recstart;
     
-    // Variables for controlling packet sending:
-    int sentpacketnr = 0;
-    int samplessent = 0;
-    bool finalpacket = false;
-    int packetsize;
+  // Variables for controlling packet sending:
+  int sentpacketnr = 0;
+  int samplessent = 0;
+  bool finalpacket = false;
+  int packetsize;
+
+  
 
 
+  // Use this for initialization
+  void Start() {
 
-    // Use this for initialization
-    void Start() {
+    // Calculate some essential values:
+    packetsize = (int)Math.Floor((double)(fs / packetspersecond));
 
-    	// Calculate some essential values:
-        packetsize = (int)Math.Floor((double)(fs / packetspersecond));
+    foreach (string device in Microphone.devices)
+      {
+	Debug.Log("Name: " + device);
+      }
 
+    // Hard-coded to use mic number 0; Bad Idea but where to choose these?
+    //micstring = Microphone.devices[Microphone.devices.Length-1];
+    micstring = Microphone.devices[0]; //changed from original to access the mic on this computer correctly...!
 
-        foreach (string device in Microphone.devices)
-        {
-            Debug.Log("Name: " + device);
-        }
+    recstart = Environment.TickCount;
 
-	// Hard-coded to use mic number 0; Bad Idea but where to choose these?
-        //micstring = Microphone.devices[Microphone.devices.Length-1];
-		micstring = Microphone.devices[0]; //changed from original to access the mic on this computer correctly...!
+    sentpacketnr = 0;
+    finalpacket = false;
 
-        recstart = Environment.TickCount;
-
-        sentpacketnr = 0;
-        finalpacket = false;
-
-
-    }
+  }
 
 
-    //
-    //
-    //  This bit should be replaced by commands coming from 
-    //  the game engine. Now how would we do that?
-    //
-    // 
-    // Update is called once per frame
-    void Update() {
+  //
+  //
+  //  This bit should be replaced by commands coming from 
+  //  the game engine. Now how would we do that?
+  //
+  // 
+  // Update is called once per frame
+  void Update() {
 
-        if (Input.GetKeyUp(KeyCode.S)) {
-            startSession();
-        }
+    /* This is being done from inside the game in the playmaker script (CardFrame:FSM:PrepareForPlay, State14, Start_Recording 2, Stop_Recording) now...!
+     * 
 
-		/* This is being done from inside the game in the playmaker script (CardFrame:FSM:PrepareForPlay, State14, Start_Recording 2, Stop_Recording) now...!
-		 * 
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            defineWord();
-        }
+     if (Input.GetKeyUp(KeyCode.S)) {
+       startSession();
+     }
 
-        // Simple controls for recording with key "r" pressed down:   
-        else if (Input.GetKeyDown(KeyCode.R) && micOn == false)
-        {
-            recstart = Environment.TickCount;
-            Debug.Log("Starting second: " + recstart.ToString());
-            startRec();            
-        }
-		else if (micOn == true && ( Input.GetKeyUp(KeyCode.R) ))// || recstart + 1000*maxAudioLen < Environment.TickCount ) ) //I've removed the 10 second waiting time ...!
-        {
-            Debug.Log("Stop recording: " + System.DateTime.Now);
-            // Stop recording!
-            stopRec();
-        }
-		*/
-        checkStartUpload();
+     if (Input.GetKeyUp(KeyCode.D))
+     {
+     defineWord();
+     }
 
-    }
+     // Simple controls for recording with key "r" pressed down:   
+     else if (Input.GetKeyDown(KeyCode.R) && micOn == false)
+     {
+     recstart = Environment.TickCount;
+     Debug.Log("Starting second: " + recstart.ToString());
+     startRec();            
+     }
+     else if (micOn == true && ( Input.GetKeyUp(KeyCode.R) ))// || recstart + 1000*maxAudioLen < Environment.TickCount ) ) //I've removed the 10 second waiting time ...!
+     {
+     Debug.Log("Stop recording: " + System.DateTime.Now);
+     // Stop recording!
+     stopRec();
+     }
+    */
+    checkStartUpload();
 
-    void startRec()
-    {
+  }
 
-		stopRecordingSignal = false;
+  void startRec()
+  {
+      
+    stopRecordingSignal = false;
+		
+    //Start recording:
+    aud = GetComponent<AudioSource>();
 
-        //Start recording:
-        aud = GetComponent<AudioSource>();
+    // Device 0, no looping, 10 s record at 16 kHz:
+    aud.clip = Microphone.Start(micstring, false, maxAudioLen, fs);
+    micOn = true;
 
-        // Device 0, no looping, 10 s record at 16 kHz:
-        aud.clip = Microphone.Start(micstring, false, maxAudioLen, fs);
-        micOn = true;
+    sentpacketnr = 0;
+    samplessent = 0;
+    finalpacket = false;
 
-        sentpacketnr = 0;
-        samplessent = 0;
-        finalpacket = false;
+    //aud.Play();
+  }
 
-        //aud.Play();
-    }
+  void stopRec()
+  {
+    Debug.Log("Setting finalpacket = true");    
+    finalpacket = true;
+    micOn = false;
+    aud.Stop();
+  }
 
-    void stopRec()
-    {
-        Debug.Log("Setting finalpacket = true");    
-        finalpacket = true;
-        micOn = false;
-        aud.Stop();
-    }
+  void checkStartUpload()
+  {
+    int writeHead = Microphone.GetPosition(micstring);
+    //Debug.Log("writeHead: "+writeHead.ToString());    
 
-    void checkStartUpload()
-    {
-        int writeHead = Microphone.GetPosition(micstring);
-        //Debug.Log("writeHead: "+writeHead.ToString());    
+    if ( aud && ( ( micOn && writeHead > samplessent + packetsize )|| finalpacket))
+      {
+	int thispacketsize = packetsize;
 
-        if ( aud && ( ( micOn && writeHead > samplessent + packetsize )|| finalpacket))
-        {
-            int thispacketsize = packetsize;
+	// The last packet might be smaller than the standard packet size:
+	if (finalpacket)
+	  {
+	    thispacketsize = writeHead - samplessent;
+	  }
 
-	    // The last packet might be smaller than the standard packet size:
-            if (finalpacket)
-            {
-                thispacketsize = writeHead - samplessent;
-            }
+	// Copy the relevant audio data to a float array at the samplessent point:
+	float[] samples = new float[thispacketsize];
+	aud.clip.GetData(samples, samplessent);
 
-	    // Copy the relevant audio data to a float array at the samplessent point:
-            float[] samples = new float[thispacketsize];
-            aud.clip.GetData(samples, samplessent);
-
-            startUpload(sentpacketnr++, finalpacket, samplessent, samples);
-
-
-	    // Book-keeping for packets:
-            samplessent += samples.Length;
-
-            if (finalpacket)
-            {
-                finalpacket = false;
-            }
-        }
+	startUpload(sentpacketnr++, finalpacket, samplessent, samples);
 
 
-    }
+	// Book-keeping for packets:
+	samplessent += samples.Length;
 
-    void startSession()
-    {
+	if (finalpacket)
+	  {
+	    finalpacket = false;
+	  }
+      }
 
-        WWWForm sessionStartForm = new WWWForm();
 
-        var customheaders = sessionStartForm.headers;
-        customheaders = addCustomHeaders(customheaders, "-2", null);
+  }
 
-      	// Start the upload in a new thread:
-        StartCoroutine(patientlyStartSession(recUrl, customheaders));
+  void startSession()
+  {
 
-        return ;
-    }
+    WWWForm sessionStartForm = new WWWForm();
+
+    var customheaders = sessionStartForm.headers;
+    customheaders = addCustomHeaders(customheaders, "-2", null);
+
+    // Start the upload in a new thread:
+    StartCoroutine(patientlyStartSession(recUrl, customheaders));
+
+    return ;
+  }
 
 	
-	void defineWord(String newword)
-	{
-		currentword = newword;
-		defineWord ();
-	}
+  void defineWord(String newword)
+  {
+    currentword = newword;
+    defineWord ();
+  }
 
-    void defineWord()
-    {
-        WWWForm sessionStartForm = new WWWForm();
+  void defineWord()
+  {
+    WWWForm sessionStartForm = new WWWForm();
 
-        var customheaders = addCustomHeaders(sessionStartForm.headers, "-1", currentword);
+    var customheaders = addCustomHeaders(sessionStartForm.headers, "-1", currentword);
 
-        // Start the upload in a new thread:
-        StartCoroutine(patientlyDefineWord(recUrl, customheaders));
-    }
+    // Start the upload in a new thread:
+    StartCoroutine(patientlyDefineWord(recUrl, customheaders));
+  }
+
+  void getWordList(newlevel)
+  {
+    currentlevel = newlevel;
+
+    WWWForm getWordListForm = new WWWForm();
+    var customheaders = addCustomHeaders(getWordListForm.headers, "-2", currentword);
+    customheaders["X-siak-level"] = currentlevel;
+
+    // Start the upload in a new thread:
+    StartCoroutine(patientlyGetWordList(wordListUrl, customheaders));
+  }
 
 
 
+  IEnumerator patientlyStartSession(String targetUrl, System.Collections.Generic.Dictionary<string,string> customheaders)
+  {
+    WWW wwwResponse = new WWW(targetUrl, null, customheaders);
 
-    IEnumerator patientlyStartSession(String targetUrl, System.Collections.Generic.Dictionary<string,string> customheaders)
-    {
-        WWW wwwResponse = new WWW(targetUrl, null, customheaders);
-
-        yield return wwwResponse;
-        // Our answer from the server:
-        Debug.Log("Server State: " + wwwResponse.text);
-		serverState = wwwResponse.text;
-    }
+    yield return wwwResponse;
+    // Our answer from the server:
+    Debug.Log("Server State: " + wwwResponse.text);
+    serverState = wwwResponse.text;
+  }
 
 
-	IEnumerator patientlyDefineWord(String targetUrl, System.Collections.Generic.Dictionary<string,string> customheaders)
-	{
-		WWW wwwResponse = new WWW(targetUrl, null, customheaders);
+  IEnumerator patientlyDefineWord(String targetUrl, System.Collections.Generic.Dictionary<string,string> customheaders)
+  {
+    WWW wwwResponse = new WWW(targetUrl, null, customheaders);
 		
-		yield return wwwResponse;
-		// Our answer from the server:
-		Debug.Log("Word on Server: " + wwwResponse.text);
-		wordOnServer = wwwResponse.text;
-	}
+    yield return wwwResponse;
+    // Our answer from the server:
+    Debug.Log("WordID on Server: " + wwwResponse.text);
+    wordID = wwwResponse.text;
+  }
+
+  IEnumerator patientlyGetWordList(String targetUrl, System.Collections.Generic.Dictionary<string,string> customheaders)
+  {
+    WWW wwwResponse = new WWW(targetUrl, null, customheaders);
+
+    yield return wwwResponse;
+    // Our answer from the server:
+    Debug.Log("WordList from Server: " + wwwResponse.text);
+    wordListJSON = wwwResponse.text;
+  }
 
 
+  void startUpload(int thispacketnr, bool thisfinalpacket, int startsample,  float[] samples)
+  {
+    // Make a byte array of the float array:
 
-    void startUpload(int thispacketnr, bool thisfinalpacket, int startsample,  float[] samples)
-    {
-	// Make a byte array of the float array:
+    // from http://stackoverflow.com/questions/4635769/how-do-i-convert-an-array-of-floats-to-a-byte-and-back
+    // This only copies the first item in the float array.
+    // var byteArray = new byte[audiodata.Length * 4];
+    // Buffer.BlockCopy(audiodata, 0, byteArray, 0, byteArray.Length);
 
-        // from http://stackoverflow.com/questions/4635769/how-do-i-convert-an-array-of-floats-to-a-byte-and-back
-        // This only copies the first item in the float array.
-        // var byteArray = new byte[audiodata.Length * 4];
-        // Buffer.BlockCopy(audiodata, 0, byteArray, 0, byteArray.Length);
-
-        var bytesamples = new byte[(samples.Length*4)];
-        Buffer.BlockCopy(samples, 0, bytesamples, 0, samples.Length*4);
+    var bytesamples = new byte[(samples.Length*4)];
+    Buffer.BlockCopy(samples, 0, bytesamples, 0, samples.Length*4);
       
-        WWWForm audioForm = new WWWForm();
+    WWWForm audioForm = new WWWForm();
 
-        var customheaders = audioForm.headers;
-		addCustomHeaders(customheaders, thispacketnr.ToString(), currentword); // should this be customheaders = addCustomHeaders(.,.,.)....???!
+    var customheaders = audioForm.headers;
+    addCustomHeaders(customheaders, thispacketnr.ToString(), currentword); // should this be customheaders = addCustomHeaders(.,.,.)....???!
 
-        customheaders["X-siak-packet-arraystart"] = startsample.ToString();
- 	    customheaders["X-siak-packet-arrayend"] = (startsample+samples.Length).ToString();
-    	customheaders["X-siak-packet-arraylength"] = (samples.Length).ToString();
-        customheaders["X-siak-final-packet"] = finalpacket == true ? "true" : "false";
+    customheaders["X-siak-packet-arraystart"] = startsample.ToString();
+    customheaders["X-siak-packet-arrayend"] = (startsample+samples.Length).ToString();
+    customheaders["X-siak-packet-arraylength"] = (samples.Length).ToString();
+    customheaders["X-siak-final-packet"] = finalpacket == true ? "true" : "false";
 
-    	// Start the upload in a new thread:
-        StartCoroutine(patientlyUpload(recUrl, bytesamples, customheaders));
+    // Start the upload in a new thread:
+    StartCoroutine(patientlyUpload(recUrl, bytesamples, customheaders));
+  }
+
+  IEnumerator doSomeLogging(String actionName) // is this being used at all...?
+  {
+    WWWForm loggingForm = new WWWForm();
+
+    var customheaders = addCustomHeaders(loggingForm.headers, null, null);
+    customheaders["X-siak-game-action"] = actionName;
+
+    WWW wwwRec = new WWW(logUrl, null, customheaders);
+
+    yield return wwwRec;
+  }
+
+  IEnumerator patientlyUpload(String targeturl, byte[] bytedata,  System.Collections.Generic.Dictionary<string,string> customheaders)
+  {
+    Debug.Log("starting upload");
+    // Uploading:
+    WWW wwwRec = new WWW(targeturl, Encoding.UTF8.GetBytes(Convert.ToBase64String(bytedata)), customheaders);
+
+    yield return wwwRec;
+
+    // Our answer from the server:
+    scoreFromServer = wwwRec.text;// so that any score can be handled in unity
+    Debug.Log("Score: " + wwwRec.text); //is the score supposed to improve as more data is sent..???
+
+    if (wwwRec.text == "-1") {
+      stopRecordingSignal = true;
     }
-
-    IEnumerator doSomeLogging(String actionName) // is this being used at all...?
-    {
-        WWWForm loggingForm = new WWWForm();
-
-        var customheaders = addCustomHeaders(loggingForm.headers, null, null);
-        customheaders["X-siak-game-action"] = actionName;
-
-        WWW wwwRec = new WWW(logUrl, null, customheaders);
-
-        yield return wwwRec;
+    else if (wwwRec.text != "0") {
+      stopRecordingSignal = true;
+      scoreFromServer = wwwRec.text;
     }
+  }
 
-    IEnumerator patientlyUpload(String targeturl, byte[] bytedata,  System.Collections.Generic.Dictionary<string,string> customheaders)
-    {
-		Debug.Log("starting upload");
-	// Uploading:
-        WWW wwwRec = new WWW(targeturl, Encoding.UTF8.GetBytes(Convert.ToBase64String(bytedata)), customheaders);
+  System.Collections.Generic.Dictionary<string,string> addCustomHeaders(System.Collections.Generic.Dictionary<string,string>customheaders, String packetnr, String word) {
 
-        yield return wwwRec;
-
-		// Our answer from the server:
-		scoreFromServer = wwwRec.text;// so that any score can be handled in unity
-        Debug.Log("Score: " + wwwRec.text); //is the score supposed to improve as more data is sent..???
-
-		if (wwwRec.text == "-1") {
-			stopRecordingSignal = true;
-		}
-		else if (wwwRec.text != "0") {
-			scoreFromServer = wwwRec.text;
-		}
-    }
-
-    System.Collections.Generic.Dictionary<string,string> addCustomHeaders(System.Collections.Generic.Dictionary<string,string>customheaders, String packetnr, String word) {
-
-        customheaders["X-siak-user"] = playername;
-        customheaders["X-siak-password"] = playerpassword;
-        customheaders["X-siak-level"] = "1";
-        customheaders["X-siak-region"] = "2";
+    customheaders["X-siak-user"] = playername;
+    customheaders["X-siak-password"] = playerpassword;
+    customheaders["X-siak-level"] = "1";
+    customheaders["X-siak-region"] = "2";
+    customheaders["X-siak-current-word-id"] = wordID;
 
         
 
-        if (packetnr != null)
-            customheaders["X-siak-packetnr"] = packetnr;
-	else
-            customheaders["X-siak-packetnr"] = "-2";
+    if (packetnr != null)
+      customheaders["X-siak-packetnr"] = packetnr;
+    else
+      customheaders["X-siak-packetnr"] = "-2";
 
-        if (word != null)
-            customheaders["X-siak-current-word"] = currentword;
+    if (word != null)
+      customheaders["X-siak-current-word"] = currentword;
         
-        return customheaders;
-    }
+    return customheaders;
+  }
 }
