@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Text;
 
-using SimpleJSON;
+//using SimpleJSON;
 
 
 
@@ -28,17 +28,17 @@ Relevant functions:
       1-5: score for successful evaluation
         0: package_received
        -1: audio_end (time to stop recording!)
-       -2: segmentation failure
-       -3: segmentation_error 
-       -4  classification_error
-       -5: no_audio_activity
-       -6: mic_off
-       -7: late_arrival
-       -8: duplicate
-       -9: network_lag_error
+       -2: segmentation failure * Player's fault
+       -3: segmentation_error * Server's fault
+       -4  classification_error * Server's fault
+       -5: no_audio_activity * Microphone problem
+       -6: mic_off * Microphone problem
+       -7: late_arrival * Network problem
+       -8: duplicate * Network problem
+       -9: network_lag_error * Network problem
      -100  generic_server_error
 
-  getWordlist()
+  getWordlist(String newlevel)
   - get a list of words from the server
   - returns a list of words in JSON
 
@@ -73,7 +73,7 @@ public class client_script : MonoBehaviour {
   int maxAudioLen = 4; //seconds
 
   string currentword = "choose"; 
-  string currentlevel = "L0-0";
+  string currentlevel = "L0";
 
   // Variables for recording:
   String micstring;
@@ -244,7 +244,7 @@ public class client_script : MonoBehaviour {
     StartCoroutine(patientlyDefineWord(recUrl, customheaders));
   }
 
-  public void getWordList(string newlevel)
+  public void getWordList(String newlevel)
   {
     currentlevel = newlevel;
 
