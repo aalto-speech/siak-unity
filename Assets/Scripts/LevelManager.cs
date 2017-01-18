@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using SimpleJSON;
 
 public class LevelManager : MonoBehaviour {
 
@@ -8,9 +9,9 @@ public class LevelManager : MonoBehaviour {
     public int maximumStars;
     public PlayerToken playerToken;
     public InputManager inputManager;
-    public Transform wordHolder;
     public GUIHandler starGUI;
     public GUIHandler keyGUI;
+    public client_script clientScript;
 
     static LevelManager _lm;
     int _keys;
@@ -18,18 +19,16 @@ public class LevelManager : MonoBehaviour {
     Dictionary<string, WordGlue> _idToGlue = new Dictionary<string, WordGlue>();
     Queue<string> _newWords = new Queue<string>();
     List<string> _usedWords = new List<string>();
+    Transform _wordHolder;
 
     void Awake() {
         _lm = this;
-        WordGlue[] wgs = wordHolder.GetComponentsInChildren<WordGlue>();
-        for (int i = 0; i < wgs.Length; i++) {
-            ProcessGlue(wgs[i]);
-        }
     }
 
     void Start() {
         if (starGUI != null)
             starGUI.SetNumber(GameManager.TotalStars());
+        clientScript.getWordList(GameManager.LevelID(level));
     }
 
     public static PlayerToken GetPlayerToken() {
@@ -43,9 +42,12 @@ public class LevelManager : MonoBehaviour {
     }
 
     public static string GetNewID() {
-        string s = _lm._newWords.Dequeue();
-        _lm._usedWords.Add(s);
-        return s;
+        if (_lm._newWords.Count != 0) {
+            string s = _lm._newWords.Dequeue();
+            _lm._usedWords.Add(s);
+            return s;
+        } else
+            return GetUsedID();
     }
 
     public static string GetUsedID() {
@@ -88,8 +90,14 @@ public class LevelManager : MonoBehaviour {
             _lm.keyGUI.ChangeNumberBy(1);
     }
 
-    public static bool UseKey() {
+    public static bool HasKey() {
         if (_lm._keys < 1)
+            return false;
+        return true;
+    }
+
+    public static bool UseKey() {
+        if (!HasKey())
             return false;
 
         _lm._keys--;
@@ -97,5 +105,23 @@ public class LevelManager : MonoBehaviour {
             _lm.keyGUI.ChangeNumberBy(-1);
         return true;
 
+    }
+
+    public static void ProcessWordList(string wordList) {
+        _lm.SetUpWords(wordList);
+    }
+
+    void SetUpWords(string wordList) {
+        var list = JSON.Parse(wordList).AsArray;
+        _wordHolder = new GameObject().transform;
+        _wordHolder.name = "WordHolder";
+        for (int i = 0; i < list.Count; i++) {
+            Object o = Resources.Load("WordGlues/" + list[i]["word"]);
+            if (o != null) {
+                GameObject go = Instantiate((GameObject)o);
+                go.transform.SetParent(_wordHolder);
+                ProcessGlue(go.GetComponent<WordGlue>());
+            }
+        }
     }
 }

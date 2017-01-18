@@ -21,7 +21,7 @@ public class Lock : BaseActivateable {
             return false;
         }
         
-        if (!LevelManager.UseKey()) {
+        if (!LevelManager.HasKey()) {
             _active = false;
             return false;
         }
@@ -36,13 +36,13 @@ public class Lock : BaseActivateable {
         if (toLocation) {
             _myFSM.FsmVariables.FindFsmGameObject("keyPos").Value = CameraManager.GetLeftLocation().gameObject; 
             _myFSM.SendEvent("StartMinigame");
-            Debug.Log("yeah");
         } else
             return;
     }
 
     public void EndMinigame() {
         GetComponent<Rigidbody>().isKinematic = false;
+        LevelManager.UseKey();
         Deactivate();
         Destroy(this.gameObject, 3.0f);
     }
