@@ -53,8 +53,8 @@ public class client_script : MonoBehaviour {
   String loginUrl = "http://asr.aalto.fi/siak-devel/login";
   String wordListUrl = "http://asr.aalto.fi/siak-devel/start-level";
 
-  String playername = "foo";
-  String playerpassword = "bar";
+  public String playername = "";
+  public String playerpassword = "";
 
   public String serverState = "not ok";
   public String wordID = "-1";
@@ -152,7 +152,7 @@ public class client_script : MonoBehaviour {
 
   }
 
-  void startRec()
+  public void startRec()
   {
       
     stopRecordingSignal = false;
@@ -213,7 +213,7 @@ public class client_script : MonoBehaviour {
 
   }
 
-  void startSession()
+  public void startSession()
   {
 
     WWWForm sessionStartForm = new WWWForm();
@@ -228,7 +228,7 @@ public class client_script : MonoBehaviour {
   }
 
 	
-  void defineWord(String newword)
+  public void defineWord(String newword)
   {
     currentword = newword;
     defineWord ();
@@ -244,7 +244,7 @@ public class client_script : MonoBehaviour {
     StartCoroutine(patientlyDefineWord(recUrl, customheaders));
   }
 
-  void getWordList(string newlevel)
+  public void getWordList(string newlevel)
   {
     currentlevel = newlevel;
 
