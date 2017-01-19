@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour {
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
     Dictionary<Level, string> _levelID = new Dictionary<Level, string>() { { Level.Forest1, "L0" }, { Level.NoGame1, "L1" } };
     static GameManager _gm;
+    Level _next = Level.Forest1;
+    public GameObject loader;
 
     public static GameManager GetGameManager() {
         return _gm;
@@ -46,13 +48,11 @@ public class GameManager : MonoBehaviour {
     public static void ChangeLevel(Level level) {
         if (level == Level.None)
             return;
-        print((int)level);
-        ChangeLevel((int)level);
+        _gm._next = level;
+        LevelManager.ToggleInput(false);
+        GameManager.Instantiate(_gm.loader);
     }
-
-    public static void ChangeLevel(int level) {
-        SceneManager.LoadScene(level);
-    }
+    
 
     public static bool IsSpent(string name) {
         return _gm._spentStars.ContainsKey(name);
@@ -65,5 +65,9 @@ public class GameManager : MonoBehaviour {
 
     public static string LevelID(Level level) {
         return _gm._levelID[level];
+    }
+
+    public static int NextLevel() {
+        return (int)_gm._next;
     }
 }

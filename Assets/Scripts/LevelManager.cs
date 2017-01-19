@@ -36,6 +36,8 @@ public class LevelManager : MonoBehaviour {
     }
 
     public static void ToggleInput(bool b) {
+        if (_lm == null || _lm.inputManager == null)
+            return;
         _lm.inputManager.SendInputs = b;
         if (_lm.playerToken != null)
             _lm.playerToken.Pause(!b);
