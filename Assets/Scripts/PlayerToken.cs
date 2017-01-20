@@ -58,15 +58,16 @@ public class PlayerToken : MonoBehaviour {
 
 
         BaseNode next = target;
-        while (parents.ContainsKey(next)) {
-            _pathToPoint.Push(next);
-            if (next != parents[next])
-                next = parents[next];
-            else
-                parents.Clear();
+        if (parents.ContainsKey(target)) {
+            current = target;
+            while (parents.ContainsKey(next)) {
+                _pathToPoint.Push(next);
+                if (next != parents[next])
+                    next = parents[next];
+                else
+                    parents.Clear();
+            }
         }
-
-        current = target;
     }
 
     IEnumerator BounceModel() {
