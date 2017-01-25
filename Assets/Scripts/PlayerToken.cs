@@ -23,6 +23,12 @@ public class PlayerToken : MonoBehaviour {
             StartCoroutine(BounceModel());
     }
 
+    public void GoToNode(Waypoint point) {
+        _pathToPoint.Clear();
+        _pathToPoint.Push(point);
+        current = point;
+    }
+
     public void FindPathToWaypoint(Waypoint target) {
         BaseNode root = (_pathToPoint.Count == 0) ? current as BaseNode : _pathToPoint.Pop();
         _pathToPoint.Clear();
@@ -96,6 +102,7 @@ public class PlayerToken : MonoBehaviour {
             }
         }
     }
+
 
     public void Pause(bool b) {
         _pause = b;

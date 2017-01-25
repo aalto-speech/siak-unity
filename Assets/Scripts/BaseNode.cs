@@ -21,7 +21,9 @@ public abstract class BaseNode : MonoBehaviour {
 
     IEnumerator Spread() {
         yield return new WaitForSeconds(spreadDelay);
-        foreach (BaseNode n in adjacentNodes)
-            n.SpreadActive();
+        foreach (BaseNode n in adjacentNodes) {
+            if (!n.canPass)
+                n.SpreadActive();
+        }
     }
 }

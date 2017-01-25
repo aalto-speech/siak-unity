@@ -58,7 +58,7 @@ public class client_script : MonoBehaviour {
 
     public string serverState = "not ok";
     public string wordID = "-1";
-    public string scoreFromServer = "-1.0";
+    public string scoreFromServer = "-1";
     public string wordListJSON = "[]";
 
 

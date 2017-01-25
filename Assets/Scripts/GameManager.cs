@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2 };
+public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3};
 
 public class GameManager : MonoBehaviour {
 
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<Level, int> _maximumStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelID = new Dictionary<Level, string>() { { Level.Forest1, "L0" }, { Level.NoGame1, "L1" } };
+    Dictionary<Level, string> _levelID = new Dictionary<Level, string>() { { Level.Forest1, "L0" }, { Level.NoGame1, "L1" }, {Level.SandIce1, "L2" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
     public GameObject loader;

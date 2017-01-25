@@ -7,10 +7,8 @@ public class Path : BaseNode {
     public Material passableMaterial;
 
     public override void SpreadActive() {
-        if (!canPass) {
-            ChangeModel();
-            base.SpreadActive();
-        }
+        ChangeModel();
+        base.SpreadActive();
     }
 
     void ChangeModel() {

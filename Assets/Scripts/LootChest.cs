@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class LootChest : BaseActivateable {
-
-    public BaseActivateable secondary;
+    
     public int starsInside;
 
     PlayMakerFSM _myFSM;

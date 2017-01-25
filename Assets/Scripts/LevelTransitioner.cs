@@ -10,7 +10,8 @@ public class LevelTransitioner : MonoBehaviour {
     float _dotTime = 0.5f;
     int _dots = 0;
     Scene _next;
-    float _fadeTime = 1.0f;
+    float _fadeTime = 0.3f;
+    float _minimumWait = 2f;
 
     void Start() {
         back = transform.GetComponentInChildren<Image>();
@@ -48,11 +49,11 @@ public class LevelTransitioner : MonoBehaviour {
         while (!async.isDone) {
             yield return new WaitForEndOfFrame();
         }
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(_minimumWait/2);
         StopCoroutine(Dots());
         _dots = 4;
         text.text = "loaded";
-        yield return new WaitForSecondsRealtime(1.0f);
+        yield return new WaitForSecondsRealtime(_minimumWait/2);
         CrossFade(0, _fadeTime);
         Time.timeScale = 1;
         yield return new WaitForSecondsRealtime(_fadeTime);

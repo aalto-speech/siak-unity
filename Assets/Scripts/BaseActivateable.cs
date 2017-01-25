@@ -15,10 +15,8 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     protected Quaternion _startRot;
     protected Vector3 _startPos;
     protected NoGameInteractable _noGame;
-
-    void Start() {
-    }
-
+    protected Transform _parent;
+    
     public virtual bool Activate() {
         if (_active || !_canActivate)
             return false;
@@ -59,12 +57,15 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     }
 
     protected IEnumerator GoToPosition(bool toLocation, Transform target, Transform mover, Transform rotater) {
-        if (toLocation)
+        if (toLocation) {
+            _startPos = transform.position;
             _startRot = rotater.rotation;
-        else if (_noGame != null) {
+            _parent = transform.parent;
+            transform.SetParent(null, true);
+        } else if (_noGame != null) {
             _startRot = model.rotation * Quaternion.AngleAxis(180.0f, rotater.up);
         }
-
+        
         Quaternion start = (toLocation) ? _startRot : target.rotation;
         Quaternion end = (!toLocation) ? _startRot : target.rotation;
 
@@ -82,6 +83,8 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
         rotater.rotation = end;
         if (toLocation)
             yield return new WaitForSeconds(0.5f);
+        else
+            transform.SetParent(_parent);
         EndReached(toLocation);
     }
 

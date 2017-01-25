@@ -30,10 +30,8 @@ public class Waypoint : BaseNode, Interactable {
     }
 
     public void MarkActivated() {
-        if (!_hasActivated) {
-            _hasActivated = true;
-            SpreadActive();
-        }
+        _hasActivated = true;
+        SpreadActive();
     }
 
     public void Interact() {
@@ -48,7 +46,7 @@ public class Waypoint : BaseNode, Interactable {
         if (activateable != null)
             activateable.SetActivateable(canInteract);
 
-        if (canInteract)
+        if (canInteract && model != null)
             model.FindChild("CanMoveRing").gameObject.SetActive(true);
     }
 

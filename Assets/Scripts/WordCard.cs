@@ -59,7 +59,7 @@ public class WordCard : BaseActivateable {
         float targetY = (_canActivate) ? 120 : 0;
         Transform stand = model.GetChild(0);
         stand.localRotation = Quaternion.RotateTowards(stand.localRotation, Quaternion.Euler(0, targetY, 0), Time.deltaTime * _standUpSpeed * 360.0f);
-        model.Rotate(Vector3.up, _rotationsPerSecond * Time.deltaTime * 360.0f, Space.World);
+        model.Rotate(model.forward, _rotationsPerSecond * Time.deltaTime * 360.0f, Space.World);
     }
 
     public void EndCardGame(int score) {
