@@ -6,16 +6,18 @@ using SimpleJSON;
 public class LevelManager : MonoBehaviour {
 
     public Level level;
-    public int maximumStars;
     public PlayerToken playerToken;
     public InputManager inputManager;
     public GUIHandler starGUI;
+    public GUIHandler greyGUI;
     public GUIHandler keyGUI;
     public client_script clientScript;
 
     static LevelManager _lm;
     int _keys;
-    int _stars = 10;
+    int _stars;
+    int _collectedStars;
+    int _thisRunStars;
     Dictionary<string, WordGlue> _idToGlue = new Dictionary<string, WordGlue>();
     Queue<string> _newWords = new Queue<string>();
     List<string> _usedWords = new List<string>();
@@ -26,8 +28,14 @@ public class LevelManager : MonoBehaviour {
     }
 
     void Start() {
+        _stars += GameManager.TotalStars();
+        _collectedStars = GameManager.GetCollectedStars(level);
+        if (_collectedStars == 0) {
+            MoveGUI(0);
+        } else
+            greyGUI.SetNumber(_collectedStars);
         if (starGUI != null)
-            starGUI.SetNumber(GameManager.TotalStars());
+            starGUI.SetNumber(_stars);
         clientScript.getWordList(GameManager.LevelID(level));
     }
 
@@ -70,19 +78,31 @@ public class LevelManager : MonoBehaviour {
     public static void AddStars(int amount) {
         if (amount < 0)
             return;
-        _lm._stars += amount;
-        if (_lm.starGUI != null)
-            _lm.starGUI.ChangeNumberBy(amount);
+        _lm._thisRunStars += amount;
+        int increase = Mathf.Max(0, amount - _lm._collectedStars);
+        if (_lm._collectedStars != 0) {
+            int change = Mathf.Min(_lm._collectedStars, amount - increase);
+            _lm._collectedStars -= change;
+            _lm.greyGUI.ChangeNumberBy(-change);
+
+            if (_lm._collectedStars == 0)
+                _lm.MoveGUI(1);
+        }
+        if (increase != 0) {
+            _lm._stars += increase;
+            if (_lm.starGUI != null)
+                _lm.starGUI.ChangeNumberBy(amount);
+        }
     }
 
     public static bool SpendStars(int amount) {
-        if (_lm._stars < amount)
-            return false;
+        /*if (_lm._stars < amount)
+            return false;*/
 
         _lm._stars -= amount;
         if (_lm.starGUI != null)
             _lm.starGUI.ChangeNumberBy(-amount);
-        
+
         return true;
     }
 
@@ -126,5 +146,22 @@ public class LevelManager : MonoBehaviour {
                 ProcessGlue(go.GetComponent<WordGlue>());
             }
         }
+    }
+
+    public static int ThisRunStars() {
+        if (_lm == null)
+            return -1;
+        return _lm._thisRunStars;
+    }
+
+    public static Level GetLevel() {
+        if (_lm == null)
+            return Level.None;
+        return _lm.level;
+    }
+
+    public void MoveGUI(float duration) {
+        keyGUI.GetComponent<GUIMover>().Move(duration);
+        greyGUI.GetComponent<GUIMover>().Move(duration);
     }
 }

@@ -56,4 +56,9 @@ public class Waypoint : BaseNode, Interactable {
         else
             MarkActivated();
     }
+
+    public void EmptyActivateable() {
+        activateable = null;
+        _hasActivated = true;
+    }
 }

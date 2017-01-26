@@ -10,7 +10,6 @@ public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3}
 public class GameManager : MonoBehaviour {
 
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
-    Dictionary<Level, int> _maximumStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
     Dictionary<Level, string> _levelID = new Dictionary<Level, string>() { { Level.Forest1, "L0" }, { Level.NoGame1, "L1" }, {Level.SandIce1, "L2" } };
     static GameManager _gm;
@@ -31,7 +30,6 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
         foreach (Level l in System.Enum.GetValues(typeof(Level))) {
             if (l != Level.None) {
-                _maximumStars.Add(l, 0);
                 _collectedStars.Add(l, 0);
             }
         }
@@ -40,19 +38,25 @@ public class GameManager : MonoBehaviour {
     public static int TotalStars() {
         return _gm._collectedStars.Sum(x => x.Value) - _gm._spentStars.Sum(x => x.Value);
     }
-
-    public static void SetMaximumStars(Level level, int amount) {
-        _gm._maximumStars[level] = amount;
-    }
+    
 
     public static void ChangeLevel(Level level) {
         if (level == Level.None)
             return;
         _gm._next = level;
         LevelManager.ToggleInput(false);
+        Level current = LevelManager.GetLevel();
+        if (current != Level.None) {
+            int newStars = LevelManager.ThisRunStars();
+            if (newStars > _gm._collectedStars[current])
+                _gm._collectedStars[current] = newStars;
+        }
         GameManager.Instantiate(_gm.loader);
     }
     
+    public static int GetCollectedStars(Level level) {
+        return _gm._collectedStars[level];
+    }
 
     public static bool IsSpent(string name) {
         return _gm._spentStars.ContainsKey(name);

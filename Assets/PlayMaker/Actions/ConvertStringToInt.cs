@@ -43,7 +43,13 @@ namespace HutongGames.PlayMaker.Actions
 		
 		void DoConvertStringToInt()
 		{
-			intVariable.Value = int.Parse(stringVariable.Value);
+            int value = int.MinValue;
+            int.TryParse(stringVariable.Value, out value);
+            if (value == int.MinValue) {
+                value = -5;
+                Debug.Log("Parse failed, default value is " + value.ToString());
+            }
+            intVariable.Value = value;
 		}
 	}
 }
