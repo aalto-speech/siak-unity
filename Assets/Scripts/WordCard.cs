@@ -36,6 +36,7 @@ public class WordCard : BaseActivateable {
         SetWord(getUsedWord);
         StartCoroutine(GoToPosition(true, CameraManager.GetCardLocation(), transform, model.GetChild(0)));
         LevelManager.ToggleInput(false);
+        GameManager.CanLevelSelect(false);
 
         return true;
     }
@@ -45,6 +46,7 @@ public class WordCard : BaseActivateable {
             return false;
 
         LevelManager.ToggleInput(true);
+        GameManager.CanLevelSelect(true);
         if (_wayPoint != null)
             _wayPoint.MarkActivated();
         if (_noGame != null)

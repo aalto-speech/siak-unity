@@ -14,6 +14,7 @@ public class LevelTransitioner : MonoBehaviour {
     float _minimumWait = 2f;
 
     void Start() {
+        GameManager.CanLevelSelect(false);
         back = transform.GetComponentInChildren<Image>();
         text = transform.GetComponentInChildren<Text>();
         CrossFade(0, 0);
@@ -57,6 +58,7 @@ public class LevelTransitioner : MonoBehaviour {
         CrossFade(0, _fadeTime);
         Time.timeScale = 1;
         yield return new WaitForSecondsRealtime(_fadeTime);
+        GameManager.CanLevelSelect(true);
         Destroy(this.gameObject);
     }
 
