@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3 };
+public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3, Forest5 = 4 };
 
 public class GameManager : MonoBehaviour {
 
@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour {
 
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelID = new Dictionary<Level, string>() { { Level.Forest1, "L0" }, { Level.NoGame1, "L1" }, { Level.SandIce1, "L2" } };
+    Dictionary<Level, string> _levelID = new Dictionary<Level, string>() { { Level.Forest1, "L0" }, { Level.NoGame1, "L1" }, { Level.SandIce1, "L2" }, { Level.Forest5, "L3" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
-    int _completedLevels = 3;
+    int _completedLevels = 4;
     bool _canLevelSelect = true;
 
     public static GameManager GetGameManager() {
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
     public static void ChangeLevel(Level level) {
         if (level == Level.None)
             return;
-        _gm._completedLevels = Mathf.Max(_gm._completedLevels, (int)level);
+        _gm._completedLevels = Mathf.Max(_gm._completedLevels, (int)level+1);
         _gm._next = level;
         LevelManager.ToggleInput(false);
         Level current = LevelManager.GetLevel();

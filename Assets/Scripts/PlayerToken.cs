@@ -10,6 +10,8 @@ public class PlayerToken : MonoBehaviour {
     public float bounceHeight;
     public Transform model;
 
+    [HideInInspector]
+    public bool returnInteract;
     bool _pause;
     bool _midBounce;
 
@@ -98,6 +100,10 @@ public class PlayerToken : MonoBehaviour {
             _pathToPoint.Pop();
 
             if (_pathToPoint.Count == 0) {
+                if (returnInteract) {
+                    LevelManager.ToggleInput(true);
+                    returnInteract = false;
+                }
                 current.TokenReached();
             }
         }
