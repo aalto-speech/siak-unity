@@ -94,6 +94,7 @@ public class WordCard : BaseActivateable {
         _as.volume = (getUsed) ? _wg.localVolume : _wg.foreignVolume;
         _as.clip = (getUsed) ? _wg.localClip : _wg.foreignClip;
         picture.material.SetTexture("_MainTex", _wg.picture);
+        picture.material.SetTexture("_BumpMap", null);
         picture.material.color = Color.white;
     }
 }

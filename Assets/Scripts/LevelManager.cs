@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour {
         int change = 0;
         int increase = Mathf.Max(0, amount - _lm._collectedStars);
         if (_lm._collectedStars != 0) {
-            change = Mathf.Max(0,Mathf.Min(_lm._collectedStars, amount - increase));
+            change = Mathf.Max(0, Mathf.Min(_lm._collectedStars, amount - increase));
             _lm._collectedStars -= change;
             _lm.greyGUI.ChangeNumberBy(-change);
 
@@ -90,9 +90,9 @@ public class LevelManager : MonoBehaviour {
                 _lm.MoveGUI(1);
         }
         if (increase != 0) {
-            _lm._stars += increase-change;
+            _lm._stars += increase;
             if (_lm.starGUI != null)
-                _lm.starGUI.ChangeNumberBy(amount);
+                _lm.starGUI.ChangeNumberBy(increase);
         }
     }
 
