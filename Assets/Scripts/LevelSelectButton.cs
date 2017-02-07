@@ -5,27 +5,37 @@ using UnityEngine.UI;
 public class LevelSelectButton : MonoBehaviour {
     public Level level;
     public string maxStars;
-
+    
     GameObject _lock;
     Text _text;
     bool _canSelect;
 
     void Awake() {
         _text = GetComponentInChildren<Text>();
-        _lock = transform.Find("Lock").gameObject;
+        Transform l = transform.Find("Lock");
+        if (l != null)
+            _lock = l.gameObject;
     }
 
     void OnEnable() {
-        if (GameManager.GetCompleted() >= (int)level) {
-            _text.gameObject.SetActive(true);
-            _text.text = GameManager.GetCollectedStars(level).ToString() + " / " + maxStars;
-            _lock.SetActive(false);
-            _canSelect = true;
-        } else {
-            _lock.SetActive(true);
-            _text.gameObject.SetActive(false);
-            _canSelect = false;
-        }
+        _canSelect = false;
+        if (_text != null && _lock != null) {
+            if (GameManager.GetCompleted() >= (int)level) {
+                _text.gameObject.SetActive(true);
+                _text.text = GameManager.GetCollectedStars(level).ToString() + " / " + maxStars;
+                _lock.SetActive(false);
+                StartCoroutine(SetClickable());
+            } else {
+                _lock.SetActive(true);
+                _text.gameObject.SetActive(false);
+            }
+        } else
+            StartCoroutine(SetClickable());
+    }
+
+    IEnumerator SetClickable() {
+        yield return new WaitForSecondsRealtime(0.3f); //prevent instant levelselecting;
+        _canSelect = true;
     }
 
     public void SelectLevel() {

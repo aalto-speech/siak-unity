@@ -92,7 +92,8 @@ public class client_script : MonoBehaviour {
 
     // Use this for initialization
     void Awake() {
-
+        playername = GameManager.GetUsername();
+        playerpassword = GameManager.GetPassword();
         // Calculate some essential values:
         packetsize = (int)Math.Floor((double)(fs / packetspersecond));
 

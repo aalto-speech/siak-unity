@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
     Level _next = Level.Forest1;
     int _completedLevels = 4;
     bool _canLevelSelect = true;
+    string _username = "foo";
+    string _password = "bar";
 
     public static GameManager GetGameManager() {
         return _gm;
@@ -71,7 +73,7 @@ public class GameManager : MonoBehaviour {
             if (newStars > _gm._collectedStars[current])
                 _gm._collectedStars[current] = newStars;
         }
-        GameManager.Instantiate(_gm.loader);
+        Instantiate(_gm.loader);
     }
 
     public static int GetCollectedStars(Level level) {
@@ -101,5 +103,21 @@ public class GameManager : MonoBehaviour {
 
     public static void CanLevelSelect(bool b) {
         _gm._canLevelSelect = b;
+    }
+
+    public static void SetUsername(string s) {
+        _gm._username = s;
+    }
+
+    public static void SetPassword(string s) {
+        _gm._password = s;
+    }
+
+    public static string GetUsername() {
+        return _gm._username;
+    }
+
+    public static string GetPassword() {
+        return _gm._password;
     }
 }

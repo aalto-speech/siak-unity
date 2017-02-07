@@ -5,20 +5,24 @@ using UnityEngine.UI;
 public class LoginLoadLevel : MonoBehaviour {
 	
 	public InputField usernameInput, passwordInput;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public Text changer;
+    public bool inMenu;
+
+    void Start() {
+        usernameInput.text = GameManager.GetUsername();
+        passwordInput.text = GameManager.GetPassword();
+        if (changer != null)
+            changer.text = "User: " + GameManager.GetUsername();
+        if (inMenu && GameManager.GetUsername() != "")
+            gameObject.SetActive(false);
+    }
 
 	public void Login()
 	{
-		string username, password;
-		username = usernameInput.text;
-		password = usernameInput.text;
+        GameManager.SetUsername(usernameInput.text);
+		GameManager.SetPassword(passwordInput.text);
+        gameObject.SetActive(false);
+        if (changer != null)
+            changer.text = "User: " + usernameInput.text;
 	}
 }
