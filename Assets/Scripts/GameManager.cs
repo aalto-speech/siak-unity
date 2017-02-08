@@ -11,10 +11,11 @@ public class GameManager : MonoBehaviour {
 
     public GameObject loader;
     public GameObject levelSelect;
+    public AudioClip finalPreface;
 
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelID = new Dictionary<Level, string>() { { Level.Forest1, "L0" }, { Level.NoGame1, "L1" }, { Level.SandIce1, "L2" }, { Level.Forest5, "L3" } };
+    Dictionary<Level, string> _levelID = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoGame1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
     int _completedLevels = 4;
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour {
                 _collectedStars.Add(l, 0);
             }
         }
+        //_username = PlayerPrefs.GetString("user", "");
+        //_password = PlayerPrefs.GetString("password", "");
     }
 
     void Update() {
@@ -107,10 +110,12 @@ public class GameManager : MonoBehaviour {
 
     public static void SetUsername(string s) {
         _gm._username = s;
+        PlayerPrefs.SetString("user", s);
     }
 
     public static void SetPassword(string s) {
         _gm._password = s;
+        PlayerPrefs.SetString("password", s);
     }
 
     public static string GetUsername() {
@@ -119,5 +124,9 @@ public class GameManager : MonoBehaviour {
 
     public static string GetPassword() {
         return _gm._password;
+    }
+
+    public static AudioClip GetFinalPreface() {
+        return _gm.finalPreface;
     }
 }

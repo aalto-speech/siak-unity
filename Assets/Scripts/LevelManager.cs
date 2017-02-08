@@ -97,9 +97,9 @@ public class LevelManager : MonoBehaviour {
     }
 
     public static bool SpendStars(int amount) {
-        /*if (_lm._stars < amount)
-            return false;*/
-
+        if (_lm._stars < amount)
+            return false;
+        
         _lm._stars -= amount;
         if (_lm.starGUI != null)
             _lm.starGUI.ChangeNumberBy(-amount);

@@ -14,6 +14,7 @@ public class WordCard : BaseActivateable {
     PlayMakerFSM _myFSM;
     AudioSource _as;
     int _myScore;
+    WordGlue _wg;
 
     void Awake() {
         _myFSM = GetComponent<PlayMakerFSM>();
@@ -47,10 +48,12 @@ public class WordCard : BaseActivateable {
 
         LevelManager.ToggleInput(true);
         GameManager.CanLevelSelect(true);
-        if (_wayPoint != null)
-            _wayPoint.MarkActivated();
-        if (_noGame != null)
-            _noGame.MarkActivated();
+        if (_myScore != 0) {
+            if (_wayPoint != null)
+                _wayPoint.MarkActivated();
+            if (_noGame != null)
+                _noGame.MarkActivated();
+        }
         return true;
     }
 
@@ -79,7 +82,10 @@ public class WordCard : BaseActivateable {
     
     protected override void EndReached(bool toLocation) {
         if (toLocation) {
-            _as.Play();
+            if (!getUsedWord)
+                SetClip(false);
+            else
+                _as.clip = GameManager.GetFinalPreface();
             _myFSM.SendEvent("GameOn");
         } else
             Deactivate();
@@ -90,11 +96,16 @@ public class WordCard : BaseActivateable {
             return;
 
         wordID = (getUsed) ? LevelManager.GetUsedID() : LevelManager.GetNewID();
-        WordGlue _wg = LevelManager.GetWord(wordID);
-        _as.volume = (getUsed) ? _wg.localVolume : _wg.foreignVolume;
-        _as.clip = (getUsed) ? _wg.localClip : _wg.foreignClip;
+        _wg = LevelManager.GetWord(wordID);
         picture.material.SetTexture("_MainTex", _wg.picture);
         picture.material.SetTexture("_BumpMap", null);
         picture.material.color = Color.white;
+    }
+
+    public void SetClip(bool second) {
+        print(_wg);
+        print(_as);
+        print(_wg.localClip);
+        _as.clip = (!getUsedWord && second) ? _wg.foreignClip : _wg.localClip;
     }
 }

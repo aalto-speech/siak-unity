@@ -35,6 +35,7 @@ public class LootChest : BaseActivateable {
         LevelManager.ToggleInput(true);
         if (_wayPoint != null)
             _wayPoint.MarkActivated();
+        Destroy(this);
         return true;
     }
 }
