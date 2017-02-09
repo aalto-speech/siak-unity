@@ -13,6 +13,7 @@ public class LevelManager : MonoBehaviour {
     public GUIHandler keyGUI;
     public client_script clientScript;
 
+    Dictionary<string, string> _newSpends = new Dictionary<string, string>();
     static LevelManager _lm;
     int _keys;
     int _stars;
@@ -36,7 +37,7 @@ public class LevelManager : MonoBehaviour {
             greyGUI.SetNumber(_collectedStars);
         if (starGUI != null)
             starGUI.SetNumber(_stars);
-        clientScript.getWordList(GameManager.LevelID(level));
+        clientScript.getWordList(GameManager.LevelWords(level));
     }
 
     public static PlayerToken GetPlayerToken() {
@@ -164,5 +165,9 @@ public class LevelManager : MonoBehaviour {
     public void MoveGUI(float duration) {
         keyGUI.GetComponent<GUIMover>().Move(duration);
         greyGUI.GetComponent<GUIMover>().Move(duration);
+    }
+
+    public static Dictionary<string,string> NewSpends() {
+        return _lm._newSpends;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using SimpleJSON;
 
 //Enum's int is equal to the build index
 public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3, Forest5 = 4 };
@@ -11,17 +12,19 @@ public class GameManager : MonoBehaviour {
 
     public GameObject loader;
     public GameObject levelSelect;
+    public GameObject loginScreen;
     public AudioClip finalPreface;
 
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelID = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoGame1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" } };
+    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoGame1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
-    int _completedLevels = 4;
+    int _highestLevel = 1;
     bool _canLevelSelect = true;
-    string _username = "foo";
-    string _password = "bar";
+    string _username = "";
+    string _password = "";
+    client_script _server;
 
     public static GameManager GetGameManager() {
         return _gm;
@@ -35,11 +38,7 @@ public class GameManager : MonoBehaviour {
 
         _gm = this;
         DontDestroyOnLoad(this.gameObject);
-        foreach (Level l in System.Enum.GetValues(typeof(Level))) {
-            if (l != Level.None) {
-                _collectedStars.Add(l, 0);
-            }
-        }
+        ResetSessionData();
         //_username = PlayerPrefs.GetString("user", "");
         //_password = PlayerPrefs.GetString("password", "");
     }
@@ -53,7 +52,7 @@ public class GameManager : MonoBehaviour {
                     levelSelect.SetActive(true);
                 else {
                     levelSelect.SetActive(false);
-                    ChangeLevel(Level.Menu);
+                    ChangeLevel(Level.Menu, false);
                 }
             }
         }
@@ -64,17 +63,21 @@ public class GameManager : MonoBehaviour {
     }
 
 
-    public static void ChangeLevel(Level level) {
+    public static void ChangeLevel(Level level, bool finished) {
         if (level == Level.None)
             return;
-        _gm._completedLevels = Mathf.Max(_gm._completedLevels, (int)level+1);
+        if (finished) {
+            _gm._highestLevel = Mathf.Max(_gm._highestLevel, (int)level);
+        }
         _gm._next = level;
         LevelManager.ToggleInput(false);
         Level current = LevelManager.GetLevel();
         if (current != Level.None) {
             int newStars = LevelManager.ThisRunStars();
-            if (newStars > _gm._collectedStars[current])
+            if (newStars > _gm._collectedStars[current]) {
                 _gm._collectedStars[current] = newStars;
+            }
+            _gm._server.exit(newStars, LevelManager.NewSpends());
         }
         Instantiate(_gm.loader);
     }
@@ -88,12 +91,17 @@ public class GameManager : MonoBehaviour {
     }
 
     public static void AddSpent(string name, int amount) {
-        if (!IsSpent(name))
+        if (!IsSpent(name)) {
             _gm._spentStars.Add(name, amount);
+        } else if (_gm._spentStars[name] != amount) {
+            _gm._spentStars[name] = amount;
+        } else
+            return;
+        LevelManager.NewSpends().Add(name, amount.ToString());
     }
 
-    public static string LevelID(Level level) {
-        return _gm._levelID[level];
+    public static string LevelWords(Level level) {
+        return _gm._levelWords[level];
     }
 
     public static int NextLevel() {
@@ -101,7 +109,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public static int GetCompleted() {
-        return _gm._completedLevels;
+        return _gm._highestLevel;
     }
 
     public static void CanLevelSelect(bool b) {
@@ -128,5 +136,51 @@ public class GameManager : MonoBehaviour {
 
     public static AudioClip GetFinalPreface() {
         return _gm.finalPreface;
+    }
+
+    public static void SetServer(client_script cs) {
+        _gm._server = cs;
+    }
+
+    public static client_script GetServer() {
+        return _gm._server;
+    }
+
+    public static LoginLoadLevel GetLoginScreen() {
+        return _gm.loginScreen.GetComponent<LoginLoadLevel>();
+    }
+
+    public static void SetSessionData(JSONNode data) {
+        _gm.ResetSessionData();
+
+        string[] starKeys = data["level_stars"].AsObject.GetKeys();
+        foreach (string s in starKeys) {
+            _gm._collectedStars[(Level)System.Enum.Parse(typeof(Level), s)] = int.Parse(data["level_stars"][s].Value);
+        }
+
+        string[] objectKeys = data["level_objects"].AsObject.GetKeys();
+        foreach (string s in objectKeys) {
+            int parsed = 0;
+            int.TryParse(data["level_objects"][s].Value, out parsed);
+            _gm._spentStars.Add(s, parsed);
+        }
+
+        int serverNumber;
+        int.TryParse(data["highest_level"].Value, out serverNumber);
+        _gm._highestLevel = Mathf.Max(serverNumber, 1);
+    }
+
+    public static LevelSelect GetLevelSelect() {
+        return _gm.levelSelect.GetComponent<LevelSelect>();
+    }
+
+    void ResetSessionData() {
+        _collectedStars.Clear();
+        _spentStars.Clear();
+        foreach (Level l in System.Enum.GetValues(typeof(Level))) {
+            if (l != Level.None) {
+                _collectedStars.Add(l, 0);
+            }
+        }
     }
 }

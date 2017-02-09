@@ -2,8 +2,12 @@
 using System.Collections;
 
 public class LevelSelect : MonoBehaviour {
-
-	void Awake() {
+    
+    void Awake() {
+        if (GameManager.GetLevelSelect() != this) {
+            Destroy(this.gameObject);
+            return;
+        }
         DontDestroyOnLoad(this.gameObject);
     }
 

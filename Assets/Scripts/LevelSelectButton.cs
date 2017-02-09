@@ -45,6 +45,6 @@ public class LevelSelectButton : MonoBehaviour {
         while (t.parent != null)
             t = t.parent;
         t.gameObject.SetActive(false);
-        GameManager.ChangeLevel(level);
+        GameManager.ChangeLevel(level, false);
     }
 }

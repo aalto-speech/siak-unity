@@ -808,6 +808,13 @@ namespace SimpleJSON
                 m_Dict[K].Serialize(aWriter);
             }
         }
+        public string[] GetKeys()
+       {
+            List<string> arrayOfStrings = new List<string>();
+            foreach (KeyValuePair<string, JSONNode> N in m_Dict)
+                arrayOfStrings.Add(N.Key);
+            return arrayOfStrings.ToArray();
+        }
     } // End of JSONClass
  
     public class JSONData : JSONNode

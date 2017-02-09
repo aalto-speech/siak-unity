@@ -52,6 +52,7 @@ public class client_script : MonoBehaviour {
     string logUrl = "http://asr.aalto.fi/siak-devel/log-action";
     string loginUrl = "http://asr.aalto.fi/siak-devel/login";
     string wordListUrl = "http://asr.aalto.fi/siak-devel/start-level";
+    string exitUrl = "https://asr.aalto.fi/siak-devel/exit-level";
 
     public string playername = "";
     public string playerpassword = "";
@@ -74,6 +75,7 @@ public class client_script : MonoBehaviour {
 
     string currentword = "choose";
     string currentlevel = "L0";
+    string clientId;
 
     // Variables for recording:
     string micstring;
@@ -91,7 +93,7 @@ public class client_script : MonoBehaviour {
 
 
     // Use this for initialization
-    void Awake() {
+    void Start() {
         playername = GameManager.GetUsername();
         playerpassword = GameManager.GetPassword();
         // Calculate some essential values:
@@ -109,6 +111,7 @@ public class client_script : MonoBehaviour {
 
         sentpacketnr = 0;
         finalpacket = false;
+        GameManager.SetServer(this);
     }
 
 
@@ -244,7 +247,58 @@ public class client_script : MonoBehaviour {
         StartCoroutine(patientlyGetWordList(wordListUrl, customheaders));
     }
 
+    public void login() {
+        playername = GameManager.GetUsername();
+        playerpassword = GameManager.GetPassword();
+        WWWForm sessionStartForm = new WWWForm();
+        var customheaders = new System.Collections.Generic.Dictionary<string, string>();
+        customheaders.Add("x-siak-user", playername);
+        customheaders.Add("x-siak-password", playerpassword);
+        StartCoroutine(patientlyLogin(loginUrl, customheaders));
+    }
 
+    IEnumerator patientlyLogin(string targetUrl, System.Collections.Generic.Dictionary<string, string> customheaders) {
+        WWW wwwResponse = new WWW(targetUrl, null, customheaders);
+        yield return wwwResponse;
+        GameManager.GetLoginScreen().GiveResponse(wwwResponse);
+    }
+
+    public void exit(int stars, System.Collections.Generic.Dictionary<string, string> spends) {
+        JSONClass root = new JSONClass();
+        JSONClass levelStars = new JSONClass();
+        JSONClass objects = new JSONClass();
+
+        levelStars[LevelManager.GetLevel().ToString()] = new JSONData(stars);
+        root["star_update"] = levelStars;
+
+        System.Collections.Generic.Dictionary<string, string>.KeyCollection keys = spends.Keys;
+
+        foreach (string s in keys)
+            objects[s] = spends[s];
+
+        root["object_update"] = objects;
+
+        MemoryStream stream = new MemoryStream();
+        BinaryWriter bin = new BinaryWriter(stream);
+        root.Serialize(bin);
+
+        WWWForm exitform = new WWWForm();
+        var customheaders = exitform.headers;
+        customheaders.Add("x-siak-user", playername);
+        customheaders.Add("x-siak-password", playerpassword);
+        customheaders.Add("x-siak-level", LevelManager.GetLevel().ToString());
+        byte[] data = Encoding.ASCII.GetBytes(root.ToString().ToCharArray());
+        Debug.Log(root.ToString());
+        StartCoroutine(patientlyExit(exitUrl, data, customheaders));
+    }
+
+    IEnumerator patientlyExit(string targeturl, byte[] bytedata, System.Collections.Generic.Dictionary<string, string> customheaders) {
+        WWW wwwRec = new WWW(targeturl, bytedata, customheaders);
+
+        yield return wwwRec;
+
+        Debug.Log(wwwRec.text);
+    }
 
     IEnumerator patientlyStartSession(string targetUrl, System.Collections.Generic.Dictionary<string, string> customheaders) {
         WWW wwwResponse = new WWW(targetUrl, null, customheaders);
@@ -274,7 +328,6 @@ public class client_script : MonoBehaviour {
         wordListJSON = wwwResponse.text;
         LevelManager.ProcessWordList(wordListJSON);
     }
-
 
     void startUpload(int thispacketnr, bool thisfinalpacket, int startsample, float[] samples) {
         // Make a byte array of the float array:
@@ -339,6 +392,7 @@ public class client_script : MonoBehaviour {
         customheaders["X-siak-level"] = currentlevel;
         customheaders["X-siak-region"] = "2";
         customheaders["X-siak-current-word-id"] = wordID;
+        //customheaders["x-siak-client-id"] = clientId;
 
 
 
@@ -351,5 +405,9 @@ public class client_script : MonoBehaviour {
             customheaders["X-siak-current-word"] = currentword;
 
         return customheaders;
+    }
+
+    public void SetClientId(string s) {
+        clientId = s;
     }
 }

@@ -19,6 +19,6 @@ public class LevelAdvancer : BaseActivateable {
     }
 
     public void GoNextProto() {
-        GameManager.ChangeLevel(next);
+        GameManager.ChangeLevel(next, true);
     }
 }

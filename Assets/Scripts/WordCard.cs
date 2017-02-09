@@ -103,9 +103,6 @@ public class WordCard : BaseActivateable {
     }
 
     public void SetClip(bool second) {
-        print(_wg);
-        print(_as);
-        print(_wg.localClip);
         _as.clip = (!getUsedWord && second) ? _wg.foreignClip : _wg.localClip;
     }
 }
