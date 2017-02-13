@@ -14,10 +14,6 @@ public class Waypoint : BaseNode, Interactable {
         else {
             _hasActivated = true;
         }
-
-        if (canPass == true) {
-            SpreadActive();
-        }
     }
 
     public override void SpreadActive() {

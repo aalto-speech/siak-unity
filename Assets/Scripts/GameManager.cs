@@ -6,7 +6,7 @@ using System.Linq;
 using SimpleJSON;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3, Forest5 = 4 };
+public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3, Forest5 = 4, Snow4 = 5 };
 
 public class GameManager : MonoBehaviour {
 
@@ -17,13 +17,13 @@ public class GameManager : MonoBehaviour {
 
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoGame1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" } };
+    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoGame1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Snow4, "L5" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
     int _highestLevel = 1;
     bool _canLevelSelect = true;
-    string _username = "";
-    string _password = "";
+    string _username = "foo";
+    string _password = "bar";
     client_script _server;
 
     public static GameManager GetGameManager() {
@@ -155,7 +155,11 @@ public class GameManager : MonoBehaviour {
 
         string[] starKeys = data["level_stars"].AsObject.GetKeys();
         foreach (string s in starKeys) {
-            _gm._collectedStars[(Level)System.Enum.Parse(typeof(Level), s)] = int.Parse(data["level_stars"][s].Value);
+            try {
+                _gm._collectedStars[(Level)System.Enum.Parse(typeof(Level), s)] = int.Parse(data["level_stars"][s].Value);
+            }
+            catch (System.ArgumentException) {
+            }
         }
 
         string[] objectKeys = data["level_objects"].AsObject.GetKeys();

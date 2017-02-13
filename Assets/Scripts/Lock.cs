@@ -23,6 +23,7 @@ public class Lock : BaseActivateable {
         
         if (!LevelManager.HasKey()) {
             _active = false;
+            LevelManager.GetLevelManager().keyGUI.Shake(0.75f);
             return false;
         }
         
@@ -59,6 +60,7 @@ public class Lock : BaseActivateable {
                 _wayPoint.activateable = secondary;
                 secondary.SetWaypoint(_wayPoint);
                 secondary.SetActivateable(true);
+                LevelManager.GetPlayerToken().FindPathToWaypoint(_wayPoint);
             }
         }
         return true;

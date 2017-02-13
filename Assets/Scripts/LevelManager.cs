@@ -170,4 +170,8 @@ public class LevelManager : MonoBehaviour {
     public static Dictionary<string,string> NewSpends() {
         return _lm._newSpends;
     }
+
+    public static LevelManager GetLevelManager() {
+        return _lm;
+    }
 }

@@ -34,6 +34,7 @@ public class StarPrice : BaseActivateable {
 
         if (!LevelManager.SpendStars(price)) {
             _active = false;
+            LevelManager.GetLevelManager().starGUI.Shake(0.75f);
             return false;
         }
 
@@ -47,6 +48,7 @@ public class StarPrice : BaseActivateable {
         if (_wayPoint != null) {
             if (secondary) {
                 SetUpSecondary();
+                LevelManager.GetPlayerToken().FindPathToWaypoint(_wayPoint);
             } else
                 _wayPoint.MarkActivated();
         }

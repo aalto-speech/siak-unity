@@ -17,6 +17,10 @@ public class PlayerToken : MonoBehaviour {
 
     Stack<BaseNode> _pathToPoint = new Stack<BaseNode>();
 
+    void Start() {
+        FindPathToWaypoint(current);
+    }
+
     void Update() {
         if (_pathToPoint.Count != 0) {
 
@@ -40,8 +44,9 @@ public class PlayerToken : MonoBehaviour {
         Queue<BaseNode> bfsQueue = new Queue<BaseNode>();
 
         distances.Add(root, 0);
-        bfsQueue.Enqueue(root);
         parents.Add(root, root);
+        if (target != root)
+            bfsQueue.Enqueue(root);
 
         while (bfsQueue.Count != 0) {
             BaseNode node = bfsQueue.Dequeue();
@@ -64,7 +69,7 @@ public class PlayerToken : MonoBehaviour {
             }
         }
 
-
+        
         BaseNode next = target;
         if (parents.ContainsKey(target)) {
             current = target;

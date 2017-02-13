@@ -277,7 +277,7 @@ public class client_script : MonoBehaviour {
             objects[s] = spends[s];
 
         root["object_update"] = objects;
-
+        root["highest_level"] = new JSONData(GameManager.GetCompleted());
         MemoryStream stream = new MemoryStream();
         BinaryWriter bin = new BinaryWriter(stream);
         root.Serialize(bin);
