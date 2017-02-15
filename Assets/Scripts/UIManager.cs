@@ -3,13 +3,13 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    static UIManager _ui;
+
+	void Awake() {
+        _ui = this;
+    }
+
+    public static UIManager GetManager() {
+        return _ui;
+    }
 }

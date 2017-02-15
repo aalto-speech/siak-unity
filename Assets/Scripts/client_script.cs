@@ -63,7 +63,7 @@ public class client_script : MonoBehaviour {
     public string wordListJSON = "[]";
 
 
-    public Boolean stopRecordingSignal = false;
+    public Boolean isRecording = false;
 
     // if or when the server crashes during the game session, the password will
     // be useful to avoid logging in again. Should be strongly encrypted in https anyway!
@@ -80,6 +80,7 @@ public class client_script : MonoBehaviour {
     // Variables for recording:
     string micstring;
     AudioSource aud;
+    int lastPos;
     bool micOn = false;
     int recstart;
 
@@ -112,6 +113,7 @@ public class client_script : MonoBehaviour {
         sentpacketnr = 0;
         finalpacket = false;
         GameManager.SetServer(this);
+        aud = GetComponent<AudioSource>();
     }
 
 
@@ -150,18 +152,19 @@ public class client_script : MonoBehaviour {
          stopRec();
          }
         */
-        checkStartUpload();
+        if (isRecording || finalpacket)
+            checkStartUpload();
 
     }
 
     public void startRec() {
 
-        stopRecordingSignal = false;
+        isRecording = true;
 
         //Start recording:
-        aud = GetComponent<AudioSource>();
-
         // Device 0, no looping, 10 s record at 16 kHz:
+        if (aud.clip != null)
+            Destroy(aud.clip);
         aud.clip = Microphone.Start(micstring, false, maxAudioLen, fs);
         micOn = true;
 
@@ -173,10 +176,13 @@ public class client_script : MonoBehaviour {
     }
 
     void stopRec() {
-        Debug.Log("Setting finalpacket = true");
-        finalpacket = true;
-        micOn = false;
-        aud.Stop();
+        if (!finalpacket && isRecording) {
+            Debug.Log("Setting finalpacket = true");
+            finalpacket = true;
+            micOn = false;
+            lastPos = Microphone.GetPosition(micstring);
+            Microphone.End(micstring);
+        }
     }
 
     void checkStartUpload() {
@@ -185,11 +191,10 @@ public class client_script : MonoBehaviour {
 
         if (aud && ((micOn && writeHead > samplessent + packetsize) || finalpacket)) {
             int thispacketsize = packetsize;
-
             // The last packet might be smaller than the standard packet size:
-            if (finalpacket) {
+            /*if (finalpacket) {
                 thispacketsize = writeHead - samplessent;
-            }
+            }*/
 
             // Copy the relevant audio data to a float array at the samplessent point:
             float[] samples = new float[thispacketsize];
@@ -203,6 +208,18 @@ public class client_script : MonoBehaviour {
 
             if (finalpacket) {
                 finalpacket = false;
+                float[] bigSamples = new float[aud.clip.samples];
+                aud.clip.GetData(bigSamples, 0);
+                float[] newSamples = new float[lastPos];
+                for (int i = 0; i < lastPos; i++) {
+                    newSamples[i] = bigSamples[i];
+                }
+                bigSamples[0] = 0.1f;
+                AudioClip shortClip = AudioClip.Create("trimmedRecording", lastPos, aud.clip.channels, aud.clip.frequency, false);
+                shortClip.SetData(newSamples, 0);
+                Destroy(aud.clip);
+                aud.clip = shortClip;
+                isRecording = false;
             }
         }
 
@@ -378,9 +395,9 @@ public class client_script : MonoBehaviour {
         Debug.Log("Score: " + wwwRec.text); //is the score supposed to improve as more data is sent..???
 
         if (wwwRec.text == "-1") {
-            stopRecordingSignal = true;
+            stopRec();
         } else if (wwwRec.text != "0") {
-            stopRecordingSignal = true;
+            stopRec();
             scoreFromServer = wwwRec.text;
         }
     }

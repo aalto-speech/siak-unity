@@ -21,7 +21,7 @@ public class WorldFlipper : BaseActivateable {
 
     IEnumerator WorldFlip() {
         PlayerToken token = LevelManager.GetPlayerToken();
-        token.GoToNode(offscreenNode);
+        token.GoToNode(offscreenNode,2.0f);
         float dur = Vector3.Distance(token.transform.position,offscreenNode.transform.position)/token.speed;
         yield return new WaitForSeconds(dur);
         nextNode.canPass = true;

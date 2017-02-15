@@ -28,7 +28,7 @@ public class Mysterybox : MonoBehaviour, Interactable {
     }
 
     public void Interact() {
-        if (!_canInteract)
+        if (!_canInteract || !hiddenPoint.CanInteract())
             return;
         LevelManager.ToggleInput(false);
         StartCoroutine(Reveal());
@@ -46,7 +46,7 @@ public class Mysterybox : MonoBehaviour, Interactable {
     }
 
     void Update() {
-        if (_canInteract) {
+        if (_canInteract && hiddenPoint.CanInteract()) {
             model.Rotate(model.up, 0.1f * Time.deltaTime * 360.0f, Space.World);
         }
     }

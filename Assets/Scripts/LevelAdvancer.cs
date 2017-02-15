@@ -2,8 +2,6 @@
 using System.Collections;
 
 public class LevelAdvancer : BaseActivateable {
-
-    public Level next;
    
     public override bool Activate() {
         if (!base.Activate())
@@ -13,12 +11,15 @@ public class LevelAdvancer : BaseActivateable {
         if (_wayPoint != null)
             _wayPoint.MarkActivated();
         Destroy(this.gameObject);
-        GoNextProto();
 
         return true;
     }
 
-    public void GoNextProto() {
+    public void GoNext() {
+        Level next = Level.Menu;
+        int check = 1 + (int)LevelManager.GetLevel();
+        if (System.Enum.IsDefined(typeof(Level), check))
+            next = (Level)check;
         GameManager.ChangeLevel(next, true);
     }
 }

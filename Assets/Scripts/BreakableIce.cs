@@ -76,6 +76,7 @@ public class BreakableIce : BaseActivateable {
             rb.transform.parent = null;
             Destroy(rb.gameObject, 5.0f);
         }
+        CameraManager.Shake(1.0f, 1.0f);
         Deactivate();
     }
 }

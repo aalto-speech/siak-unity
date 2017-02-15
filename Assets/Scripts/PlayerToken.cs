@@ -14,28 +14,39 @@ public class PlayerToken : MonoBehaviour {
     public bool returnInteract;
     bool _pause;
     bool _midBounce;
+    float _multiplier = 1.0f;
+    bool _entrance = true;
 
     Stack<BaseNode> _pathToPoint = new Stack<BaseNode>();
 
     void Start() {
-        FindPathToWaypoint(current);
+        FindPathToWaypoint(current, 2.0f);
     }
 
     void Update() {
         if (_pathToPoint.Count != 0) {
-
             MoveToTarget();
         } else if (!_midBounce && !_pause)
             StartCoroutine(BounceModel());
     }
 
     public void GoToNode(Waypoint point) {
+        GoToNode(point, 1);
+    }
+
+    public void GoToNode(Waypoint point, float multiplier) {
+        _multiplier = multiplier;
         _pathToPoint.Clear();
         _pathToPoint.Push(point);
         current = point;
     }
 
     public void FindPathToWaypoint(Waypoint target) {
+        FindPathToWaypoint(target, 1);
+    }
+
+    public void FindPathToWaypoint(Waypoint target, float multiplier) {
+        _multiplier = multiplier;
         BaseNode root = (_pathToPoint.Count == 0) ? current as BaseNode : _pathToPoint.Pop();
         _pathToPoint.Clear();
 
@@ -97,10 +108,8 @@ public class PlayerToken : MonoBehaviour {
 
     void MoveToTarget() {
         Vector3 target = _pathToPoint.Peek().GetWalkPoint();
-
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-
-        if (Vector3.Distance(target, transform.position) <= speed * Time.deltaTime) {
+        float motion = speed * _multiplier * Time.deltaTime;
+        if (Vector3.Distance(target, transform.position) <= motion) {
             transform.position = target;
             _pathToPoint.Pop();
 
@@ -110,8 +119,14 @@ public class PlayerToken : MonoBehaviour {
                     returnInteract = false;
                 }
                 current.TokenReached();
+
+                if (_entrance) {
+                    _entrance = false;
+                    CameraManager.Shake(1f, 1.0f);
+                }
             }
-        }
+        } else 
+            transform.position = Vector3.MoveTowards(transform.position, target, motion); 
     }
 
 

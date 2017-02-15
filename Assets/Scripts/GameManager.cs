@@ -6,7 +6,7 @@ using System.Linq;
 using SimpleJSON;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3, Forest5 = 4, Snow4 = 5 };
+public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3, Forest5 = 4, Snow4 = 5, MixAll1 = 6 };
 
 public class GameManager : MonoBehaviour {
 
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoGame1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Snow4, "L5" } };
+    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoGame1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Snow4, "L5" }, { Level.MixAll1, "L6" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
     int _highestLevel = 1;
@@ -44,16 +44,29 @@ public class GameManager : MonoBehaviour {
     }
 
     void Update() {
-        if (_canLevelSelect && Input.GetKeyDown(KeyCode.Escape)) {
-            if (SceneManager.GetActiveScene().buildIndex == 0) {
-                Application.Quit();
+        if (_canLevelSelect && Input.GetKeyDown(KeyCode.Escape))
+            ToggleLevelSelect();
+    }
+
+    
+    public void ToggleLevelSelect() {
+        if (!_canLevelSelect)
+            return;
+
+        UIManager ui = UIManager.GetManager();
+        print(ui);
+
+        if (SceneManager.GetActiveScene().buildIndex == 0) {
+            Application.Quit();
+        } else {
+            if (!levelSelect.activeSelf) {
+                levelSelect.SetActive(true);
+                if (ui != null)
+                    ui.gameObject.SetActive(false);
             } else {
-                if (!levelSelect.activeSelf)
-                    levelSelect.SetActive(true);
-                else {
-                    levelSelect.SetActive(false);
-                    ChangeLevel(Level.Menu, false);
-                }
+                levelSelect.SetActive(false);
+                if (ui != null)
+                    ui.gameObject.SetActive(true);
             }
         }
     }

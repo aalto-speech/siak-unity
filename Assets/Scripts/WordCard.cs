@@ -48,7 +48,7 @@ public class WordCard : BaseActivateable {
 
         LevelManager.ToggleInput(true);
         GameManager.CanLevelSelect(true);
-        if (_myScore != 0) {
+        if (_myScore > 0) {
             if (_wayPoint != null)
                 _wayPoint.MarkActivated();
             if (_noGame != null)

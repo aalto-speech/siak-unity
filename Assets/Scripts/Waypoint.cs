@@ -57,4 +57,8 @@ public class Waypoint : BaseNode, Interactable {
         activateable = null;
         _hasActivated = true;
     }
+
+    public bool CanInteract() {
+        return _canInteract;
+    }
 }
