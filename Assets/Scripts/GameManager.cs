@@ -22,8 +22,8 @@ public class GameManager : MonoBehaviour {
     Level _next = Level.Forest1;
     int _highestLevel = 1;
     bool _canLevelSelect = true;
-    string _username = "foo";
-    string _password = "bar";
+    string _username = "";
+    string _password = "";
     client_script _server;
 
     public static GameManager GetGameManager() {
@@ -39,16 +39,21 @@ public class GameManager : MonoBehaviour {
         _gm = this;
         DontDestroyOnLoad(this.gameObject);
         ResetSessionData();
-        //_username = PlayerPrefs.GetString("user", "");
-        //_password = PlayerPrefs.GetString("password", "");
+        _username = PlayerPrefs.GetString("user", "");
+        _password = PlayerPrefs.GetString("password", "");
     }
 
     void Update() {
-        if (_canLevelSelect && Input.GetKeyDown(KeyCode.Escape))
-            ToggleLevelSelect();
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            if (SceneManager.GetActiveScene().buildIndex == 0) {
+                Application.Quit();
+            } else {
+                ToggleLevelSelect();
+            }
+        }
     }
 
-    
+
     public void ToggleLevelSelect() {
         if (!_canLevelSelect)
             return;
@@ -56,18 +61,14 @@ public class GameManager : MonoBehaviour {
         UIManager ui = UIManager.GetManager();
         print(ui);
 
-        if (SceneManager.GetActiveScene().buildIndex == 0) {
-            Application.Quit();
+        if (!levelSelect.activeSelf) {
+            levelSelect.SetActive(true);
+            if (ui != null)
+                ui.gameObject.SetActive(false);
         } else {
-            if (!levelSelect.activeSelf) {
-                levelSelect.SetActive(true);
-                if (ui != null)
-                    ui.gameObject.SetActive(false);
-            } else {
-                levelSelect.SetActive(false);
-                if (ui != null)
-                    ui.gameObject.SetActive(true);
-            }
+            levelSelect.SetActive(false);
+            if (ui != null)
+                ui.gameObject.SetActive(true);
         }
     }
 
