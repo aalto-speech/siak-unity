@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 public class LevelSelect : MonoBehaviour {
 
     public GameObject home;
+    public GameObject arrowForward;
+    public GameObject arrowBack;
+    public GameObject[] levels;
+
+    int _index;
     
     void Awake() {
         if (GameManager.GetLevelSelect() != this) {
@@ -15,6 +20,7 @@ public class LevelSelect : MonoBehaviour {
     }
 
     void OnEnable() {
+        UpdateScreens();
         if (SceneManager.GetActiveScene().buildIndex == 0)
             home.SetActive(false);
         else
@@ -32,5 +38,30 @@ public class LevelSelect : MonoBehaviour {
 
     public void Hide() {
         GameManager.GetGameManager().ToggleLevelSelect();
+    }
+
+    public void Next() {
+        _index++;
+        UpdateScreens();
+    }
+
+    public void Back() {
+        _index--;
+        UpdateScreens();
+    }
+
+    void UpdateScreens() {
+        for(int i = 0; i < levels.Length; i++) {
+            levels[i].SetActive(i == _index);
+        }
+        if (_index == 0)
+            arrowBack.SetActive(false);
+        else
+            arrowBack.SetActive(true);
+
+        if (_index == levels.Length-1)
+            arrowForward.SetActive(false);
+        else
+            arrowForward.SetActive(true);
     }
 }
