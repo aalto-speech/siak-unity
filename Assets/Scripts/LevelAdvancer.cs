@@ -6,10 +6,10 @@ public class LevelAdvancer : BaseActivateable {
     public override bool Activate() {
         if (!base.Activate())
             return false;
-        
 
         if (_wayPoint != null)
             _wayPoint.MarkActivated();
+        GoNext();
         Destroy(this.gameObject);
 
         return true;
