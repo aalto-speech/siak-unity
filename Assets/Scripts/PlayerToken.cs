@@ -129,6 +129,11 @@ public class PlayerToken : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, target, motion); 
     }
 
+    public void Teleport(Waypoint target) {
+        current = target;
+        transform.position = target.GetWalkPoint();
+        target.MarkActivated();
+    }
 
     public void Pause(bool b) {
         _pause = b;
