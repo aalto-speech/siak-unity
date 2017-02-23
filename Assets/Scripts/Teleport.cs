@@ -9,7 +9,10 @@ public class Teleport : BaseActivateable {
     bool _canTeleport;
 
     void Awake() {
-        unlocker.SetTeleport(this);
+        if (unlocker != null)
+            unlocker.SetTeleport(this);
+        else
+            UnlockTeleportation();
     }
 
     public override bool Activate() {
