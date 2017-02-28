@@ -86,6 +86,7 @@ public class WordCard : BaseActivateable {
                 SetClip(false);
             else
                 _as.clip = GameManager.GetFinalPreface();
+            _myFSM.FsmVariables.FindFsmString("word_to_check").Value = wordID;
             _myFSM.SendEvent("GameOn");
         } else
             Deactivate();

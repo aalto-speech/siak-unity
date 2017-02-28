@@ -140,11 +140,11 @@ public class LevelManager : MonoBehaviour {
         _wordHolder = new GameObject().transform;
         _wordHolder.name = "WordHolder";
         for (int i = 0; i < list.Count; i++) {
-            string word = list[i]["word"].ToString().ToLower().TrimEnd(new char[2] { ' ', '?' });
             Object o = Resources.Load("WordGlues/" + list[i]["word"]);
             if (o != null) {
                 GameObject go = Instantiate((GameObject)o);
                 go.transform.SetParent(_wordHolder);
+                go.name = list[i]["word"];
                 ProcessGlue(go.GetComponent<WordGlue>());
             }
         }
