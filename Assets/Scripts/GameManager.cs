@@ -6,7 +6,7 @@ using System.Linq;
 using SimpleJSON;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3, Forest5 = 4, Snow4 = 5, MixAll1 = 6, Sand1 = 7, Forest2 = 8, Sand2 = 9 };
+public enum Level { None = -1, Menu = 0, Forest1 = 1, NoGame1 = 2, SandIce1 = 3, Forest5 = 4, Snow4 = 5, MixAll1 = 6, Sand1 = 7, Forest2 = 8, Sand2 = 9, Forest3 = 10 };
 
 public class GameManager : MonoBehaviour {
 
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoGame1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Snow4, "L5" }, { Level.MixAll1, "L6" }, { Level.Sand1, "L7" }, { Level.Forest2, "L8" }, { Level.Sand2, "L9" } };
+    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoGame1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Snow4, "L5" }, { Level.MixAll1, "L6" }, { Level.Sand1, "L7" }, { Level.Forest2, "L8" }, { Level.Sand2, "L9" }, { Level.Forest3, "L10" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
     int _highestLevel = 1;
@@ -102,6 +102,14 @@ public class GameManager : MonoBehaviour {
 
     public static bool IsSpent(string name) {
         return _gm._spentStars.ContainsKey(name);
+    }
+
+    public static int GetSpent(string name) {
+        return _gm._spentStars[name];
+    }
+
+    public static void RemoveSpent(string name) {
+        _gm._spentStars.Remove(name);
     }
 
     public static void AddSpent(string name, int amount) {

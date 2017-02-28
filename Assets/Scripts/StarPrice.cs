@@ -9,12 +9,17 @@ public class StarPrice : BaseActivateable {
 
     void Start() {
         if (GameManager.IsSpent(uniqueId)) {
-            Destroy(this.gameObject);
-            if (secondary == null)
-                _wayPoint.EmptyActivateable();
-            else
-                SetUpSecondary();
-
+            int prevPrice = GameManager.GetSpent(uniqueId);
+            if (prevPrice == price) {
+                Destroy(this.gameObject);
+                if (secondary == null)
+                    _wayPoint.EmptyActivateable();
+                else
+                    SetUpSecondary();
+            } else {
+                GameManager.RemoveSpent(uniqueId);
+                LevelManager.ActuallyAddStars(prevPrice);
+            }
             return;
         }
         model.GetComponentInChildren<TextMesh>().text = price.ToString();

@@ -91,10 +91,15 @@ public class LevelManager : MonoBehaviour {
                 _lm.MoveGUI(1);
         }
         if (increase != 0) {
-            _lm._stars += increase;
-            if (_lm.starGUI != null)
-                _lm.starGUI.ChangeNumberBy(increase);
+            ActuallyAddStars(increase);
         }
+    }
+
+    public static void ActuallyAddStars(int amount) {
+        _lm._stars += amount;
+        if (_lm.starGUI != null)
+            _lm.starGUI.ChangeNumberBy(amount);
+
     }
 
     public static bool SpendStars(int amount) {
