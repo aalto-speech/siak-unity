@@ -18,6 +18,7 @@ public class Teleport : BaseActivateable {
     public override bool Activate() {
         if (!base.Activate())
             return false;
+
         if (_canTeleport)
             LevelManager.GetPlayerToken().Teleport(target);
 
