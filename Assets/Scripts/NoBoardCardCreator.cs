@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NoGameCardCreator : MonoBehaviour {
+public class NoBoardCardCreator : MonoBehaviour {
 
     public GameObject card;
     public float spacing;

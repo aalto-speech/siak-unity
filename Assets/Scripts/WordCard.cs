@@ -38,6 +38,7 @@ public class WordCard : BaseActivateable {
         StartCoroutine(GoToPosition(true, CameraManager.GetCardLocation(), transform, model.GetChild(0)));
         LevelManager.ToggleInput(false);
         GameManager.CanLevelSelect(false);
+        NoGameCounter.Count();
 
         return true;
     }

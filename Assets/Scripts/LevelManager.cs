@@ -168,8 +168,10 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void MoveGUI(float duration) {
-        keyGUI.GetComponent<GUIMover>().Move(duration);
-        greyGUI.GetComponent<GUIMover>().Move(duration);
+        if (keyGUI != null && greyGUI != null) {
+            keyGUI.GetComponent<GUIMover>().Move(duration);
+            greyGUI.GetComponent<GUIMover>().Move(duration);
+        }
     }
 
     public static Dictionary<string,string> NewSpends() {

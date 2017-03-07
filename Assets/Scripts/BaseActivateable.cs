@@ -14,7 +14,7 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     protected float _piCollector;
     protected Quaternion _startRot;
     protected Vector3 _startPos;
-    protected NoGameInteractable _noGame;
+    protected NoBoardInteractable _noGame;
     protected Transform _parent;
     
     public virtual bool Activate() {
@@ -52,7 +52,7 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
         _wayPoint = wp;
     }
 
-    public void SetNoGameInteractable(NoGameInteractable ngi) {
+    public void SetNoBoardInteractable(NoBoardInteractable ngi) {
         _noGame = ngi;
     }
 

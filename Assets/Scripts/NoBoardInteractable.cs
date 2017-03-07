@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class NoGameInteractable : MonoBehaviour, Interactable {
+public class NoBoardInteractable : MonoBehaviour, Interactable {
 
     public GameObject card;
     public Vector3 glidingPoint;
@@ -36,13 +36,13 @@ public class NoGameInteractable : MonoBehaviour, Interactable {
         _activateable = ba;
         _activateable.model.rotation = transform.rotation;
         _activateable.transform.position = glidingPoint;
-        _activateable.SetNoGameInteractable(this);
+        _activateable.SetNoBoardInteractable(this);
     }
 
     public void MarkActivated() {
         if (!_hasActivated) {
             _hasActivated = true;
-            NoGameManager.UseCard();
+            NoBoardManager.UseCard();
         }
     }
 

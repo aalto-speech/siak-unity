@@ -2,68 +2,50 @@
 using System.Collections;
 
 public class NoGameManager : MonoBehaviour {
-    public GameObject finalCard;
-    public GameObject noGameHolder;
-    public int amountOfCards;
-    public BaseActivateable nextLevel;
 
-    static NoGameManager _ngm;
+    public int noGameNumber;
+    public GameObject button;
+    public GameObject mic;
+    public string wordID;
+    public LevelAdvancer la;
 
-    float _radius = 6f;
-    int _usedCards;
-
-
-    void Awake() {
-        _ngm = this;
-        StartCoroutine(CreateCards(amountOfCards));
-    }
+    PlayMakerFSM _myFSM;
+    int _max;
+    int _count = 0;
+    AudioSource _as;
+    WordGlue _wg;
 
     void Start() {
-
-    }
-
-    public void CreateCards(string input) {
-        int amount = 1;
-        int.TryParse(input, out amount);
-        StartCoroutine(CreateCards(amount));
-    }
-
-    IEnumerator CreateCards(int amount) {
-        amount = Mathf.Max(1, amount);
-
-        for (int i = 0; i < amount; i++) {
-            Transform t = Instantiate(noGameHolder).transform;
-            t.rotation = transform.rotation;
-            t.transform.position = transform.position + Quaternion.AngleAxis(360.0f * ((amount-i) / (amount*1.0f)), transform.forward) * t.right * _radius;
-            t.GetComponent<NoGameInteractable>().glidingPoint = transform.position + Quaternion.AngleAxis(360.0f * ((amount - i) / (amount * 1.0f)), transform.forward) * t.right * 18f;
-            yield return new WaitForSeconds(0.2f);
+        _max = GameManager.GetNoGameCount(noGameNumber);
+        if (_max == 0) {
+            _max = PlayerPrefs.GetInt("NoGame" + noGameNumber);
+        } else {
+            PlayerPrefs.SetInt("NoGame" + noGameNumber, _max);
         }
+        _myFSM = GetComponent<PlayMakerFSM>();
+        _as = GetComponent<AudioSource>();
+        _myFSM.FsmVariables.FindFsmObject("button").Value = button;
+        _myFSM.FsmVariables.FindFsmObject("mic").Value = mic;
+    }
+    public void SetClip(bool second) {
+        _as.clip = (second) ? _wg.foreignClip : _wg.localClip;
     }
 
-    public static void UseCard() {
-        _ngm._usedCards++;
-        if (_ngm._usedCards == _ngm.amountOfCards)
-            _ngm.CreateFinal();
-        else if (_ngm._usedCards > _ngm.amountOfCards) {
-            _ngm.CreateNext();
+    void SetWord() {
+        wordID = LevelManager.GetNewID();
+        _wg = LevelManager.GetWord(wordID);
+    }
+
+    public void Next() {
+        if (_count == _max) {
+            la.SetActivateable(true);
+            la.Activate();
+        } else {
+            _count++;
+            SetWord();
+            SetClip(false);
+            _myFSM.FsmVariables.FindFsmString("word_to_check").Value = wordID;
+            _myFSM.SendEvent("GameOn");
         }
-    }
-    
-    void CreateNext() {
-        Transform t = Instantiate(noGameHolder).transform;
-        t.rotation = nextLevel.transform.rotation;
-        t.position = nextLevel.transform.position;
-        nextLevel.gameObject.SetActive(true);
-        t.GetComponent<NoGameInteractable>().SetActivateable(nextLevel);
-        t.GetComponent<NoGameInteractable>().glidingPoint = nextLevel.transform.position + -t.forward * 12.0f;
-    }
-
-
-    void CreateFinal() {
-        Transform t = Instantiate(noGameHolder).transform;
-        t.rotation = transform.rotation;
-        t.position = transform.position;
-        t.GetComponent<NoGameInteractable>().SetActivateable(Instantiate(finalCard).GetComponent<BaseActivateable>());
-        t.GetComponent<NoGameInteractable>().glidingPoint = transform.position + -t.forward * 12.0f;
     }
 }

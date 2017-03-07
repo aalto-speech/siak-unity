@@ -19,7 +19,6 @@ public class LoginLoadLevel : MonoBehaviour {
             return;
         }
         DontDestroyOnLoad(this.gameObject);
-
     }
 
     void Update() {
