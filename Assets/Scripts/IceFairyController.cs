@@ -13,9 +13,9 @@ public class IceFairyController : MonoBehaviour {
     public float spinDistance;
 
     float _multiplier = 1;
-    public float _rotation;
+    float _rotation;
     static IceFairyController _ifc;
-    public int _fairies = 0;
+    int _fairies = 0;
     List<IceFairy> _fairyList = new List<IceFairy>();
 
     void Awake() {

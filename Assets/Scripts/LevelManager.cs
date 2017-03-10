@@ -22,6 +22,7 @@ public class LevelManager : MonoBehaviour {
     Dictionary<string, WordGlue> _idToGlue = new Dictionary<string, WordGlue>();
     Queue<string> _newWords = new Queue<string>();
     List<string> _usedWords = new List<string>();
+    HashSet<string> _doubleUsed = new HashSet<string>();
     Transform _wordHolder;
 
     void Awake() {
@@ -62,6 +63,20 @@ public class LevelManager : MonoBehaviour {
     }
 
     public static string GetUsedID() {
+        int max = _lm._usedWords.Count;
+        while (max > 0) {
+            int rand = Random.Range(0, max);
+            string word = _lm._usedWords[rand];
+            if (!_lm._doubleUsed.Contains(word)) {
+                _lm._doubleUsed.Add(word);
+                return word;
+            } else {
+                max--;
+                _lm._usedWords[rand] = _lm._usedWords[max];
+                _lm._usedWords[max] = word;
+            }
+        }
+
         return _lm._usedWords[Random.Range(0, _lm._usedWords.Count)];
     }
 

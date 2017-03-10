@@ -6,7 +6,7 @@ using System.Linq;
 using SimpleJSON;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, NoBoard1 = 2, SandIce1 = 3, Forest5 = 4, Snow4 = 5, MixAll1 = 6, Sand1 = 7, Forest2 = 8, Sand2 = 9, Forest3 = 10, Forest4 = 11, Ice1 = 12, Ice2 = 13 };
+public enum Level { None = -1, Menu = 0, Forest1 = 1, NoBoard1 = 2, SandIce1 = 3, Forest5 = 4, Snow4 = 5, MixAll1 = 6, Sand1 = 7, Forest2 = 8, Sand2 = 9, Forest3 = 10, Forest4 = 11, Ice1 = 12, Ice2 = 13, Ice3 = 14 };
 
 public class GameManager : MonoBehaviour {
 
