@@ -10,12 +10,14 @@ public class Mysterybox : MonoBehaviour, Interactable {
     public Transform[] pathsToRaise;
     public bool interactableAtStart;
     public Transform model;
+    public AnimationCurve curve;
 
-    float _ascensionHeight = 14f;
-    float _ascensionDuration = 2.2f;
+    float _ascensionHeight = 19f;
+    float _ascensionDuration = 1.75f;
     float _pathAscension = 0.3f;
     int _prevLayer;
     Vector3[] _pathPositions;
+    float t = 0;
 
     bool _canInteract;
 
@@ -47,7 +49,7 @@ public class Mysterybox : MonoBehaviour, Interactable {
 
     void Update() {
         if (_canInteract && hiddenPoint.CanInteract()) {
-            model.Rotate(model.up, 0.1f * Time.deltaTime * 360.0f, Space.World);
+            model.Rotate(model.up, (0.1f +1.4f*curve.Evaluate(t)) * Time.deltaTime * 360.0f, Space.World);
         }
     }
 
@@ -56,7 +58,7 @@ public class Mysterybox : MonoBehaviour, Interactable {
             if (_pathPositions[i] != pathsToRaise[i].position)
                 pathsToRaise[i].position = _pathPositions[i] + Vector3.down * _pathAscension;
         }
-        float t = 0;
+        t = 0;
         Vector3 startPos = transform.position;
 
         while (t < 1) {
@@ -65,7 +67,7 @@ public class Mysterybox : MonoBehaviour, Interactable {
             for (int i = 0; i < pathsToRaise.Length; i++) {
                 pathsToRaise[i].position = Vector3.MoveTowards(pathsToRaise[i].position, _pathPositions[i], _pathAscension*increase);
             }
-            transform.position = Vector3.Slerp(startPos, startPos + Vector3.up * _ascensionHeight, t);
+            transform.position = Vector3.Lerp(startPos, startPos + Vector3.up * _ascensionHeight, curve.Evaluate(t));
             yield return new WaitForEndOfFrame();
         }
 
