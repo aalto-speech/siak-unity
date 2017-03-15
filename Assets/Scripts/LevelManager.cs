@@ -76,7 +76,7 @@ public class LevelManager : MonoBehaviour {
                 _lm._usedWords[max] = word;
             }
         }
-
+        
         return _lm._usedWords[Random.Range(0, _lm._usedWords.Count)];
     }
 

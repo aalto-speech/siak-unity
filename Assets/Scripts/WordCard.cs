@@ -15,6 +15,7 @@ public class WordCard : BaseActivateable {
     AudioSource _as;
     int _myScore;
     WordGlue _wg;
+    bool _pass;
 
     void Awake() {
         _myFSM = GetComponent<PlayMakerFSM>();
@@ -49,7 +50,7 @@ public class WordCard : BaseActivateable {
 
         LevelManager.ToggleInput(true);
         GameManager.CanLevelSelect(true);
-        if (_myScore != 1) {
+        if (_pass) {
             if (_wayPoint != null)
                 _wayPoint.MarkActivated();
             if (_noGame != null)
@@ -69,6 +70,9 @@ public class WordCard : BaseActivateable {
     }
 
     public void EndCardGame(int score) {
+        if (score != -1 && score != -2 && score != -5 && score != -6 && !getUsedWord)
+            _pass = true;
+
         if (score > _myScore) {
             LevelManager.AddStars(score - _myScore);
             _myScore = score;

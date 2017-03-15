@@ -22,7 +22,7 @@ public class LevelSelectButton : MonoBehaviour {
         if (_text != null && _lock != null) {
             if (GameManager.GetCompleted() >= (int)level) {
                 _text.gameObject.SetActive(true);
-                if (_text.text != "")
+                if (maxStars != "")
                     _text.text = GameManager.GetCollectedStars(level).ToString() + " / " + maxStars;
                 _lock.SetActive(false);
                 StartCoroutine(SetClickable());
