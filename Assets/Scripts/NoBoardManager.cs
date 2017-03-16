@@ -9,7 +9,7 @@ public class NoBoardManager : MonoBehaviour {
 
     static NoBoardManager _ngm;
 
-    float _radius = 6f;
+    float _radius = 7f;
     int _usedCards;
 
     void Awake() {

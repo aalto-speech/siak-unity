@@ -6,7 +6,7 @@ using System.Linq;
 using SimpleJSON;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, NoBoard1 = 2, SandIce1 = 3, Forest5 = 4, Snow4 = 5, MixAll1 = 6, NoGame1 = 7, Forest2 = 8, Sand2 = 9, Forest3 = 10, Forest4 = 11, Ice1 = 12, Ice2 = 13, Ice3 = 14, Sand3 = 15, Sand4 = 16, Sand1 = 17 };
+public enum Level { None = -1, Menu = 0, Forest1 = 1, NoBoard1 = 2, SandIce1 = 3, Forest5 = 4, Ice4 = 5, MixAll1 = 6, NoGame1 = 7, Forest2 = 8, Sand2 = 9, Forest3 = 10, Forest4 = 11, Ice1 = 12, Ice2 = 13, Ice3 = 14, Sand3 = 15, Sand4 = 16, Sand1 = 17, Ice5 = 18 };
 
 public class GameManager : MonoBehaviour {
 
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     Dictionary<int, int> _noGameAmount = new Dictionary<int, int>() { { 1, 0 }, { 2, 0 }, { 3, 0 } };
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoBoard1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Snow4, "L5" }, { Level.MixAll1, "L6" }, { Level.NoGame1, "L7"}, { Level.Forest2, "L8" }, { Level.Sand2, "L9" }, { Level.Forest3, "L10" }, { Level.Forest4, "L11" }, { Level.Ice1, "L12" }, { Level.Ice2, "L13" }, { Level.Ice3, "L14" }, { Level.Sand3, "L15" }, { Level.Sand4, "L16" }, { Level.Sand1, "L17" } };
+    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoBoard1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Ice4, "L5" }, { Level.MixAll1, "L6" }, { Level.NoGame1, "L7"}, { Level.Forest2, "L8" }, { Level.Sand2, "L9" }, { Level.Forest3, "L10" }, { Level.Forest4, "L11" }, { Level.Ice1, "L12" }, { Level.Ice2, "L13" }, { Level.Ice3, "L14" }, { Level.Sand3, "L15" }, { Level.Sand4, "L16" }, { Level.Sand1, "L17" }, { Level.Ice5, "L18" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
     int _highestLevel = 1;
@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour {
 
         int serverNumber;
         int.TryParse(data["highest_level"].Value, out serverNumber);
-        _gm._highestLevel = Mathf.Max(serverNumber, 100);
+        _gm._highestLevel = Mathf.Max(serverNumber, 1);
     }
 
     public static LevelSelect GetLevelSelect() {

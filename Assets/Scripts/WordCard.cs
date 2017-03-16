@@ -70,8 +70,10 @@ public class WordCard : BaseActivateable {
     }
 
     public void EndCardGame(int score) {
-        if (score != -1 && score != -2 && score != -5 && score != -6 && !getUsedWord)
-            _pass = true;
+        if (score != -1 && score != -2 && score != -5 && score != -6 && score != 1) {
+            if (!getUsedWord || score > 1)
+                _pass = true;
+        }
 
         if (score > _myScore) {
             LevelManager.AddStars(score - _myScore);
