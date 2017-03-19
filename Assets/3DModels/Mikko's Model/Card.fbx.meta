@@ -18,6 +18,9 @@ ModelImporter:
     100020: Light.002
     100022: Light.003
     100024: Wood Parts
+    100026: CardFrame
+    100028: CardFrame.001
+    100030: PicturePlane.001
     400000: //RootNode
     400002: Card
     400004: Frame
@@ -31,6 +34,9 @@ ModelImporter:
     400020: Light.002
     400022: Light.003
     400024: Wood Parts
+    400026: CardFrame
+    400028: CardFrame.001
+    400030: PicturePlane.001
     2300000: Card
     2300002: Frame
     2300004: Light
@@ -43,6 +49,9 @@ ModelImporter:
     2300018: Light.002
     2300020: Light.003
     2300022: Wood Parts
+    2300024: CardFrame
+    2300026: CardFrame.001
+    2300028: PicturePlane.001
     3300000: Card
     3300002: Frame
     3300004: Light
@@ -55,6 +64,9 @@ ModelImporter:
     3300018: Light.002
     3300020: Light.003
     3300022: Wood Parts
+    3300024: CardFrame
+    3300026: CardFrame.001
+    3300028: PicturePlane.001
     4300000: Mic-Icon
     4300002: Star
     4300004: Card
@@ -67,6 +79,9 @@ ModelImporter:
     4300018: Gem
     4300020: Wood Parts
     4300022: Cube
+    4300024: CardFrame.001
+    4300026: PicturePlane.001
+    4300028: CardFrame
   materials:
     importMaterials: 1
     materialName: 0
