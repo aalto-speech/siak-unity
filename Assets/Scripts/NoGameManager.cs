@@ -35,6 +35,11 @@ public class NoGameManager : MonoBehaviour {
         print(_max);
     }
 
+    public void SetButton() {
+        button.gameObject.SetActive(true);
+        GameManager.CanLevelSelect(true);
+    }
+
     public void SetClip(bool second) {
         _as.clip = (!_last && second) ? _wg.foreignClip : _wg.localClip;
     }
@@ -52,6 +57,7 @@ public class NoGameManager : MonoBehaviour {
             la.SetActivateable(true);
             la.Activate();
         } else {
+            GameManager.CanLevelSelect(false);
             if (_count == _max) {
                 _last = true;
                 _as.clip = GameManager.GetFinalPreface();
