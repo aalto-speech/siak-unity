@@ -21,6 +21,7 @@ ModelImporter:
     100026: CardFrame
     100028: CardFrame.001
     100030: PicturePlane.001
+    100032: CardFrame.002
     400000: //RootNode
     400002: Card
     400004: Frame
@@ -37,6 +38,7 @@ ModelImporter:
     400026: CardFrame
     400028: CardFrame.001
     400030: PicturePlane.001
+    400032: CardFrame.002
     2300000: Card
     2300002: Frame
     2300004: Light
@@ -52,6 +54,7 @@ ModelImporter:
     2300024: CardFrame
     2300026: CardFrame.001
     2300028: PicturePlane.001
+    2300030: CardFrame.002
     3300000: Card
     3300002: Frame
     3300004: Light
@@ -67,6 +70,7 @@ ModelImporter:
     3300024: CardFrame
     3300026: CardFrame.001
     3300028: PicturePlane.001
+    3300030: CardFrame.002
     4300000: Mic-Icon
     4300002: Star
     4300004: Card
@@ -82,6 +86,7 @@ ModelImporter:
     4300024: CardFrame.001
     4300026: PicturePlane.001
     4300028: CardFrame
+    4300030: CardFrame.002
   materials:
     importMaterials: 1
     materialName: 0

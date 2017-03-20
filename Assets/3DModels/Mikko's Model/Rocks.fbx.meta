@@ -13,6 +13,14 @@ ModelImporter:
     100010: Cube.005
     100012: Plane
     100014: //RootNode
+    100016: BigRock1
+    100018: BigRock2
+    100020: PointyRock
+    100022: Rock Bridge
+    100024: Rock1
+    100026: Rock2
+    100028: RockBundle
+    100030: TinyRock
     400000: Cube
     400002: Cube.001
     400004: Cube.002
@@ -21,6 +29,14 @@ ModelImporter:
     400010: Cube.005
     400012: Plane
     400014: //RootNode
+    400016: BigRock1
+    400018: BigRock2
+    400020: PointyRock
+    400022: Rock Bridge
+    400024: Rock1
+    400026: Rock2
+    400028: RockBundle
+    400030: TinyRock
     2300000: Cube
     2300002: Cube.001
     2300004: Cube.002
@@ -28,6 +44,14 @@ ModelImporter:
     2300008: Cube.004
     2300010: Cube.005
     2300012: Plane
+    2300014: BigRock1
+    2300016: BigRock2
+    2300018: PointyRock
+    2300020: Rock Bridge
+    2300022: Rock1
+    2300024: Rock2
+    2300026: RockBundle
+    2300028: TinyRock
     3300000: Cube
     3300002: Cube.001
     3300004: Cube.002
@@ -35,6 +59,14 @@ ModelImporter:
     3300008: Cube.004
     3300010: Cube.005
     3300012: Plane
+    3300014: BigRock1
+    3300016: BigRock2
+    3300018: PointyRock
+    3300020: Rock Bridge
+    3300022: Rock1
+    3300024: Rock2
+    3300026: RockBundle
+    3300028: TinyRock
     4300000: Cube.005
     4300002: Cube.004
     4300004: Cube.003
@@ -42,6 +74,14 @@ ModelImporter:
     4300008: Cube.001
     4300010: Cube
     4300012: Plane
+    4300014: Rock Bridge
+    4300016: RockBundle
+    4300018: PointyRock
+    4300020: BigRock2
+    4300022: TinyRock
+    4300024: Rock2
+    4300026: Rock1
+    4300028: BigRock1
   materials:
     importMaterials: 1
     materialName: 0
