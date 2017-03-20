@@ -5,8 +5,7 @@ public class WordCard : BaseActivateable {
     public string wordID = "None";
     public MeshRenderer picture;
     public bool getUsedWord;
-
-    [HideInInspector]
+    
     public GameObject[] stars; // Potential particles
 
     float _rotationsPerSecond = 0.1f;
