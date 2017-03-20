@@ -26749,41 +26749,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 20000010958942866, guid: 9aee56a0ec2ed7a4aa84608c85c504da,
-        type: 2}
-      propertyPath: m_BackGroundColor.r
-      value: 0.14078721
-      objectReference: {fileID: 0}
-    - target: {fileID: 20000010958942866, guid: 9aee56a0ec2ed7a4aa84608c85c504da,
-        type: 2}
-      propertyPath: m_BackGroundColor.g
-      value: 0.16610199
-      objectReference: {fileID: 0}
-    - target: {fileID: 20000010958942866, guid: 9aee56a0ec2ed7a4aa84608c85c504da,
-        type: 2}
-      propertyPath: m_BackGroundColor.b
-      value: 0.20588237
-      objectReference: {fileID: 0}
-    - target: {fileID: 20000010958942866, guid: 9aee56a0ec2ed7a4aa84608c85c504da,
-        type: 2}
-      propertyPath: orthographic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20000010958942866, guid: 9aee56a0ec2ed7a4aa84608c85c504da,
-        type: 2}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 20000010958942866, guid: 9aee56a0ec2ed7a4aa84608c85c504da,
-        type: 2}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 20000010958942866, guid: 9aee56a0ec2ed7a4aa84608c85c504da,
-        type: 2}
-      propertyPath: orthographic size
-      value: 14
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9aee56a0ec2ed7a4aa84608c85c504da, type: 2}
   m_IsPrefabParent: 0

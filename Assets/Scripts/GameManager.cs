@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     Dictionary<int, int> _noGameAmount = new Dictionary<int, int>() { { 1, 0 }, { 2, 0 }, { 3, 0 } };
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoBoard1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Ice4, "L5" }, { Level.MixAll1, "L6" }, { Level.Sand1, "L7" }, { Level.Forest2, "L8" }, { Level.Sand2, "L9" }, { Level.Forest3, "L10" }, { Level.Forest4, "L11" }, { Level.Ice1, "L12" }, { Level.Ice2, "L13" }, { Level.Ice3, "L14" }, { Level.Sand3, "L15" }, { Level.Sand4, "L16" }, { Level.NoGame1, "L17" }, { Level.Ice5, "L18" } };
+    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoBoard1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Ice4, "L5" }, { Level.MixAll1, "L6" }, { Level.Sand1, "L7" }, { Level.Forest2, "L8" }, { Level.Sand2, "L9" }, { Level.Forest3, "L10" }, { Level.Forest4, "L11" }, { Level.Ice1, "L12" }, { Level.Ice2, "L13" }, { Level.Ice3, "L14" }, { Level.Sand3, "L15" }, { Level.Sand4, "L17" }, { Level.NoGame1, "L16" }, { Level.Ice5, "L18" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
     int _highestLevel = 1;
@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour {
     }
 
     void Awake() {
-        Debug.LogError("show console");
         if (_gm != null) {
             Destroy(this.gameObject);
             return;
@@ -96,6 +95,10 @@ public class GameManager : MonoBehaviour {
             _gm._server.exit(newStars, LevelManager.NewSpends());
         }
         Instantiate(_gm.loader);
+    }
+
+    public static void SetLevelStars(Level level, int stars) {
+        _gm._collectedStars[level] = stars;
     }
 
     public static int GetCollectedStars(Level level) {

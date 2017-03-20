@@ -48,6 +48,7 @@ public class NoGameManager : MonoBehaviour {
 
     public void SetButton() {
         _click = true;
+        button.SetActive(true);
         GameManager.CanLevelSelect(true);
     }
 

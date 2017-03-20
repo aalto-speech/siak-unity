@@ -17,12 +17,19 @@ public class LevelSelectButton : MonoBehaviour {
             _lock = l.gameObject;
     }
 
+    void Stars() {
+        int stars = int.MaxValue;
+        int.TryParse(maxStars, out stars);
+        if (GameManager.GetCollectedStars(level) > stars)
+            GameManager.SetLevelStars(level, 0);
+    }
+
     void OnEnable() {
         _canSelect = false;
         if (_text != null && _lock != null) {
             if (GameManager.GetCompleted() >= (int)level) {
                 _text.gameObject.SetActive(true);
-                if (maxStars != "")
+                if (maxStars != "" && maxStars != "0")
                     _text.text = GameManager.GetCollectedStars(level).ToString() + " / " + maxStars;
                 _lock.SetActive(false);
                 StartCoroutine(SetClickable());
