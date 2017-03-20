@@ -20,7 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Maps/14_MixAll1.unity
   - enabled: 1
-    path: Assets/Maps/NoGame.unity
+    path: Assets/Maps/3_Sand1.unity
   - enabled: 1
     path: Assets/Maps/4_Forest2.unity
   - enabled: 1
@@ -40,6 +40,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Maps/15_Sand4.unity
   - enabled: 1
-    path: Assets/Maps/3_Sand1.unity
+    path: Assets/Maps/NoGame.unity
   - enabled: 1
     path: Assets/Maps/16_Snow5.unity

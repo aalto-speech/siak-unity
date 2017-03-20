@@ -16,12 +16,13 @@ public class NoGameManager : MonoBehaviour {
     AudioSource _as;
     WordGlue _wg;
     bool _last;
+    bool _click = true;
 
     void Start() {
         _max = GameManager.GetNoGameCount(noGameNumber);
         if (!testing) {
             if (_max == 0) {
-                _max = PlayerPrefs.GetInt("NoGame" + noGameNumber);
+                _max = PlayerPrefs.GetInt("NoGame" + noGameNumber,6);
             } else {
                 PlayerPrefs.SetInt("NoGame" + noGameNumber, _max);
             }
@@ -35,8 +36,18 @@ public class NoGameManager : MonoBehaviour {
         print(_max);
     }
 
+    void Update() {
+        if (_click && Time.timeScale != 0) {
+            if (Input.GetMouseButtonDown(0) || Input.touches.Length > 0) {
+                _click = false;
+                button.SetActive(false);
+                Next();
+            }
+        }
+    }
+
     public void SetButton() {
-        button.gameObject.SetActive(true);
+        _click = true;
         GameManager.CanLevelSelect(true);
     }
 

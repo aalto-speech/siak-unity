@@ -45,6 +45,7 @@ public class Lock : BaseActivateable {
         GetComponent<Rigidbody>().isKinematic = false;
         LevelManager.UseKey();
         Deactivate();
+        model.GetChild(0).GetChild(0).gameObject.SetActive(true);
         Destroy(this.gameObject, 3.0f);
     }
 

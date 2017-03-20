@@ -35,6 +35,7 @@ public class PlayerToken : MonoBehaviour {
     }
 
     public void GoToNode(Waypoint point, float multiplier) {
+        model.rotation = Quaternion.LookRotation(transform.position - point.GetWalkPoint());
         _multiplier = multiplier;
         _pathToPoint.Clear();
         _pathToPoint.Push(point);
@@ -95,6 +96,7 @@ public class PlayerToken : MonoBehaviour {
     }
 
     IEnumerator BounceModel() {
+        model.rotation = Quaternion.Euler(0, model.rotation.eulerAngles.y, 0);
         _midBounce = true;
         float PICollector = 0;
         while (PICollector <= 1) {
@@ -108,6 +110,8 @@ public class PlayerToken : MonoBehaviour {
 
     void MoveToTarget() {
         Vector3 target = _pathToPoint.Peek().GetWalkPoint();
+        Quaternion targetRot = Quaternion.LookRotation(transform.position - target);
+        model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 540 * Time.deltaTime);
         float motion = speed * _multiplier * Time.deltaTime;
         if (Vector3.Distance(target, transform.position) <= motion) {
             transform.position = target;
