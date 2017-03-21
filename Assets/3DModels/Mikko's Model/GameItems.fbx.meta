@@ -15,6 +15,10 @@ ModelImporter:
     100014: Lid.001
     100016: Crank
     100018: CrankHandle
+    100020: Teleporter
+    100022: TeleporterActivator
+    100024: TeleporterActivatorColor
+    100026: TeleporterColor
     400000: Chest
     400002: //RootNode
     400004: Key
@@ -25,6 +29,10 @@ ModelImporter:
     400014: Lid.001
     400016: Crank
     400018: CrankHandle
+    400020: Teleporter
+    400022: TeleporterActivator
+    400024: TeleporterActivatorColor
+    400026: TeleporterColor
     2300000: Chest
     2300002: Key
     2300004: Keyhole
@@ -34,6 +42,10 @@ ModelImporter:
     2300012: Lid.001
     2300014: Crank
     2300016: CrankHandle
+    2300018: Teleporter
+    2300020: TeleporterActivator
+    2300022: TeleporterActivatorColor
+    2300024: TeleporterColor
     3300000: Chest
     3300002: Key
     3300004: Keyhole
@@ -43,6 +55,10 @@ ModelImporter:
     3300012: Lid.001
     3300014: Crank
     3300016: CrankHandle
+    3300018: Teleporter
+    3300020: TeleporterActivator
+    3300022: TeleporterActivatorColor
+    3300024: TeleporterColor
     4300000: Key
     4300002: Chest
     4300004: Lid
@@ -52,6 +68,10 @@ ModelImporter:
     4300012: Lid.001
     4300014: Crank
     4300016: CrankHandle
+    4300018: TeleporterActivator
+    4300020: TeleporterActivatorColor
+    4300022: Teleporter
+    4300024: TeleporterColor
   materials:
     importMaterials: 1
     materialName: 0
