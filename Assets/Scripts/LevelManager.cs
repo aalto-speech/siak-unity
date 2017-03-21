@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour {
         _collectedStars = GameManager.GetCollectedStars(level);
         if (_collectedStars == 0) {
             MoveGUI(0);
-        } else
+        } else if (greyGUI != null)
             greyGUI.SetNumber(_collectedStars);
         if (starGUI != null)
             starGUI.SetNumber(_stars);

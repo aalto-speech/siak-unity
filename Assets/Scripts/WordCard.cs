@@ -5,7 +5,12 @@ public class WordCard : BaseActivateable {
     public string wordID = "None";
     public MeshRenderer picture;
     public bool getUsedWord;
+    [HideInInspector]
+    public Material yellow;
+    [HideInInspector]
+    public Material grey;
     
+    [HideInInspector]
     public GameObject[] stars; // Potential particles
 
     float _rotationsPerSecond = 0.1f;
@@ -39,6 +44,9 @@ public class WordCard : BaseActivateable {
         LevelManager.ToggleInput(false);
         GameManager.CanLevelSelect(false);
         NoGameCounter.Count();
+        for (int i = 0; i < stars.Length; i++) {
+            stars[i].GetComponent<MeshRenderer>().material = grey;
+        }
 
         return true;
     }
@@ -74,18 +82,33 @@ public class WordCard : BaseActivateable {
                 _pass = true;
         }
 
+        StartCoroutine(ShowStars(score));
+    }
+    
+    IEnumerator ShowStars(int score) {
+        for (int i = 0; i < score; i++) {
+            Transform star = stars[i].transform;
+            star.gameObject.SetActive(true);
+            star.GetComponent<MeshRenderer>().material = yellow;
+            float startZ = star.localPosition.z;
+            float a = 0;
+            while (a < 1) {
+                a += Time.deltaTime / 0.3f;
+                star.localPosition = Vector3.Lerp(new Vector3(star.localPosition.x,star.localPosition.y,startZ), new Vector3(star.localPosition.x, star.localPosition.y, 0),a);
+                yield return new WaitForEndOfFrame();
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
         if (score > _myScore) {
             LevelManager.AddStars(score - _myScore);
             _myScore = score;
         }
-        StartCoroutine(GoToPosition(false ,CameraManager.GetCardLocation(), transform, model.GetChild(0)));
-
+        yield return new WaitForSeconds(1.0f);
+        StartCoroutine(GoToPosition(false, CameraManager.GetCardLocation(), transform, model.GetChild(0)));
         for (int i = 0; i < stars.Length; i++) {
-            bool state = (i < _myScore) ? true : false;
-            stars[i].gameObject.SetActive(state);
+            stars[i].GetComponent<MeshRenderer>().material = yellow;
         }
     }
-    
     protected override void EndReached(bool toLocation) {
         if (toLocation) {
             if (!getUsedWord)
