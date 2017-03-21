@@ -35,7 +35,7 @@ public class CameraManager : MonoBehaviour {
     }
 
     public static void Shake(float intensity, float duration) {
-        _cm.StartCoroutine(_cm.Shaking(intensity, duration));
+        //_cm.StartCoroutine(_cm.Shaking(intensity, duration));
     }
 
     IEnumerator Shaking(float intensity, float duration) {

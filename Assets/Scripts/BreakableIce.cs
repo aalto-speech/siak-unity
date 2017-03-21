@@ -38,8 +38,18 @@ public class BreakableIce : BaseActivateable {
 
         LevelManager.ToggleInput(false);
         StartCoroutine(GoToPosition(true, CameraManager.GetCardLocation(), transform, model));
-
+        StartCoroutine(Shrink());
         return true;
+    }
+
+    IEnumerator Shrink() {
+        float a = 0;
+        float start = transform.localScale.x;
+        while (a < 1) {
+            a += Time.deltaTime;
+            transform.localScale = Mathf.Lerp(start, start * 0.7f, a) * Vector3.one;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     protected override void EndReached(bool toLocation) {
