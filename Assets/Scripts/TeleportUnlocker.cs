@@ -20,7 +20,8 @@ public class TeleportUnlocker : BaseActivateable {
         foreach(Teleport t in _targets)
             t.UnlockTeleportation();
 
-        Destroy(this.gameObject);
+        Destroy(this);
+        Destroy(model.gameObject);
         if (_wayPoint != null)
             _wayPoint.MarkActivated();
         Deactivate();

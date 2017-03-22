@@ -21,11 +21,11 @@ public class NoGameManager : MonoBehaviour {
     void Start() {
         _max = GameManager.GetNoGameCount(noGameNumber);
         if (!testing) {
-            if (_max == 0) {
+            /*if (_max == 0) {
                 _max = PlayerPrefs.GetInt("NoGame" + noGameNumber,6);
             } else {
                 PlayerPrefs.SetInt("NoGame" + noGameNumber, _max);
-            }
+            }*/
         } else {
             _max = 6;
         }

@@ -1709,7 +1709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c18ff0a7f7c4a4b838d3a5d66113f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 17
+  level: 16
   maxStars: 
 --- !u!114 &114000010338559764
 MonoBehaviour:

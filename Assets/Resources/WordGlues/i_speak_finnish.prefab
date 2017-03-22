@@ -21,7 +21,7 @@ GameObject:
   - 4: {fileID: 4000011350318676}
   - 114: {fileID: 114000013279274254}
   m_Layer: 0
-  m_Name: england
+  m_Name: i_speak_finnish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,8 +51,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f975ab926b6b45ae49da214493815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  picture: {fileID: 2800000, guid: 9362d55f48a8d604c9a7e28376fa9b2f, type: 3}
-  foreignClip: {fileID: 8300000, guid: 5fa4de1b1801e3f44adc6ba2e7428c03, type: 3}
+  picture: {fileID: 2800000, guid: 2590fb2ebee6e82489902210ccf3bf7f, type: 3}
+  foreignClip: {fileID: 8300000, guid: 94735140ba819eb44bf0d3bfddd7fa18, type: 3}
   foreignVolume: 1
-  localClip: {fileID: 8300000, guid: f20aad40d43619d438fc47b27852d58b, type: 3}
+  localClip: {fileID: 8300000, guid: e372064ed8e3b524e83c7ba07995601f, type: 3}
   localVolume: 1

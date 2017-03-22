@@ -40,8 +40,8 @@ public class GameManager : MonoBehaviour {
         _gm = this;
         DontDestroyOnLoad(this.gameObject);
         ResetSessionData();
-        _username = PlayerPrefs.GetString("user", "");
-        _password = PlayerPrefs.GetString("password", "");
+        //_username = PlayerPrefs.GetString("user", "");
+        //_password = PlayerPrefs.GetString("password", "");
     }
 
     void Update() {
@@ -145,12 +145,12 @@ public class GameManager : MonoBehaviour {
 
     public static void SetUsername(string s) {
         _gm._username = s;
-        PlayerPrefs.SetString("user", s);
+        //PlayerPrefs.SetString("user", s);
     }
 
     public static void SetPassword(string s) {
         _gm._password = s;
-        PlayerPrefs.SetString("password", s);
+        //PlayerPrefs.SetString("password", s);
     }
 
     public static string GetUsername() {

@@ -166,7 +166,8 @@ public class LevelManager : MonoBehaviour {
                 go.transform.SetParent(_wordHolder);
                 go.name = list[i]["word"];
                 ProcessGlue(go.GetComponent<WordGlue>());
-            }
+            } /*else
+                print(list[i]["word"]);*/
         }
     }
 

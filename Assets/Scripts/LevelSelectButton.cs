@@ -9,6 +9,7 @@ public class LevelSelectButton : MonoBehaviour {
     GameObject _lock;
     Text _text;
     bool _canSelect;
+    int _compare;
 
     void Awake() {
         _text = GetComponentInChildren<Text>();
@@ -26,8 +27,9 @@ public class LevelSelectButton : MonoBehaviour {
 
     void OnEnable() {
         _canSelect = false;
+        _compare = (maxStars != "" && maxStars != "0") ? (int)level : (int)level + 1;
         if (_text != null && _lock != null) {
-            if (GameManager.GetCompleted() >= (int)level) {
+            if (GameManager.GetCompleted() >= _compare || true) { //temporarily unlock all
                 _text.gameObject.SetActive(true);
                 if (maxStars != "" && maxStars != "0")
                     _text.text = GameManager.GetCollectedStars(level).ToString() + " / " + maxStars;
