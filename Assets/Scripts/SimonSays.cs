@@ -6,6 +6,7 @@ public class SimonSays : BaseActivateable {
 
     public Transform clickables;
     public Transform shape;
+    public BaseActivateable secondary;
 
     Camera _cam;
     List<int> _order = new List<int>();
@@ -139,8 +140,16 @@ public class SimonSays : BaseActivateable {
         if (!base.Deactivate())
             return false;
 
-        if (_wayPoint != null)
-            _wayPoint.MarkActivated();
+        if (_wayPoint != null) {
+            if (secondary == null)
+                _wayPoint.MarkActivated();
+            else {
+                _wayPoint.activateable = secondary;
+                secondary.SetWaypoint(_wayPoint);
+                secondary.SetActivateable(true);
+                LevelManager.GetPlayerToken().FindPathToWaypoint(_wayPoint);
+            }
+        }
         Destroy(this.gameObject);
         LevelManager.ToggleInput(true);
         return true;

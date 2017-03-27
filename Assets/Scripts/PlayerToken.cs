@@ -110,8 +110,8 @@ public class PlayerToken : MonoBehaviour {
 
     void MoveToTarget() {
         Vector3 target = _pathToPoint.Peek().GetWalkPoint();
-        Quaternion targetRot = Quaternion.LookRotation(transform.position - target);
-        model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 540 * Time.deltaTime);
+        Quaternion targetRot = Quaternion.LookRotation(transform.position - target,_pathToPoint.Peek().transform.up);
+        model.rotation = Quaternion.RotateTowards(model.rotation, targetRot, 420 * Time.deltaTime);
         float motion = speed * _multiplier * Time.deltaTime;
         if (Vector3.Distance(target, transform.position) <= motion) {
             transform.position = target;
