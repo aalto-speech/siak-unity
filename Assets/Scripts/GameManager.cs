@@ -6,7 +6,7 @@ using System.Linq;
 using SimpleJSON;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, NoBoard1 = 2, SandIce1 = 3, Forest5 = 4, Ice4 = 5, MixAll1 = 6, Sand1 = 7, Forest2 = 8, Sand2 = 9, Forest3 = 10, Forest4 = 11, Ice1 = 12, Ice2 = 13, Ice3 = 14, Sand3 = 15, Sand4 = 16, NoGame1 = 17, Ice5 = 18, SnowForest1 = 19, Sand5 = 20, ForestSand1 = 21, MixAll2 = 22, MixAll3 = 23};
+public enum Level { None = -1, Menu = 0, Forest1 = 1, NoBoard1 = 2, SandIce1 = 3, Forest5 = 4, Ice4 = 5, MixAll1 = 6, Sand1 = 7, Forest2 = 8, Sand2 = 9, Forest3 = 10, Forest4 = 11, Ice1 = 12, Ice2 = 13, Ice3 = 14, Sand3 = 15, Sand4 = 16, NoGame1 = 17, Ice5 = 18, SnowForest1 = 19, Sand5 = 20, NoGame2 = 21, NoBoard2 = 22 , ForestSand1 = 23, NoBoard3 = 24, MixAll2 = 25, NoGame3 = 26, MixAll3 = 27, End = 28 };
 
 public class GameManager : MonoBehaviour {
 
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     Dictionary<int, int> _noGameAmount = new Dictionary<int, int>() { { 1, 0 }, { 2, 0 }, { 3, 0 } };
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoBoard1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Ice4, "L5" }, { Level.MixAll1, "L6" }, { Level.Sand1, "L7" }, { Level.Forest2, "L8" }, { Level.Sand2, "L9" }, { Level.Forest3, "L10" }, { Level.Forest4, "L11" }, { Level.Ice1, "L12" }, { Level.Ice2, "L13" }, { Level.Ice3, "L14" }, { Level.Sand3, "L15" }, { Level.Sand4, "L17" }, { Level.NoGame1, "L16" }, { Level.Ice5, "L18" }, { Level.SnowForest1, "L19" }, { Level.Sand5, "L20" }, { Level.ForestSand1, "L21" }, { Level.MixAll2, "L22" }, { Level.MixAll3, "L23" } };
+    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.NoBoard1, "L2" }, { Level.SandIce1, "L3" }, { Level.Forest5, "L4" }, { Level.Ice4, "L5" }, { Level.MixAll1, "L6" }, { Level.Sand1, "L7" }, { Level.Forest2, "L8" }, { Level.Sand2, "L9" }, { Level.Forest3, "L10" }, { Level.Forest4, "L11" }, { Level.Ice1, "L12" }, { Level.Ice2, "L13" }, { Level.Ice3, "L14" }, { Level.Sand3, "L15" }, { Level.Sand4, "L16" }, { Level.NoGame1, "L17" }, { Level.Ice5, "L18" }, { Level.SnowForest1, "L19" }, { Level.Sand5, "L20" }, { Level.NoGame2, "L21" }, { Level.NoBoard2, "L22" },{ Level.ForestSand1, "L23" }, { Level.NoBoard3, "L24" }, { Level.MixAll2, "L25" }, { Level.NoGame3, "L26" },{ Level.MixAll3, "L27" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
     int _highestLevel = 1;
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour {
     string _username = "";
     string _password = "";
     client_script _server;
+    int[] _noGamePreceeders = new int[3] { 16, 20, 25 };
 
     public static GameManager GetGameManager() {
         return _gm;
@@ -74,7 +75,9 @@ public class GameManager : MonoBehaviour {
     }
 
     public static int TotalStars() {
-        return _gm._collectedStars.Sum(x => x.Value) - _gm._spentStars.Sum(x => x.Value);
+        if (_gm != null)
+            return _gm._collectedStars.Sum(x => x.Value) - _gm._spentStars.Sum(x => x.Value);
+        return 0;
     }
 
 
@@ -199,6 +202,13 @@ public class GameManager : MonoBehaviour {
         int serverNumber;
         int.TryParse(data["highest_level"].Value, out serverNumber);
         _gm._highestLevel = Mathf.Max(serverNumber, 1);
+        if (data["exp_group"] == "Group_B") {
+            for (int i = 0; i < _gm._noGamePreceeders.Length; i++) {
+                string hold = _gm._levelWords[(Level)_gm._noGamePreceeders[i]];
+                _gm._levelWords[(Level)_gm._noGamePreceeders[i]] = _gm._levelWords[(Level)(_gm._noGamePreceeders[i] + 1)];
+                _gm._levelWords[(Level)(_gm._noGamePreceeders[i] + 1)] = hold;
+            }
+        }
     }
 
     public static LevelSelect GetLevelSelect() {
