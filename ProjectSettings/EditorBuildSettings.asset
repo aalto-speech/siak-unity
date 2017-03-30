@@ -10,56 +10,56 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Maps/1_Forest1.unity
   - enabled: 1
-    path: Assets/Maps/NoBoard1.unity
-  - enabled: 1
-    path: Assets/Maps/11_SandSnow1.unity
-  - enabled: 1
-    path: Assets/Maps/12_Forest5.unity
-  - enabled: 1
-    path: Assets/Maps/13_Snow4.unity
-  - enabled: 1
-    path: Assets/Maps/14_MixAll1.unity
+    path: Assets/Maps/2_Snow1.unity
   - enabled: 1
     path: Assets/Maps/3_Sand1.unity
   - enabled: 1
-    path: Assets/Maps/4_Forest2.unity
-  - enabled: 1
-    path: Assets/Maps/6_Sand2.unity
-  - enabled: 1
-    path: Assets/Maps/7_Forest3.unity
-  - enabled: 1
-    path: Assets/Maps/8_Forest4.unity
-  - enabled: 1
-    path: Assets/Maps/2_Snow1.unity
-  - enabled: 1
-    path: Assets/Maps/5_Snow2.unity
-  - enabled: 1
-    path: Assets/Maps/10_Snow3.unity
-  - enabled: 1
-    path: Assets/Maps/9_Sand3.unity
-  - enabled: 1
-    path: Assets/Maps/15_Sand4.unity
-  - enabled: 1
-    path: Assets/Maps/NoGame1.unity
-  - enabled: 1
-    path: Assets/Maps/16_Snow5.unity
-  - enabled: 1
-    path: Assets/Maps/17_SnowForest1.unity
+    path: Assets/Maps/NoBoard1.unity
   - enabled: 1
     path: Assets/Maps/18_Sand5.unity
   - enabled: 1
-    path: Assets/Maps/NoGame2.unity
+    path: Assets/Maps/10_Snow3.unity
+  - enabled: 1
+    path: Assets/Maps/12_Forest5.unity
+  - enabled: 1
+    path: Assets/Maps/11_SandSnow1.unity
   - enabled: 1
     path: Assets/Maps/NoBoard2.unity
   - enabled: 1
-    path: Assets/Maps/19_ForestSand1.unity
-  - enabled: 1
-    path: Assets/Maps/NoBoard3.unity
+    path: Assets/Maps/13_Snow4.unity
   - enabled: 1
     path: Assets/Maps/20_MixAll2.unity
   - enabled: 1
-    path: Assets/Maps/NoGame3.unity
+    path: Assets/Maps/6_Sand2.unity
+  - enabled: 1
+    path: Assets/Maps/4_Forest2.unity
+  - enabled: 1
+    path: Assets/Maps/8_Forest4.unity
+  - enabled: 1
+    path: Assets/Maps/5_Snow2.unity
+  - enabled: 1
+    path: Assets/Maps/16_Snow5.unity
+  - enabled: 1
+    path: Assets/Maps/NoGame1.unity
+  - enabled: 1
+    path: Assets/Maps/19_ForestSand1.unity
+  - enabled: 1
+    path: Assets/Maps/17_SnowForest1.unity
+  - enabled: 1
+    path: Assets/Maps/14_MixAll1.unity
+  - enabled: 1
+    path: Assets/Maps/NoGame2.unity
+  - enabled: 1
+    path: Assets/Maps/15_Sand4.unity
+  - enabled: 1
+    path: Assets/Maps/NoBoard3.unity
+  - enabled: 1
+    path: Assets/Maps/7_Forest3.unity
+  - enabled: 1
+    path: Assets/Maps/9_Sand3.unity
   - enabled: 1
     path: Assets/Maps/21_MixAll3.unity
+  - enabled: 1
+    path: Assets/Maps/NoGame3.unity
   - enabled: 1
     path: Assets/Maps/99_End.unity

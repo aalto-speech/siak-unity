@@ -181,7 +181,7 @@ GameObject:
   - 114: {fileID: 114000010382695874}
   - 114: {fileID: 114000011241008820}
   m_Layer: 5
-  m_Name: 2 - NoBoard
+  m_Name: 2 - Snow 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -266,7 +266,7 @@ GameObject:
   - 114: {fileID: 114000014154298500}
   - 114: {fileID: 114000010960585804}
   m_Layer: 5
-  m_Name: 13 - Ice 2
+  m_Name: 13 - Forest 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -321,7 +321,7 @@ GameObject:
   - 114: {fileID: 114000013629091656}
   - 114: {fileID: 114000011873173424}
   m_Layer: 5
-  m_Name: 25 - MixAll 2
+  m_Name: 25 - Sand 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +691,7 @@ GameObject:
   - 114: {fileID: 114000010174121870}
   - 114: {fileID: 114000013343699624}
   m_Layer: 5
-  m_Name: 11 - Forest 4
+  m_Name: 11 - MixAll 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -710,7 +710,7 @@ GameObject:
   - 114: {fileID: 114000012897211880}
   - 114: {fileID: 114000013765444876}
   m_Layer: 5
-  m_Name: 24 - NoBoard 3
+  m_Name: 24 - Forest 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,7 +866,7 @@ GameObject:
   - 114: {fileID: 114000010162228654}
   - 114: {fileID: 114000013260005568}
   m_Layer: 5
-  m_Name: 15 - Sand 3
+  m_Name: 15 - Snow 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -903,7 +903,7 @@ GameObject:
   - 114: {fileID: 114000013794508382}
   - 114: {fileID: 114000014128939118}
   m_Layer: 5
-  m_Name: 3 - Sand Snow 1
+  m_Name: 3 - Sand 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -922,7 +922,7 @@ GameObject:
   - 114: {fileID: 114000013467591002}
   - 114: {fileID: 114000013321270306}
   m_Layer: 5
-  m_Name: 20 - Sand 5
+  m_Name: 20 - MixAll 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -941,7 +941,7 @@ GameObject:
   - 114: {fileID: 114000011023981276}
   - 114: {fileID: 114000011919222578}
   m_Layer: 5
-  m_Name: 16 - Sand 4
+  m_Name: 16 - Snow 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1240,7 +1240,7 @@ GameObject:
   - 114: {fileID: 114000010387103528}
   - 114: {fileID: 114000010502988554}
   m_Layer: 5
-  m_Name: 6 - MixAll1
+  m_Name: 6 - Snow 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1384,7 +1384,7 @@ GameObject:
   - 114: {fileID: 114000013990740772}
   - 114: {fileID: 114000012508298160}
   m_Layer: 5
-  m_Name: 4 - Forest 5
+  m_Name: 4 - NoBoard 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1403,7 +1403,7 @@ GameObject:
   - 114: {fileID: 114000013408018084}
   - 114: {fileID: 114000013435006366}
   m_Layer: 5
-  m_Name: 14 - Ice 3
+  m_Name: 14 - Forest 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1422,7 +1422,7 @@ GameObject:
   - 114: {fileID: 114000012575260258}
   - 114: {fileID: 114000013930135052}
   m_Layer: 5
-  m_Name: 12 - Ice 1
+  m_Name: 12 - Sand 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1475,7 +1475,7 @@ GameObject:
   - 114: {fileID: 114000010835665094}
   - 114: {fileID: 114000011873556372}
   m_Layer: 5
-  m_Name: 18 - Ice 5
+  m_Name: 18 - ForestSand 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1699,7 +1699,7 @@ GameObject:
   - 114: {fileID: 114000010546130834}
   - 114: {fileID: 114000012433345996}
   m_Layer: 5
-  m_Name: 5 - Snow4
+  m_Name: 5 - Sand 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1753,7 +1753,7 @@ GameObject:
   - 114: {fileID: 114000010329115298}
   - 114: {fileID: 114000014071886392}
   m_Layer: 5
-  m_Name: 23 - ForestSand 1
+  m_Name: 23 - NoBoard 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1806,7 +1806,7 @@ GameObject:
   - 114: {fileID: 114000010286327474}
   - 114: {fileID: 114000013772323574}
   m_Layer: 5
-  m_Name: 10 - Forest 3
+  m_Name: 10 - Snow 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1910,7 +1910,7 @@ GameObject:
   - 114: {fileID: 114000012382266502}
   - 114: {fileID: 114000011210337892}
   m_Layer: 5
-  m_Name: 9 - Sand 2
+  m_Name: 9 - NoBoard 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1964,7 +1964,7 @@ GameObject:
   - 114: {fileID: 114000012467703168}
   - 114: {fileID: 114000010748801690}
   m_Layer: 5
-  m_Name: 22 - NoBoard 2
+  m_Name: 22 - Sand 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2002,7 +2002,7 @@ GameObject:
   - 114: {fileID: 114000010016391200}
   - 114: {fileID: 114000010959721354}
   m_Layer: 5
-  m_Name: 7 - Sand 1
+  m_Name: 7 - Forest 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2038,7 +2038,7 @@ GameObject:
   - 114: {fileID: 114000011928001736}
   - 114: {fileID: 114000012725043962}
   m_Layer: 5
-  m_Name: 8 - Forest 2
+  m_Name: 8 - SandSnow 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2371,7 +2371,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 15
-  maxStars: 75
+  maxStars: 45
 --- !u!114 &114000010174121870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2384,7 +2384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 11
-  maxStars: 70
+  maxStars: 85
 --- !u!114 &114000010192787798
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2509,7 +2509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 10
-  maxStars: 65
+  maxStars: 75
 --- !u!114 &114000010300865086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2679,7 +2679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 2
-  maxStars: 35
+  maxStars: 50
 --- !u!114 &114000010387103528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2893,7 +2893,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c95c0d26f08eec34eb70ab25d0b454da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8c2cc2ec0338be43aafddd75a8dc024, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2939,7 +2939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 5
-  maxStars: 75
+  maxStars: 55
 --- !u!114 &114000010589021396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3122,7 +3122,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5c0e1a97f37388041955d062a52961f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e534177fa48ec0b40b886059193599dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3286,7 +3286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 18
-  maxStars: 90
+  maxStars: 75
 --- !u!114 &114000010837894162
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3502,7 +3502,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 564909b1651bada4da2d33d22a3c4493, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 93fd7396bc1c14849bff99706be737df, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3529,7 +3529,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: de6da25953c87474890ac03bf2fa6c17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf6acc1ffc981e744a478db9099a94d4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3575,7 +3575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 16
-  maxStars: 70
+  maxStars: 90
 --- !u!114 &114000011033017554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3774,7 +3774,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: fc0879ae6110b314aa4f666a4fad4045, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c0e1a97f37388041955d062a52961f4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3801,7 +3801,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 460e6dc2ff12968458f14bd3aea903e5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a074674c32639749b93b66870047b6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4481,7 +4481,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 921f7b56a8f6b024ba63e234bae01e6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 70113e0057bea334abfa35d910fe789f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4508,7 +4508,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 6dcd7ddbeb4769548a70c40c9a55f0cd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d97ce3fcbc843fc4c889b3b74b5ca5d2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4562,7 +4562,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: e534177fa48ec0b40b886059193599dc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6dcd7ddbeb4769548a70c40c9a55f0cd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4582,7 +4582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 8
-  maxStars: 90
+  maxStars: 70
 --- !u!114 &114000011955513166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4939,7 +4939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 9
-  maxStars: 60
+  maxStars: 55
 --- !u!114 &114000012430729672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4985,7 +4985,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d37ca757e6e1ee149a55e95be5971449, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56077eefaf9c7cc429d979210e6a15f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5018,7 +5018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 22
-  maxStars: 55
+  maxStars: 70
 --- !u!114 &114000012469983160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5130,7 +5130,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 93fd7396bc1c14849bff99706be737df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 460e6dc2ff12968458f14bd3aea903e5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5204,7 +5204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 12
-  maxStars: 50
+  maxStars: 65
 --- !u!114 &114000012596042344
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5401,7 +5401,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: cf6acc1ffc981e744a478db9099a94d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: aec672a8d83191f40a5aa9175f8aa90a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5434,7 +5434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c18ff0a7f7c4a4b838d3a5d66113f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 26
+  level: 25
   maxStars: 
 --- !u!114 &114000012820357034
 MonoBehaviour:
@@ -5604,7 +5604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 24
-  maxStars: 75
+  maxStars: 65
 --- !u!114 &114000012944061628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6024,7 +6024,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 70113e0057bea334abfa35d910fe789f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: de6da25953c87474890ac03bf2fa6c17, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6157,7 +6157,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 56077eefaf9c7cc429d979210e6a15f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c95c0d26f08eec34eb70ab25d0b454da, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6184,7 +6184,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 777f2a8ea6769b54694cf3cdc176acad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 921f7b56a8f6b024ba63e234bae01e6d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6218,7 +6218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 14
-  maxStars: 50
+  maxStars: 75
 --- !u!114 &114000013435006366
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6238,7 +6238,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a8c2cc2ec0338be43aafddd75a8dc024, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 777f2a8ea6769b54694cf3cdc176acad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6310,7 +6310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 20
-  maxStars: 55
+  maxStars: 75
 --- !u!114 &114000013483324728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6612,7 +6612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 25
-  maxStars: 85
+  maxStars: 75
 --- !u!114 &114000013636694104
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7067,7 +7067,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: c0c97ffad1b98d04fa8d64877b55445f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da1ab0bd4a912fa4b87f719bb086b672, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7094,7 +7094,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: da1ab0bd4a912fa4b87f719bb086b672, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d37ca757e6e1ee149a55e95be5971449, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7272,7 +7272,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 4a074674c32639749b93b66870047b6d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fc0879ae6110b314aa4f666a4fad4045, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7391,7 +7391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 4
-  maxStars: 70
+  maxStars: 35
 --- !u!114 &114000013993795702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7451,7 +7451,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d97ce3fcbc843fc4c889b3b74b5ca5d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c0c97ffad1b98d04fa8d64877b55445f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7478,7 +7478,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: aec672a8d83191f40a5aa9175f8aa90a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 564909b1651bada4da2d33d22a3c4493, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7497,7 +7497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0c18ff0a7f7c4a4b838d3a5d66113f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 21
+  level: 20
   maxStars: 
 --- !u!114 &114000014154298500
 MonoBehaviour:
@@ -7511,7 +7511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 13
-  maxStars: 45
+  maxStars: 90
 --- !u!114 &114000014203138694
 MonoBehaviour:
   m_ObjectHideFlags: 1
