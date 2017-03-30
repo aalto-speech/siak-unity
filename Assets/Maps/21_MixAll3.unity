@@ -980,7 +980,7 @@ Prefab:
     - target: {fileID: 114000011542205252, guid: e06303941471e9246b42b8779f7897f4,
         type: 2}
       propertyPath: price
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 102000011849425812, guid: e06303941471e9246b42b8779f7897f4,
         type: 2}
