@@ -54,5 +54,5 @@ MonoBehaviour:
   picture: {fileID: 2800000, guid: 993c03ec46cff7a408bb07949532d8b8, type: 3}
   foreignClip: {fileID: 8300000, guid: eab69d95ee71a6a47a9fbe58243a7817, type: 3}
   foreignVolume: 1
-  localClip: {fileID: 8300000, guid: e372064ed8e3b524e83c7ba07995601f, type: 3}
+  localClip: {fileID: 8300000, guid: 26616bea376ec0448a27916ce62a7e0b, type: 3}
   localVolume: 1
