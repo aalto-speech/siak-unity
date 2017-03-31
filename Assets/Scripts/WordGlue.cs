@@ -10,4 +10,6 @@ public class WordGlue : MonoBehaviour {
     public AudioClip localClip;
     [Range(0, 1)]
     public float localVolume = 1.0f;
+    public Texture foreignFlag;
+    public Texture localFlag;
 }

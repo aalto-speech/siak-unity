@@ -69,7 +69,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011625258258}
   m_Layer: 0
-  m_Name: Finnish_Button
+  m_Name: Flag_Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -751,7 +751,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: c8e72d8411391ea4080166b10869ad71, type: 2}
+  - {fileID: 2100000, guid: 1e242d541e457dc40a8073a3f4b2ec34, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -2767,6 +2767,7 @@ MonoBehaviour:
   getUsedWord: 1
   yellow: {fileID: 2100000, guid: 853c22d6d994f9e4eb3a14c2738306b3, type: 2}
   grey: {fileID: 2100000, guid: 2e0b37e60ec93bb4a97b199e7787692f, type: 2}
+  flag: {fileID: 23000012836388880}
   stars:
   - {fileID: 1000013507036930}
   - {fileID: 1000011968116952}

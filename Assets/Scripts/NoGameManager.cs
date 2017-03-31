@@ -34,6 +34,7 @@ public class NoGameManager : MonoBehaviour {
         _myFSM.FsmVariables.FindFsmObject("button").Value = button;
         _myFSM.FsmVariables.FindFsmObject("mic").Value = mic;
         print(_max);
+        GameManager.CanLevelSelect(false);
     }
 
     void Update() {
@@ -49,7 +50,6 @@ public class NoGameManager : MonoBehaviour {
     public void SetButton() {
         _click = true;
         button.SetActive(true);
-        GameManager.CanLevelSelect(true);
     }
 
     public void SetClip(bool second) {

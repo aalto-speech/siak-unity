@@ -9,6 +9,7 @@ public class WordCard : BaseActivateable {
     public Material yellow;
     [HideInInspector]
     public Material grey;
+    public MeshRenderer flag;
     
     [HideInInspector]
     public GameObject[] stars; // Potential particles
@@ -134,5 +135,7 @@ public class WordCard : BaseActivateable {
 
     public void SetClip(bool second) {
         _as.clip = (!getUsedWord && second) ? _wg.foreignClip : _wg.localClip;
+        Texture tex = (!getUsedWord && second) ? _wg.foreignFlag : _wg.localFlag;
+        flag.material.SetTexture("_MainTex", tex);
     }
 }

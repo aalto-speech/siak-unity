@@ -8,6 +8,7 @@ public class LoginLoadLevel : MonoBehaviour {
     public InputField usernameInput, passwordInput;
     public bool inMenu;
     public Text error;
+    public Text cheat;
     
     static LoginLoadLevel _log;
     Text _changer;
@@ -46,11 +47,21 @@ public class LoginLoadLevel : MonoBehaviour {
         if (_waitingForServer)
             return;
         else {
-            GameManager.SetUsername(usernameInput.text);
-            GameManager.SetPassword(passwordInput.text);
-            GameManager.GetServer().login();
-            _waitingForServer = true;
-            error.gameObject.SetActive(false);
+            if (usernameInput.text != "avaaTasot") {
+                GameManager.SetUsername(usernameInput.text);
+                GameManager.SetPassword(passwordInput.text);
+                GameManager.GetServer().login();
+                _waitingForServer = true;
+                error.gameObject.SetActive(false);
+                cheat.gameObject.SetActive(false);
+            } else {
+                int i = 0;
+                int.TryParse(passwordInput.text, out i);
+                GameManager.SetCheat(i);
+                cheat.gameObject.SetActive(true);
+                usernameInput.text = "";
+                passwordInput.text = "";
+            }
         }
     }
 

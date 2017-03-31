@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour {
     string _password = "";
     client_script _server;
     int[] _noGamePreceeders = new int[3] { 16, 20, 25 };
+    int _cheatLevel = 0;
+    bool _counting = false;
 
     public static GameManager GetGameManager() {
         return _gm;
@@ -57,7 +59,7 @@ public class GameManager : MonoBehaviour {
 
 
     public void ToggleLevelSelect() {
-        if (!_canLevelSelect)
+        if (!_canLevelSelect || _counting)
             return;
 
         UIManager ui = UIManager.GetManager();
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour {
             _gm._server.exit(newStars, LevelManager.NewSpends());
         }
         Instantiate(_gm.loader);
+        _gm._counting = false;
     }
 
     public static void SetLevelStars(Level level, int stars) {
@@ -231,5 +234,21 @@ public class GameManager : MonoBehaviour {
 
     public static int GetNoGameCount(int i) {
         return _gm._noGameAmount[i];
+    }
+
+    public static void SetCheat(int i) {
+        if (_gm != null)
+            _gm._cheatLevel = i;
+    }
+
+    public static int GetCheat() {
+        if (_gm != null)
+            return _gm._cheatLevel;
+        else
+            return 0;
+    }
+
+    public static void SetCounting() {
+        _gm._counting = true;
     }
 }

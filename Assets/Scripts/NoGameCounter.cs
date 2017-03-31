@@ -9,10 +9,11 @@ public class NoGameCounter : MonoBehaviour {
     void Awake() {
         _ngc = this;
     }
-    
+
     public static void Count() {
         if (_ngc == null)
             return;
         GameManager.AddCount(_ngc.number);
+        GameManager.SetCounting();
     }
 }
