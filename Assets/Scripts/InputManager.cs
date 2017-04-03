@@ -33,7 +33,7 @@ public class InputManager : MonoBehaviour {
             Ray ray = cam.ScreenPointToRay(Input.touches[i].position);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 1 << 10)) {
+            if (Physics.Raycast(ray, out hit, LayerMask.GetMask("Interaction"))) {
                 Interactable inter = hit.collider.GetComponent<Interactable>();
                 if (inter != null)
                     inter.Interact();

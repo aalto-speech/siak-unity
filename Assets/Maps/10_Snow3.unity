@@ -5566,7 +5566,7 @@ Prefab:
     - target: {fileID: 114000011566670094, guid: 09e21da98014edd43bf0de1abb398a4b,
         type: 2}
       propertyPath: level
-      value: 14
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 09e21da98014edd43bf0de1abb398a4b, type: 2}
@@ -16092,7 +16092,7 @@ Prefab:
         type: 2}
       propertyPath: adjacentNodes.Array.data[0]
       value: 
-      objectReference: {fileID: 992743878}
+      objectReference: {fileID: 994385931}
     - target: {fileID: 114000011322598688, guid: 86cdb8bae26dba64b82703b1f382a1af,
         type: 2}
       propertyPath: adjacentNodes.Array.data[1]

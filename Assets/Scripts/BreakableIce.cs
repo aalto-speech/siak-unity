@@ -76,7 +76,8 @@ public class BreakableIce : BaseActivateable {
     }
 
     void Explode() {
-        shaker.position = transform.position;
+        //shaker.position = transform.position;
+        model.position = transform.position;
         Rigidbody[] rbs = model.GetComponentsInChildren<Rigidbody>();
 
         foreach (Rigidbody rb in rbs) {
@@ -86,7 +87,8 @@ public class BreakableIce : BaseActivateable {
             rb.transform.parent = null;
             Destroy(rb.gameObject, 5.0f);
         }
-        CameraManager.Shake(1.0f, 1.0f);
+        if (secondary == null)
+            CameraManager.Shake(1.0f, 1.0f);
         Deactivate();
     }
 }

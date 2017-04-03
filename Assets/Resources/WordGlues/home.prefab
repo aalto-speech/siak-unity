@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa9f975ab926b6b45ae49da214493815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  picture: {fileID: 2800000, guid: 4767a10a11e19c34c90d3c4248692d14, type: 3}
+  picture: {fileID: 2800000, guid: d734137c2d541314d93be28d598f7106, type: 3}
   foreignClip: {fileID: 8300000, guid: 64bba8d70000c934b97549a516ea0a49, type: 3}
   foreignVolume: 1
   localClip: {fileID: 8300000, guid: 4953ebc43581c9a46bdb0dd7d0c49d73, type: 3}
