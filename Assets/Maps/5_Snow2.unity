@@ -4903,6 +4903,10 @@ Prefab:
       propertyPath: mover
       value: 
       objectReference: {fileID: 1187955464}
+    - target: {fileID: 4000011589279000, guid: af9c8cdf82b2d2f4299d97f11443ebeb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: af9c8cdf82b2d2f4299d97f11443ebeb, type: 2}
   m_IsPrefabParent: 0
@@ -22288,11 +22292,11 @@ Prefab:
       objectReference: {fileID: 379913082}
     - target: {fileID: 4000010216168444, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.42992657
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000010216168444, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.48
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}

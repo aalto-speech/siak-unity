@@ -4708,6 +4708,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4000010480587752, guid: 57f66aa8cb18a1b4ca307801c1f1db5c,
     type: 2}
   m_PrefabInternal: {fileID: 578834766}
+--- !u!114 &578834768 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012803020734, guid: 57f66aa8cb18a1b4ca307801c1f1db5c,
+    type: 2}
+  m_PrefabInternal: {fileID: 578834766}
+  m_Script: {fileID: 11500000, guid: 454b2d75507200d468ae2c541665e44d, type: 3}
 --- !u!1001 &583926561
 Prefab:
   m_ObjectHideFlags: 0
@@ -7934,6 +7940,11 @@ Prefab:
       propertyPath: adjacentNodes.Array.data[0]
       value: 
       objectReference: {fileID: 1216710866}
+    - target: {fileID: 114000012292502760, guid: 9a487eaf694197f46b1dc7ec9ee61fcf,
+        type: 2}
+      propertyPath: activateable
+      value: 
+      objectReference: {fileID: 578834768}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
   m_IsPrefabParent: 0
@@ -17558,7 +17569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1896172849
 Transform:
   m_ObjectHideFlags: 0
