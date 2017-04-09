@@ -6,7 +6,7 @@ using System.Linq;
 using SimpleJSON;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, Ice1 = 2, Sand1 = 3, NoBoard1 = 4, Sand5 = 5, Ice3 = 6, Forest5 = 7, SandIce1 = 8, NoBoard2 = 9, Ice4 = 10, MixAll2 = 11, Sand2 = 12, Forest2 = 13, Forest4 = 14, Ice2 = 15, Ice5 = 16, NoGame1 = 17, ForestSand1 = 18, SnowForest1 = 19, MixAll1 = 20, NoGame2 = 21, Sand4 = 22, NoBoard3 = 23, Forest3 = 24, Sand3 = 25, NoGame3 = 26, MixAll3 = 27, End = 28 };
+public enum Level { None = -1, Menu = 0, Forest1 = 1, Ice1 = 2, Sand1 = 3, NoBoard1 = 4, Sand5 = 5, Ice3 = 6, Forest5 = 7, SandIce1 = 8, NoBoard2 = 9, Ice4 = 10, MixAll2 = 11, Sand2 = 12, Ice5 = 13, Forest4 = 14, Ice2 = 15, Forest2 = 16, NoGame1 = 17, ForestSand1 = 18, SnowForest1 = 19, MixAll1 = 20, NoGame2 = 21, Sand4 = 22, NoBoard3 = 23, Forest3 = 24, Sand3 = 25, NoGame3 = 26, MixAll3 = 27, End = 28 };
 
 public class GameManager : MonoBehaviour {
 
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
     Dictionary<int, int> _noGameAmount = new Dictionary<int, int>() { { 1, 0 }, { 2, 0 }, { 3, 0 } };
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
     Dictionary<string, int> _spentStars = new Dictionary<string, int>();
-    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.Ice1, "L2" }, { Level.Sand1, "L3" }, { Level.NoBoard1, "L4" }, { Level.Sand5, "L5" }, { Level.Ice3, "L6" }, { Level.Forest5, "L7" }, { Level.SandIce1, "L8" }, { Level.NoBoard2, "L9" }, { Level.Ice4, "L10" }, { Level.MixAll2, "L11" }, { Level.Sand2, "L12" }, { Level.Forest2, "L13" }, { Level.Forest4, "L14" }, { Level.Ice2, "L15" }, { Level.Ice5, "L16" }, { Level.NoGame1, "L17" }, { Level.ForestSand1, "L18" }, { Level.SnowForest1, "L19" }, { Level.MixAll1, "L20" }, { Level.NoGame2, "L21" }, { Level.Sand4, "L22" }, { Level.NoBoard3, "L23" }, { Level.Forest3, "L24" }, { Level.Sand3, "L25" }, { Level.NoGame3, "L26" }, { Level.MixAll3, "L27" } };
+    Dictionary<Level, string> _levelWords = new Dictionary<Level, string>() { { Level.Forest1, "L1" }, { Level.Ice1, "L2" }, { Level.Sand1, "L3" }, { Level.NoBoard1, "L4" }, { Level.Sand5, "L5" }, { Level.Ice3, "L6" }, { Level.Forest5, "L7" }, { Level.SandIce1, "L8" }, { Level.NoBoard2, "L9" }, { Level.Ice4, "L10" }, { Level.MixAll2, "L11" }, { Level.Sand2, "L12" }, { Level.Ice5, "L13" }, { Level.Forest4, "L14" }, { Level.Ice2, "L15" }, { Level.Forest2, "L16" }, { Level.NoGame1, "L17" }, { Level.ForestSand1, "L18" }, { Level.SnowForest1, "L19" }, { Level.MixAll1, "L20" }, { Level.NoGame2, "L21" }, { Level.Sand4, "L22" }, { Level.NoBoard3, "L23" }, { Level.Forest3, "L24" }, { Level.Sand3, "L25" }, { Level.NoGame3, "L26" }, { Level.MixAll3, "L27" } };
     static GameManager _gm;
     Level _next = Level.Forest1;
     int _highestLevel = 1;

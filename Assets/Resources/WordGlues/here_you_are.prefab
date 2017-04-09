@@ -54,7 +54,7 @@ MonoBehaviour:
   picture: {fileID: 2800000, guid: 00ae96ccd0a7af34d864ca4136244501, type: 3}
   foreignClip: {fileID: 8300000, guid: 0309f8dafcb333d47a899cf3b6ef759a, type: 3}
   foreignVolume: 1
-  localClip: {fileID: 8300000, guid: e372064ed8e3b524e83c7ba07995601f, type: 3}
+  localClip: {fileID: 8300000, guid: b4e613d4ad8b82243b5523e30ec0d60c, type: 3}
   localVolume: 1
   foreignFlag: {fileID: 2800000, guid: fe2a7c7a1f86f5e49ab43ae02c647bc0, type: 3}
   localFlag: {fileID: 2800000, guid: 7a18f508bf148384fa9a4dd5d8fba981, type: 3}
