@@ -6142,7 +6142,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1387440575}
+      objectReference: {fileID: 1752468105}
     - target: {fileID: 1000011350739226, guid: d968eccc5efbb1948ad34c7db8874d9a, type: 2}
       propertyPath: m_Name
       value: Teleport 15
@@ -7131,6 +7131,18 @@ Prefab:
       propertyPath: activateable
       value: 
       objectReference: {fileID: 870540094}
+    - target: {fileID: 1000013365424802, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013231454076, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010216168444, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
   m_IsPrefabParent: 0
@@ -8255,6 +8267,18 @@ Prefab:
       propertyPath: activateable
       value: 
       objectReference: {fileID: 307364228}
+    - target: {fileID: 1000013365424802, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013231454076, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000010216168444, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9a487eaf694197f46b1dc7ec9ee61fcf, type: 2}
   m_IsPrefabParent: 0
@@ -9154,6 +9178,10 @@ Prefab:
     - target: {fileID: 4000012372508886, guid: 0fca4402f262b6647b8132a59bd066b6, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 30.701002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011195015406, guid: 0fca4402f262b6647b8132a59bd066b6, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0fca4402f262b6647b8132a59bd066b6, type: 2}
