@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour {
     public GameObject levelSelect;
     public GameObject loginScreen;
     public AudioClip finalPreface;
+    [SerializeField] bool isGroupB;
 
     Dictionary<int, int> _noGameAmount = new Dictionary<int, int>() { { 1, 0 }, { 2, 0 }, { 3, 0 } };
     Dictionary<Level, int> _collectedStars = new Dictionary<Level, int>();
@@ -205,7 +206,7 @@ public class GameManager : MonoBehaviour {
         int serverNumber;
         int.TryParse(data["highest_level"].Value, out serverNumber);
         _gm._highestLevel = Mathf.Max(serverNumber, 1);
-        if (data["exp_group"] == "Group_B") {
+        if (_gm.isGroupB) {
             for (int i = 0; i < _gm._noGamePreceeders.Length; i++) {
                 string hold = _gm._levelWords[(Level)_gm._noGamePreceeders[i]];
                 _gm._levelWords[(Level)_gm._noGamePreceeders[i]] = _gm._levelWords[(Level)(_gm._noGamePreceeders[i] + 1)];
