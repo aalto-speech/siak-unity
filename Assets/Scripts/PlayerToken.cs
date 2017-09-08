@@ -20,6 +20,7 @@ public class PlayerToken : MonoBehaviour {
     Stack<BaseNode> _pathToPoint = new Stack<BaseNode>();
 
     void Start() {
+        ModelManager.CreateModel(transform.GetChild(0));
         FindPathToWaypoint(current, 2.0f);
     }
 

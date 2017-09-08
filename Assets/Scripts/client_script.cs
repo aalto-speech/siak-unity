@@ -48,10 +48,10 @@ Relevant functions:
 public class client_script : MonoBehaviour {
 
     // Variables for the game project:
-    string recUrl = "http://asr.aalto.fi/siak-devel/asr";
-    string logUrl = "http://asr.aalto.fi/siak-devel/log-action";
-    string loginUrl = "http://asr.aalto.fi/siak-devel/login";
-    string wordListUrl = "http://asr.aalto.fi/siak-devel/start-level";
+    string recUrl = "https://asr.aalto.fi/siak-devel/asr";
+    string logUrl = "https://asr.aalto.fi/siak-devel/log-action";
+    string loginUrl = "https://asr.aalto.fi/siak-devel/login";
+    string wordListUrl = "https://asr.aalto.fi/siak-devel/start-level";
     string exitUrl = "https://asr.aalto.fi/siak-devel/exit-level";
 
     public string playername = "";

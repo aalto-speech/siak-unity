@@ -60,7 +60,7 @@ public class StarPrice : BaseActivateable {
         Destroy(this.gameObject);
     }
 
-    void SetUpSecondary() {
+    public void SetUpSecondary() {
         _wayPoint.activateable = secondary;
         secondary.SetWaypoint(_wayPoint);
         secondary.SetActivateable(true);

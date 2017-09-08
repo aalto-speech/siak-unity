@@ -9,9 +9,16 @@ public class Waypoint : BaseNode, Interactable {
     bool _hasActivated;
 
     void Awake() {
-        if (activateable != null)
-            activateable.SetWaypoint(this);
-        else {
+        if (activateable != null) {
+            if (activateable.gameObject.activeSelf) {
+                activateable.SetWaypoint(this);
+            } else if (activateable.GetType() == typeof(StarPrice) && ((StarPrice)activateable).secondary != null) {
+                activateable.SetWaypoint(this);
+                ((StarPrice)activateable).SetUpSecondary();
+            } else {
+                EmptyActivateable();
+            }
+        } else {
             _hasActivated = true;
         }
     }

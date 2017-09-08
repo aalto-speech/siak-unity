@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16680357, g: 0.235876, b: 0.34642434, a: 1}
+  m_IndirectSpecularColor: {r: 0.16408601, g: 0.23903477, b: 0.35736358, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3613,7 +3613,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 375000739}
-  m_LocalRotation: {x: 0.7056287, y: -0.03362965, z: 0.017578835, w: 0.70756495}
+  m_LocalRotation: {x: 0.70562875, y: -0.033629652, z: 0.017578837, w: 0.707565}
   m_LocalPosition: {x: -8.55, y: 0.842483, z: -9.933354}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.30000013}
   m_LocalEulerAnglesHint: {x: 88.670006, y: -85.33401, z: -81.281006}
@@ -10736,6 +10736,10 @@ Prefab:
         type: 2}
       propertyPath: uniqueId
       value: SandSnow1Star8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010357859664, guid: e06303941471e9246b42b8779f7897f4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e06303941471e9246b42b8779f7897f4, type: 2}
