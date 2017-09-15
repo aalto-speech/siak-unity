@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1070201, g: 0.07707744, b: 0.06328623, a: 1}
+  m_IndirectSpecularColor: {r: 0.10653848, g: 0.07772692, b: 0.06405856, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -11935,7 +11935,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1022641057
 Transform:
   m_ObjectHideFlags: 0
@@ -12046,7 +12046,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -1073933914
+  randomSeed: -1008905329
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -14352,7 +14352,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -1802583851
+  randomSeed: -490751329
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -16421,6 +16421,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012985521890, guid: b84fd1a95a65ce84c86adebce862b893,
+        type: 2}
+      propertyPath: endParticle
+      value: 
+      objectReference: {fileID: 1022641056}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b84fd1a95a65ce84c86adebce862b893, type: 2}
   m_IsPrefabParent: 0

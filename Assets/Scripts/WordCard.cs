@@ -29,6 +29,7 @@ public class WordCard : BaseActivateable {
 
     void Start() {
         SetStartPosition(transform.position);
+        LevelAdvancer.AddFaceUp(this);
     }
 
     void Update() {
@@ -59,6 +60,7 @@ public class WordCard : BaseActivateable {
         LevelManager.ToggleInput(true);
         GameManager.CanLevelSelect(true);
         if (_pass) {
+            LevelAdvancer.RemoveFaceUp(this);
             if (_wayPoint != null)
                 _wayPoint.MarkActivated();
             if (_noGame != null)
@@ -75,6 +77,21 @@ public class WordCard : BaseActivateable {
         Transform stand = model.GetChild(0);
         stand.localRotation = Quaternion.RotateTowards(stand.localRotation, Quaternion.Euler(0, targetY, 0), Time.deltaTime * _standUpSpeed * 360.0f);
         model.Rotate(model.forward, _rotationsPerSecond * Time.deltaTime * 360.0f, Space.World);
+    }
+
+    public void Shake() {
+        StartCoroutine(ShakeRoutine());
+    }
+
+    IEnumerator ShakeRoutine() {
+        Vector3 startPos = model.GetChild(0).localPosition;
+        float a = 0;
+        while (a < 1) {
+            a += Time.deltaTime;
+            model.GetChild(0).localPosition = startPos + Vector3.Lerp(new Vector3(Random.Range(-0.4f, 0.4f), Random.Range(-0.4f, 0.4f)), Vector3.zero, a);
+            yield return null;
+        }
+        model.GetChild(0).localPosition = startPos;
     }
 
     public void EndCardGame(int score) {

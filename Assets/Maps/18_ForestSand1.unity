@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.10700161, g: 0.077071674, b: 0.063284665, a: 1}
+  m_IndirectSpecularColor: {r: 0.106519185, g: 0.07772141, b: 0.064057454, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -309,6 +309,11 @@ Prefab:
       propertyPath: m_Name
       value: Level Advancer
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012985521890, guid: b84fd1a95a65ce84c86adebce862b893,
+        type: 2}
+      propertyPath: endParticle
+      value: 
+      objectReference: {fileID: 1900088065}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b84fd1a95a65ce84c86adebce862b893, type: 2}
   m_IsPrefabParent: 0
@@ -13871,7 +13876,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1900088066
 Transform:
   m_ObjectHideFlags: 0
@@ -13981,7 +13986,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 63243701
+  randomSeed: -237082124
   InitialModule:
     serializedVersion: 2
     enabled: 1

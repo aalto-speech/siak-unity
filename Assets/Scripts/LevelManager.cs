@@ -30,12 +30,17 @@ public class LevelManager : MonoBehaviour {
     }
 
     void Start() {
+        StartCoroutine(LateStart());
+    }
+
+    IEnumerator LateStart() {
+        yield return null;
         _stars += GameManager.TotalStars();
         _collectedStars = GameManager.GetCollectedStars(level);
-        if (_collectedStars == 0) {
+        //if (_collectedStars == 0) {
             MoveGUI(0);
-        } else if (greyGUI != null)
-            greyGUI.SetNumber(_collectedStars);
+        //} else if (greyGUI != null)
+        //    greyGUI.SetNumber(_collectedStars);
         if (starGUI != null)
             starGUI.SetNumber(_stars);
         clientScript.getWordList(GameManager.LevelWords(level));
@@ -102,8 +107,8 @@ public class LevelManager : MonoBehaviour {
             _lm._collectedStars -= change;
             _lm.greyGUI.ChangeNumberBy(-change);
 
-            if (_lm._collectedStars == 0)
-                _lm.MoveGUI(1);
+            //if (_lm._collectedStars == 0)
+            //    _lm.MoveGUI(1);
         }
         if (increase != 0) {
             ActuallyAddStars(increase);

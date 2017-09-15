@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.24801034, g: 0.28752682, b: 0.3045152, a: 1}
+  m_IndirectSpecularColor: {r: 0.24664247, g: 0.28844023, b: 0.3048472, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -6780,7 +6780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &504884383
 Transform:
   m_ObjectHideFlags: 0
@@ -6890,7 +6890,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 624206432
+  randomSeed: -2004642121
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -14638,6 +14638,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012985521890, guid: b84fd1a95a65ce84c86adebce862b893,
+        type: 2}
+      propertyPath: endParticle
+      value: 
+      objectReference: {fileID: 504884382}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b84fd1a95a65ce84c86adebce862b893, type: 2}
   m_IsPrefabParent: 0

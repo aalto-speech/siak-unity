@@ -11628,7 +11628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &975612091
 Transform:
   m_ObjectHideFlags: 0
@@ -11738,7 +11738,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: 21761448
+  randomSeed: 1823347688
   InitialModule:
     serializedVersion: 2
     enabled: 1
@@ -18305,6 +18305,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114000012985521890, guid: b84fd1a95a65ce84c86adebce862b893,
+        type: 2}
+      propertyPath: endParticle
+      value: 
+      objectReference: {fileID: 975612090}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b84fd1a95a65ce84c86adebce862b893, type: 2}
   m_IsPrefabParent: 0

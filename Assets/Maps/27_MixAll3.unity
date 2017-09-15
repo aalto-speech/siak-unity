@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1893757, g: 0.32001442, b: 0.7217049, a: 1}
+  m_IndirectSpecularColor: {r: 0.19248396, g: 0.31590697, b: 0.6994275, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -271,6 +271,15 @@ Prefab:
     - target: {fileID: 1000010049541276, guid: b84fd1a95a65ce84c86adebce862b893, type: 2}
       propertyPath: m_Name
       value: Level Advancer
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012985521890, guid: b84fd1a95a65ce84c86adebce862b893,
+        type: 2}
+      propertyPath: endParticle
+      value: 
+      objectReference: {fileID: 865267360}
+    - target: {fileID: 1000010049541276, guid: b84fd1a95a65ce84c86adebce862b893, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b84fd1a95a65ce84c86adebce862b893, type: 2}
@@ -3216,7 +3225,7 @@ Prefab:
         type: 2}
       propertyPath: target
       value: 
-      objectReference: {fileID: 758165929}
+      objectReference: {fileID: 2128768592}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d968eccc5efbb1948ad34c7db8874d9a, type: 2}
   m_IsPrefabParent: 0
@@ -5796,7 +5805,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &865267361
 Transform:
   m_ObjectHideFlags: 0
@@ -5906,7 +5915,7 @@ ParticleSystem:
   moveWithTransform: 1
   autoRandomSeed: 1
   scalingMode: 2
-  randomSeed: -1428819223
+  randomSeed: -1544970803
   InitialModule:
     serializedVersion: 2
     enabled: 1
