@@ -53,4 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chosenModelIndex: 0
   modelPrefabs:
-  - {fileID: 1000013427637006, guid: 1848a726b8c22d4479a3e087b9fa5bf9, type: 2}
+  - {fileID: 1000012384181890, guid: 9472006b4d14da14ebefca48744a15e4, type: 2}
+  - {fileID: 1000011612899228, guid: 8092e1fa90c688e4a947ba0e3e8be5cc, type: 2}
+  - {fileID: 1000012139153230, guid: 94d845260d542434189bdd101a034184, type: 2}
+  - {fileID: 1000012225437694, guid: cfdec64c98adf0e4b940eee739d38680, type: 2}
+  - {fileID: 1000011821182502, guid: 73cbd1425570ae54ab4a900b5c40bf45, type: 2}
+  - {fileID: 1000010242045584, guid: 5d6a761d6adb27146a2ca7641c35ca0d, type: 2}

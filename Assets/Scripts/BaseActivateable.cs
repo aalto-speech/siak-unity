@@ -16,8 +16,13 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     protected Vector3 _startPos;
     protected NoBoardInteractable _noGame;
     protected Transform _parent;
+
+    float extraHeight = 0;
+    float maxExtra = 2.5f;
+    bool reached;
     
     public virtual bool Activate() {
+        reached = true;
         if (_active || !_canActivate)
             return false;
 
@@ -38,7 +43,7 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
         float radius = (_active) ? 0.5f * _floatingRadius : _floatingRadius;
 
         _piCollector += speed * Mathf.PI * 2 * Time.deltaTime;
-        model.localPosition = Vector3.up * Mathf.Sin(_piCollector) * radius;
+        model.localPosition = Vector3.up * (GetExtraHeight() + Mathf.Sin(_piCollector) * radius);
 
         if (_piCollector > Mathf.PI * 2)
             _piCollector -= Mathf.PI * 2;
@@ -54,6 +59,16 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
 
     public void SetNoBoardInteractable(NoBoardInteractable ngi) {
         _noGame = ngi;
+    }
+
+    protected float GetExtraHeight() {
+        if (reached && !_active) {
+            extraHeight = Mathf.Min(maxExtra, extraHeight + Time.deltaTime * 7.5f);
+            if (_wayPoint != null && LevelManager.GetPlayerToken() != null && LevelManager.GetPlayerToken().current != _wayPoint)
+                reached = false;
+        } else
+            extraHeight = Mathf.Max(0, extraHeight - Time.deltaTime * 7.5f);
+        return extraHeight;
     }
 
     protected IEnumerator GoToPosition(bool toLocation, Transform target, Transform mover, Transform rotater) {

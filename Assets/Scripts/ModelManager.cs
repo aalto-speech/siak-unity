@@ -27,4 +27,12 @@ public class ModelManager : MonoBehaviour {
         model.rotation = Quaternion.identity;
         model.localPosition = Vector3.zero;
     }
+
+    public static void ChangeIndex(int newIndex) {
+        _mm.chosenModelIndex = newIndex;
+    }
+
+    public static int GetIndex() {
+        return _mm.chosenModelIndex;
+    }
 }

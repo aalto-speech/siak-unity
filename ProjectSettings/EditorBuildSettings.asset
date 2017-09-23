@@ -62,4 +62,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Maps/27_MixAll3.unity
   - enabled: 1
+    path: Assets/Maps/98_Begin.unity
+  - enabled: 1
     path: Assets/Maps/99_End.unity

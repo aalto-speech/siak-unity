@@ -29,11 +29,11 @@ public class LevelSelectButton : MonoBehaviour {
         _canSelect = false;
         _compare = (maxStars != "" && maxStars != "0") ? (int)level : (int)level + 1;
         if (_text != null && _lock != null) {
-            if (GameManager.GetCompleted() >= _compare || GameManager.GetCheat() >= _compare) {
+            if (GameManager.GetCompleted() >= _compare || GameManager.GetCheat() >= _compare || level == Level.Begin || (level == Level.End && GameManager.GetCompleted() >= (int)Level.MixAll3)) {
                 _text.gameObject.SetActive(true);
-                if (maxStars != "" && maxStars != "0")
+                if (maxStars != "" && maxStars != "0" && maxStars != "Start" && maxStars != "End")
                     _text.text = GameManager.GetCollectedStars(level).ToString() + " / " + maxStars;
-                else
+                else if (maxStars == "" || maxStars == "0")
                     _text.gameObject.SetActive(false);
                 _lock.SetActive(false);
                 StartCoroutine(SetClickable());

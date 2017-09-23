@@ -97,9 +97,14 @@ public class PlayerToken : MonoBehaviour {
     }
 
     IEnumerator BounceModel() {
-        model.rotation = Quaternion.Euler(0, model.rotation.eulerAngles.y, 0);
+        //model.rotation = Quaternion.Euler(0, model.rotation.eulerAngles.y, 0);
+        if (Camera.main == null)
+            yield break;
+        Vector3 lookDir = Camera.main.transform.position - transform.position;
+        lookDir = new Vector3(lookDir.x, 0,lookDir.z);
+        model.rotation = Quaternion.LookRotation(-lookDir);
         _midBounce = true;
-        float PICollector = 0;
+        float PICollector = 2;
         while (PICollector <= 1) {
             PICollector += bouncesPerSecond * Time.deltaTime;
             model.localPosition = Vector3.up * bounceHeight * Mathf.Sin(Mathf.PI * PICollector);
@@ -127,6 +132,10 @@ public class PlayerToken : MonoBehaviour {
 
                 if (_entrance) {
                     _entrance = false;
+                    Vector3 lookDir = Camera.main.transform.position - transform.position;
+                    lookDir = new Vector3(lookDir.x, 0, lookDir.z);
+                    model.rotation = Quaternion.LookRotation(-lookDir);
+                    model.localPosition = Vector3.zero;
                     CameraManager.Shake(1f, 1.0f);
                 }
             }
@@ -142,5 +151,11 @@ public class PlayerToken : MonoBehaviour {
 
     public void Pause(bool b) {
         _pause = b;
+        if (Camera.main != null) {
+            Vector3 lookDir = Camera.main.transform.position - transform.position;
+            lookDir = new Vector3(lookDir.x, 0, lookDir.z);
+            model.rotation = Quaternion.LookRotation(-lookDir);
+        }
+        model.localPosition = Vector3.zero;
     }
 }

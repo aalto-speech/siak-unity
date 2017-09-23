@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: 2ee5441ce4a33164096d99cae50d05e3
+timeCreated: 1506162273
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arm.L
+    100002: Arm.L_end
+    100004: Arm.R
+    100006: Arm.R_end
+    100008: Armature
+    100010: Base
+    100012: Body.003
+    100014: Ear.L
+    100016: Ear.L_end
+    100018: Ear.R
+    100020: Ear.R_end
+    100022: //RootNode
+    100024: Head
+    100026: Leg.L
+    100028: Leg.L_end
+    100030: Leg.R
+    100032: Leg.R_end
+    100034: Nose
+    100036: Nose_end
+    100038: NoseBridge
+    100040: Spine1
+    100042: Spine2
+    100044: Spine3
+    100046: Tail
+    100048: Tail.001
+    100050: Tail.002
+    100052: Tail.003
+    100054: Tail.004
+    100056: Tail.005
+    100058: Tail.006
+    100060: Tail.006_end
+    400000: Arm.L
+    400002: Arm.L_end
+    400004: Arm.R
+    400006: Arm.R_end
+    400008: Armature
+    400010: Base
+    400012: Body.003
+    400014: Ear.L
+    400016: Ear.L_end
+    400018: Ear.R
+    400020: Ear.R_end
+    400022: //RootNode
+    400024: Head
+    400026: Leg.L
+    400028: Leg.L_end
+    400030: Leg.R
+    400032: Leg.R_end
+    400034: Nose
+    400036: Nose_end
+    400038: NoseBridge
+    400040: Spine1
+    400042: Spine2
+    400044: Spine3
+    400046: Tail
+    400048: Tail.001
+    400050: Tail.002
+    400052: Tail.003
+    400054: Tail.004
+    400056: Tail.005
+    400058: Tail.006
+    400060: Tail.006_end
+    4300000: Body.003
+    7400000: Armature|FoxIdle
+    9500000: //RootNode
+    13700000: Body.003
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|FoxIdle
+      takeName: Armature|Idle
+      firstFrame: 1
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Base
+        weight: 1
+      - path: Armature/Base/Leg.L
+        weight: 1
+      - path: Armature/Base/Leg.L/Leg.L_end
+        weight: 1
+      - path: Armature/Base/Leg.R
+        weight: 1
+      - path: Armature/Base/Leg.R/Leg.R_end
+        weight: 1
+      - path: Armature/Base/Spine1
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Arm.L
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Arm.L/Arm.L_end
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Arm.R
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Arm.R/Arm.R_end
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Head
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Head/Ear.L
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Head/Ear.L/Ear.L_end
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Head/Ear.R
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Head/Ear.R/Ear.R_end
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Head/NoseBridge
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Head/NoseBridge/Nose
+        weight: 1
+      - path: Armature/Base/Spine1/Spine2/Spine3/Head/NoseBridge/Nose/Nose_end
+        weight: 1
+      - path: Armature/Base/Tail
+        weight: 1
+      - path: Armature/Base/Tail/Tail.001
+        weight: 1
+      - path: Armature/Base/Tail/Tail.001/Tail.002
+        weight: 1
+      - path: Armature/Base/Tail/Tail.001/Tail.002/Tail.003
+        weight: 1
+      - path: Armature/Base/Tail/Tail.001/Tail.002/Tail.003/Tail.004
+        weight: 1
+      - path: Armature/Base/Tail/Tail.001/Tail.002/Tail.003/Tail.004/Tail.005
+        weight: 1
+      - path: Armature/Base/Tail/Tail.001/Tail.002/Tail.003/Tail.004/Tail.005/Tail.006
+        weight: 1
+      - path: Armature/Base/Tail/Tail.001/Tail.002/Tail.003/Tail.004/Tail.005/Tail.006/Tail.006_end
+        weight: 1
+      - path: Body.003
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

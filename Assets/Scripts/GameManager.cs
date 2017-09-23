@@ -6,7 +6,7 @@ using System.Linq;
 using SimpleJSON;
 
 //Enum's int is equal to the build index
-public enum Level { None = -1, Menu = 0, Forest1 = 1, Ice1 = 2, Sand1 = 3, NoBoard1 = 4, Sand5 = 5, Ice3 = 6, Forest5 = 7, SandIce1 = 8, NoBoard2 = 9, Ice4 = 10, MixAll2 = 11, Sand2 = 12, Ice5 = 13, Forest4 = 14, Ice2 = 15, Forest2 = 16, NoGame1 = 17, ForestSand1 = 18, SnowForest1 = 19, MixAll1 = 20, NoGame2 = 21, Sand4 = 22, NoBoard3 = 23, Forest3 = 24, Sand3 = 25, NoGame3 = 26, MixAll3 = 27, End = 28 };
+public enum Level { None = -1, Menu = 0, Forest1 = 1, Ice1 = 2, Sand1 = 3, NoBoard1 = 4, Sand5 = 5, Ice3 = 6, Forest5 = 7, SandIce1 = 8, NoBoard2 = 9, Ice4 = 10, MixAll2 = 11, Sand2 = 12, Ice5 = 13, Forest4 = 14, Ice2 = 15, Forest2 = 16, NoGame1 = 17, ForestSand1 = 18, SnowForest1 = 19, MixAll1 = 20, NoGame2 = 21, Sand4 = 22, NoBoard3 = 23, Forest3 = 24, Sand3 = 25, NoGame3 = 26, MixAll3 = 27, Begin = 98, End = 99};
 
 public class GameManager : MonoBehaviour {
 
@@ -64,7 +64,6 @@ public class GameManager : MonoBehaviour {
             return;
 
         UIManager ui = UIManager.GetManager();
-        print(ui);
 
         if (!levelSelect.activeSelf) {
             levelSelect.SetActive(true);
@@ -139,7 +138,12 @@ public class GameManager : MonoBehaviour {
     }
 
     public static int NextLevel() {
-        return (int)_gm._next;
+        if (_gm._next == Level.Begin) {
+            return 29;
+        } else if (_gm._next == Level.End) {
+            return 28;
+        } else 
+            return (int)_gm._next;
     }
 
     public static int GetCompleted() {
@@ -217,6 +221,12 @@ public class GameManager : MonoBehaviour {
 
     public static LevelSelect GetLevelSelect() {
         return _gm.levelSelect.GetComponent<LevelSelect>();
+    }
+
+    public static int GetTickets() {
+        if (_gm._highestLevel > 5)
+            return 1;
+        return 0;
     }
 
     void ResetSessionData() {

@@ -15,8 +15,7 @@ public class LevelAdvancer : BaseActivateable {
     public override bool Activate() {
         if (!base.Activate())
             return false;
-
-        print("yeya");
+        
         if (faceUpCards.Count > 0) {
             foreach (WordCard wc in faceUpCards)
                 wc.Shake();
@@ -51,6 +50,8 @@ public class LevelAdvancer : BaseActivateable {
         int check = 1 + (int)LevelManager.GetLevel();
         if (System.Enum.IsDefined(typeof(Level), check))
             next = (Level)check;
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 28)
+            next = (Level)1;
         GameManager.ChangeLevel(next, true);
     }
 }

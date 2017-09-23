@@ -1,0 +1,279 @@
+fileFormatVersion: 2
+guid: bcfd4460e41de134bb4260b19b6ce2c7
+timeCreated: 1506162274
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arm1.L
+    100002: Arm1.R
+    100004: Arm2.L
+    100006: Arm2.L_end
+    100008: Arm2.R
+    100010: Arm2.R_end
+    100012: Armature
+    100014: Body.003
+    100016: Bone
+    100018: Ear.L
+    100020: Ear.L_end
+    100022: Ear.R
+    100024: Ear.R_end
+    100026: Head
+    100028: Leg1.L
+    100030: Leg1.R
+    100032: Leg2.L
+    100034: Leg2.L_end
+    100036: Leg2.R
+    100038: Leg2.R_end
+    100040: //RootNode
+    100042: Spine1
+    100044: Spine2
+    100046: Spine3
+    400000: Arm1.L
+    400002: Arm1.R
+    400004: Arm2.L
+    400006: Arm2.L_end
+    400008: Arm2.R
+    400010: Arm2.R_end
+    400012: Armature
+    400014: Body.003
+    400016: Bone
+    400018: Ear.L
+    400020: Ear.L_end
+    400022: Ear.R
+    400024: Ear.R_end
+    400026: Head
+    400028: Leg1.L
+    400030: Leg1.R
+    400032: Leg2.L
+    400034: Leg2.L_end
+    400036: Leg2.R
+    400038: Leg2.R_end
+    400040: //RootNode
+    400042: Spine1
+    400044: Spine2
+    400046: Spine3
+    4300000: Body.003
+    7400000: Armature|PandaIdle2
+    7400002: Armature|PandaIdle2
+    7400004: Armature|PandaIdle1
+    7400006: Armature|Idle2
+    7400008: Armature|Idle3
+    9500000: //RootNode
+    13700000: Body.003
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|Idle3
+      takeName: Armature|Idle3
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Leg1.L
+        weight: 1
+      - path: Armature/Bone/Leg1.L/Leg2.L
+        weight: 1
+      - path: Armature/Bone/Leg1.L/Leg2.L/Leg2.L_end
+        weight: 1
+      - path: Armature/Bone/Leg1.R
+        weight: 1
+      - path: Armature/Bone/Leg1.R/Leg2.R
+        weight: 1
+      - path: Armature/Bone/Leg1.R/Leg2.R/Leg2.R_end
+        weight: 1
+      - path: Armature/Bone/Spine1
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.L
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.L/Arm2.L
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.L/Arm2.L/Arm2.L_end
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.R
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.R/Arm2.R
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.R/Arm2.R/Arm2.R_end
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head/Ear.L
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head/Ear.L/Ear.L_end
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head/Ear.R
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head/Ear.R/Ear.R_end
+        weight: 1
+      - path: Body.003
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Idle2
+      takeName: Armature|Idle2
+      firstFrame: 0
+      lastFrame: 80
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Bone
+        weight: 1
+      - path: Armature/Bone/Leg1.L
+        weight: 1
+      - path: Armature/Bone/Leg1.L/Leg2.L
+        weight: 1
+      - path: Armature/Bone/Leg1.L/Leg2.L/Leg2.L_end
+        weight: 1
+      - path: Armature/Bone/Leg1.R
+        weight: 1
+      - path: Armature/Bone/Leg1.R/Leg2.R
+        weight: 1
+      - path: Armature/Bone/Leg1.R/Leg2.R/Leg2.R_end
+        weight: 1
+      - path: Armature/Bone/Spine1
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.L
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.L/Arm2.L
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.L/Arm2.L/Arm2.L_end
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.R
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.R/Arm2.R
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Arm1.R/Arm2.R/Arm2.R_end
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head/Ear.L
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head/Ear.L/Ear.L_end
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head/Ear.R
+        weight: 1
+      - path: Armature/Bone/Spine1/Spine2/Spine3/Head/Ear.R/Ear.R_end
+        weight: 1
+      - path: Body.003
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
