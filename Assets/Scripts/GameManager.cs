@@ -139,9 +139,9 @@ public class GameManager : MonoBehaviour {
 
     public static int NextLevel() {
         if (_gm._next == Level.Begin) {
-            return 29;
-        } else if (_gm._next == Level.End) {
             return 28;
+        } else if (_gm._next == Level.End) {
+            return 29;
         } else 
             return (int)_gm._next;
     }
