@@ -10,24 +10,50 @@ public class LevelAdvancer : BaseActivateable {
 
     void Awake() {
         _levelAdvancer = this;
+        if (GameManager.GetCompleted() > UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex && model != null) {
+            model.gameObject.SetActive(false);
+            model = null;
+        }
+    }
+
+    void Update() {
+        if (model != null)
+            Floating();
     }
 
     public override bool Activate() {
         if (!base.Activate())
             return false;
         
-        if (faceUpCards.Count > 0) {
+        if (faceUpCards.Count > 0 && false) {
             foreach (WordCard wc in faceUpCards)
                 wc.Shake();
             return false;
         }
+        if (model != null) {
+            StartCoroutine(FinishRoutine());
+        } else {
+            FinishActivation();
+        }
+        return true;
+    }
 
+    void FinishActivation() {
         if (_wayPoint != null)
             _wayPoint.MarkActivated();
         GoNext();
         Destroy(this.gameObject);
+    }
 
-        return true;
+    IEnumerator FinishRoutine() {
+        AudioSource audio = model.parent.GetComponent<AudioSource>();
+        LevelManager.AddTicket();
+        model.gameObject.SetActive(false);
+        CameraManager.Shake(0.75f, 1.0f);
+        yield return new WaitForSeconds(1.0f);
+        audio.Play();
+        yield return new WaitForSeconds(audio.clip.length + 0.5f);
+        FinishActivation();
     }
 
     public static void AddFaceUp(WordCard wc) {
@@ -50,6 +76,8 @@ public class LevelAdvancer : BaseActivateable {
         int check = 1 + (int)LevelManager.GetLevel();
         if (System.Enum.IsDefined(typeof(Level), check))
             next = (Level)check;
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 27)
+            next = (Level)99;
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 28)
             next = (Level)1;
         GameManager.ChangeLevel(next, true);

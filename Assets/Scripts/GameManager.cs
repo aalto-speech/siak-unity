@@ -224,6 +224,16 @@ public class GameManager : MonoBehaviour {
     }
 
     public static int GetTickets() {
+        if (_gm._highestLevel > 27)
+            return 6;
+        if (_gm._highestLevel > 24)
+            return 5;
+        if (_gm._highestLevel > 18)
+            return 4;
+        if (_gm._highestLevel > 13)
+            return 3;
+        if (_gm._highestLevel > 10)
+            return 2;
         if (_gm._highestLevel > 5)
             return 1;
         return 0;

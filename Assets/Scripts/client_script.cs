@@ -208,17 +208,19 @@ public class client_script : MonoBehaviour {
 
             if (finalpacket) {
                 finalpacket = false;
-                float[] bigSamples = new float[aud.clip.samples];
-                aud.clip.GetData(bigSamples, 0);
-                float[] newSamples = new float[lastPos];
-                for (int i = 0; i < lastPos; i++) {
-                    newSamples[i] = bigSamples[i];
+                if (lastPos > 0) {
+                    float[] bigSamples = new float[aud.clip.samples];
+                    aud.clip.GetData(bigSamples, 0);
+                    float[] newSamples = new float[lastPos];
+                    for (int i = 0; i < lastPos; i++) {
+                        newSamples[i] = bigSamples[i];
+                    }
+                    bigSamples[0] = 0.1f;
+                    AudioClip shortClip = AudioClip.Create("trimmedRecording", lastPos, aud.clip.channels, aud.clip.frequency, false);
+                    shortClip.SetData(newSamples, 0);
+                    Destroy(aud.clip);
+                    aud.clip = shortClip;
                 }
-                bigSamples[0] = 0.1f;
-                AudioClip shortClip = AudioClip.Create("trimmedRecording", lastPos, aud.clip.channels, aud.clip.frequency, false);
-                shortClip.SetData(newSamples, 0);
-                Destroy(aud.clip);
-                aud.clip = shortClip;
                 isRecording = false;
             }
         }
@@ -392,13 +394,13 @@ public class client_script : MonoBehaviour {
 
         // Our answer from the server:
         scoreFromServer = wwwRec.text;// so that any score can be handled in unity
-        Debug.Log("Score: " + wwwRec.text); //is the score supposed to improve as more data is sent..???
+        Debug.Log("Score: " + ((wwwRec.text == "") ? "-9" : wwwRec.text)); //is the score supposed to improve as more data is sent..???
 
         if (wwwRec.text == "-1") {
             stopRec();
         } else if (wwwRec.text != "0") {
             stopRec();
-            scoreFromServer = wwwRec.text;
+            scoreFromServer = (wwwRec.text == "") ? "-9" : wwwRec.text;
         }
     }
 

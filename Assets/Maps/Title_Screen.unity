@@ -2321,6 +2321,11 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114000010950345376, guid: fa7fca2611244784494f7c8a99f9f423,
+        type: 2}
+      propertyPath: level
+      value: 18
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa7fca2611244784494f7c8a99f9f423, type: 2}
   m_IsPrefabParent: 0
@@ -4353,14 +4358,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114000013848208440, guid: 5c029ed67c0993544b4a6f8f2dd8d362,
         type: 2}
-      propertyPath: levelSelect
-      value: 
-      objectReference: {fileID: 751831724}
-    - target: {fileID: 114000013848208440, guid: 5c029ed67c0993544b4a6f8f2dd8d362,
-        type: 2}
       propertyPath: loginScreen
       value: 
       objectReference: {fileID: 2090637273}
+    - target: {fileID: 114000013848208440, guid: 5c029ed67c0993544b4a6f8f2dd8d362,
+        type: 2}
+      propertyPath: levelSelect
+      value: 
+      objectReference: {fileID: 751831724}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5c029ed67c0993544b4a6f8f2dd8d362, type: 2}
   m_IsPrefabParent: 0

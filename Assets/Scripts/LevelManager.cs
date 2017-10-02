@@ -38,13 +38,18 @@ public class LevelManager : MonoBehaviour {
         _stars += GameManager.TotalStars();
         _collectedStars = GameManager.GetCollectedStars(level);
         //if (_collectedStars == 0) {
-        MoveGUI(0);
+        //MoveGUI(0);
         //} else if (greyGUI != null)
         //    greyGUI.SetNumber(_collectedStars);
-        //greyGUI.SetNumber(GameManager.GetTickets());
+        greyGUI.SetNumber(GameManager.GetTickets());
         if (starGUI != null)
             starGUI.SetNumber(_stars);
         clientScript.getWordList(GameManager.LevelWords(level));
+    }
+
+    public static void AddTicket() {
+        if (_lm != null)
+            _lm.greyGUI.SetNumber(GameManager.GetTickets() + 1);
     }
 
     public static PlayerToken GetPlayerToken() {
