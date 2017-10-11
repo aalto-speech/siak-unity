@@ -22,14 +22,14 @@ public class LevelAdvancer : BaseActivateable {
     }
 
     public override bool Activate() {
-        if (!base.Activate())
-            return false;
-        
-        if (faceUpCards.Count > 0 && false) {
+        if (faceUpCards.Count > 0) {
             foreach (WordCard wc in faceUpCards)
                 wc.Shake();
             return false;
         }
+        if (!base.Activate())
+            return false;
+        
         if (model != null) {
             StartCoroutine(FinishRoutine());
         } else {
@@ -66,7 +66,7 @@ public class LevelAdvancer : BaseActivateable {
         if (_levelAdvancer == null || !_levelAdvancer.faceUpCards.Contains(wc))
             return;
         _levelAdvancer.faceUpCards.Remove(wc);
-       // if (_levelAdvancer.faceUpCards.Count == 0)
+       if (_levelAdvancer.faceUpCards.Count == 0)
             _levelAdvancer.endParticle.SetActive(true);
     }
 

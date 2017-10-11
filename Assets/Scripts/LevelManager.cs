@@ -41,7 +41,8 @@ public class LevelManager : MonoBehaviour {
         //MoveGUI(0);
         //} else if (greyGUI != null)
         //    greyGUI.SetNumber(_collectedStars);
-        greyGUI.SetNumber(GameManager.GetTickets());
+        if (greyGUI != null)
+            greyGUI.SetNumber(GameManager.GetTickets());
         if (starGUI != null)
             starGUI.SetNumber(_stars);
         clientScript.getWordList(GameManager.LevelWords(level));
@@ -106,16 +107,16 @@ public class LevelManager : MonoBehaviour {
         if (amount < 0)
             return;
         _lm._thisRunStars += amount;
-        int change = 0;
         int increase = Mathf.Max(0, amount - _lm._collectedStars);
-        if (_lm._collectedStars != 0) {
-            change = Mathf.Max(0, Mathf.Min(_lm._collectedStars, amount - increase));
-            _lm._collectedStars -= change;
-            _lm.greyGUI.ChangeNumberBy(-change);
+        int change = 0;
+          if (_lm._collectedStars != 0) {
+             change = Mathf.Max(0, Mathf.Min(_lm._collectedStars, amount - increase));
+             _lm._collectedStars -= change;
+             //_lm.greyGUI.ChangeNumberBy(-change);
 
-            //if (_lm._collectedStars == 0)
-            //    _lm.MoveGUI(1);
-        }
+             //if (_lm._collectedStars == 0)
+             //    _lm.MoveGUI(1);
+         }
         if (increase != 0) {
             ActuallyAddStars(increase);
         }
