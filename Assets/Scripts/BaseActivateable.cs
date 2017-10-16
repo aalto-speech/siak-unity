@@ -22,7 +22,8 @@ public abstract class BaseActivateable : MonoBehaviour, Activateable {
     bool reached;
     
     public virtual bool Activate() {
-        reached = true;
+        if (_wayPoint != null)
+            reached = true;
         if (_active || !_canActivate)
             return false;
 

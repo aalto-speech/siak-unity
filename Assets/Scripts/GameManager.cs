@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
     int[] _noGamePreceeders = new int[3] { 16, 20, 25 };
     int _cheatLevel = 0;
     bool _counting = false;
+    bool hasCheckedGroup;
 
     public static GameManager GetGameManager() {
         return _gm;
@@ -210,12 +211,13 @@ public class GameManager : MonoBehaviour {
         int serverNumber;
         int.TryParse(data["highest_level"].Value, out serverNumber);
         _gm._highestLevel = Mathf.Max(serverNumber, 1);
-        if (_gm.isGroupFeather) {
+        if (!_gm.hasCheckedGroup && _gm.isGroupFeather) {
             for (int i = 0; i < _gm._noGamePreceeders.Length; i++) {
                 string hold = _gm._levelWords[(Level)_gm._noGamePreceeders[i]];
                 _gm._levelWords[(Level)_gm._noGamePreceeders[i]] = _gm._levelWords[(Level)(_gm._noGamePreceeders[i] + 1)];
                 _gm._levelWords[(Level)(_gm._noGamePreceeders[i] + 1)] = hold;
             }
+            _gm.hasCheckedGroup = true;
         }
     }
 
