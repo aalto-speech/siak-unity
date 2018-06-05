@@ -388,15 +388,15 @@ public class client_script : MonoBehaviour {
     IEnumerator patientlyUpload(string targeturl, byte[] bytedata, System.Collections.Generic.Dictionary<string, string> customheaders) {
         Debug.Log("starting upload");
         // Uploading:
-       /* WWW wwwRec = new WWW(targeturl, Encoding.UTF8.GetBytes(Convert.ToBase64String(bytedata)), customheaders);
+        WWW wwwRec = new WWW(targeturl, Encoding.UTF8.GetBytes(Convert.ToBase64String(bytedata)), customheaders);
 
         yield return wwwRec;
 
         // Our answer from the server:
         scoreFromServer = wwwRec.text;// so that any score can be handled in unity
         Debug.Log("Score: " + ((wwwRec.text == "") ? "-9" : wwwRec.text)); //is the score supposed to improve as more data is sent..???
-        */
-        yield return new WaitForSeconds(1.5f);
+
+        yield return new WaitForSeconds(2.0f);
 
         scoreFromServer = "5";
         stopRec();

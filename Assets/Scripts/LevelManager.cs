@@ -185,11 +185,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     void SetUpLocalWords() {
-        List<string> list = null;
-        if (LocalWords.levelWords.ContainsKey(level)) {
-            list = LocalWords.levelWords[level];
-        } else
-            list = new List<string>() { "dog" };
+        var list = new List<string>() { "dog" };
         _wordHolder = new GameObject().transform;
         _wordHolder.name = "WordHolder";
         for (int i = 0; i < list.Count; i++) {
