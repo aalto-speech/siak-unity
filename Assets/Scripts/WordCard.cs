@@ -40,7 +40,14 @@ public class WordCard : BaseActivateable {
     public override bool Activate() {
         if (!base.Activate())
             return false;
-
+        /*
+        _pass = true;
+        int score = 5;
+        if (score > _myScore) {
+            LevelManager.AddStars(score - _myScore);
+            _myScore = score;
+        }
+        Deactivate();*/
         SetWord(getUsedWord);
         StartCoroutine(GoToPosition(true, CameraManager.GetCardLocation(), transform, model.GetChild(0)));
         LevelManager.ToggleInput(false);

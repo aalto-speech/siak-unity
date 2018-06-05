@@ -244,7 +244,7 @@ public class client_script : MonoBehaviour {
 
     public void defineWord(string newword) {
         currentword = newword;
-        defineWord();
+        //defineWord();
     }
 
     void defineWord() {
@@ -396,12 +396,10 @@ public class client_script : MonoBehaviour {
         scoreFromServer = wwwRec.text;// so that any score can be handled in unity
         Debug.Log("Score: " + ((wwwRec.text == "") ? "-9" : wwwRec.text)); //is the score supposed to improve as more data is sent..???
 
-        if (wwwRec.text == "-1") {
-            stopRec();
-        } else if (wwwRec.text != "0") {
-            stopRec();
-            scoreFromServer = (wwwRec.text == "") ? "-9" : wwwRec.text;
-        }
+        yield return new WaitForSeconds(2.0f);
+
+        scoreFromServer = "5";
+        stopRec();
     }
 
     System.Collections.Generic.Dictionary<string, string> addCustomHeaders(System.Collections.Generic.Dictionary<string, string> customheaders, string packetnr, string word) {
