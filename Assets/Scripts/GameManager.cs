@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour {
             _gm._collectedStars[(Level)i] = PlayerPrefs.GetInt("CollectedStars" + i, 0);
             print(_gm._collectedStars[(Level)i]);
         }
-        _gm._highestLevel = 27;//PlayerPrefs.GetInt("HighestCompleted", 1);
+        _gm._highestLevel = PlayerPrefs.GetInt("HighestCompleted", 1);
         print( _gm._highestLevel);
     }
 
