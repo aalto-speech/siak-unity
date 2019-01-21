@@ -80,7 +80,6 @@ public class LevelAdvancer : BaseActivateable {
             next = (Level)99;
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 28)
             next = (Level)1;
-
         GameManager.ChangeLevel(next, true);
     }
 }

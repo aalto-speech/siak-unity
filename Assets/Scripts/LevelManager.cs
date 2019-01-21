@@ -45,8 +45,7 @@ public class LevelManager : MonoBehaviour {
             greyGUI.SetNumber(GameManager.GetTickets());
         if (starGUI != null)
             starGUI.SetNumber(_stars);
-        //clientScript.getWordList(GameManager.LevelWords(level));
-        SetUpLocalWords();
+        clientScript.getWordList(GameManager.LevelWords(level));
     }
 
     public static void AddTicket() {
@@ -178,26 +177,6 @@ public class LevelManager : MonoBehaviour {
                 GameObject go = Instantiate((GameObject)o);
                 go.transform.SetParent(_wordHolder);
                 go.name = list[i]["word"];
-                ProcessGlue(go.GetComponent<WordGlue>());
-            } /*else
-                print(list[i]["word"]);*/
-        }
-    }
-
-    void SetUpLocalWords() {
-        List<string> list = null;
-        if (LocalWords.levelWords.ContainsKey(level)) {
-            list = LocalWords.levelWords[level];
-        } else
-            list = new List<string>() { "dog" };
-        _wordHolder = new GameObject().transform;
-        _wordHolder.name = "WordHolder";
-        for (int i = 0; i < list.Count; i++) {
-            Object o = Resources.Load("WordGlues/" + list[i]);
-            if (o != null) {
-                GameObject go = Instantiate((GameObject)o);
-                go.transform.SetParent(_wordHolder);
-                go.name = list[i];
                 ProcessGlue(go.GetComponent<WordGlue>());
             } /*else
                 print(list[i]["word"]);*/

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 using System.IO;
@@ -48,11 +48,18 @@ Relevant functions:
 public class client_script : MonoBehaviour {
 
     // Variables for the game project:
-    string recUrl = "https://asr.aalto.fi/siak-devel/asr";
-    string logUrl = "https://asr.aalto.fi/siak-devel/log-action";
-    string loginUrl = "https://asr.aalto.fi/siak-devel/login";
-    string wordListUrl = "https://asr.aalto.fi/siak-devel/start-level";
-    string exitUrl = "https://asr.aalto.fi/siak-devel/exit-level";
+    //string recUrl = "https://asr.aalto.fi/siak-devel/asr";
+    //string logUrl = "https://asr.aalto.fi/siak-devel/log-action";
+    //string loginUrl = "https://asr.aalto.fi/siak-devel/login";
+    //string wordListUrl = "https://asr.aalto.fi/siak-devel/start-level";
+    //string exitUrl = "https://asr.aalto.fi/siak-devel/exit-level";
+
+    string recUrl = "https://tellme.aalto.fi/serverdock2/asr";
+    string logUrl = "https://tellme.aalto.fi/serverdock2/log-action";
+    string loginUrl = "https://tellme.aalto.fi/serverdock2/login";
+    string wordListUrl = "https://tellme.aalto.fi/serverdock2/start-level";
+    string exitUrl = "https://tellme.aalto.fi/serverdock2/exit-level";
+
 
     public string playername = "";
     public string playerpassword = "";
@@ -244,7 +251,7 @@ public class client_script : MonoBehaviour {
 
     public void defineWord(string newword) {
         currentword = newword;
-        //defineWord();
+        defineWord();
     }
 
     void defineWord() {
@@ -388,18 +395,20 @@ public class client_script : MonoBehaviour {
     IEnumerator patientlyUpload(string targeturl, byte[] bytedata, System.Collections.Generic.Dictionary<string, string> customheaders) {
         Debug.Log("starting upload");
         // Uploading:
-       /* WWW wwwRec = new WWW(targeturl, Encoding.UTF8.GetBytes(Convert.ToBase64String(bytedata)), customheaders);
+        WWW wwwRec = new WWW(targeturl, Encoding.UTF8.GetBytes(Convert.ToBase64String(bytedata)), customheaders);
 
         yield return wwwRec;
 
         // Our answer from the server:
         scoreFromServer = wwwRec.text;// so that any score can be handled in unity
         Debug.Log("Score: " + ((wwwRec.text == "") ? "-9" : wwwRec.text)); //is the score supposed to improve as more data is sent..???
-        */
-        yield return new WaitForSeconds(1.5f);
 
-        scoreFromServer = "5";
-        stopRec();
+        if (wwwRec.text == "-1") {
+            stopRec();
+        } else if (wwwRec.text != "0") {
+            stopRec();
+            scoreFromServer = (wwwRec.text == "") ? "-9" : wwwRec.text;
+        }
     }
 
     System.Collections.Generic.Dictionary<string, string> addCustomHeaders(System.Collections.Generic.Dictionary<string, string> customheaders, string packetnr, string word) {

@@ -103,8 +103,8 @@ MonoBehaviour:
   loader: {fileID: 1000010896135460, guid: 6ffb5fdcca7683149a3183795cfed5b5, type: 2}
   levelSelect: {fileID: 0}
   loginScreen: {fileID: 0}
-  finalPreface: {fileID: 8300000, guid: 369b493ef56621d478fbaec8c3ea1da1, type: 3}
-  isGroupFeather: 1
+  finalPreface: {fileID: 8300000, guid: c9a2991f49028044ebd7da242411d47a, type: 3}
+  isGroupFeather: 0
 --- !u!114 &114000014151377794
 MonoBehaviour:
   m_ObjectHideFlags: 1

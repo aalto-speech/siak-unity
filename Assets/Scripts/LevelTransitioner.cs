@@ -54,7 +54,7 @@ public class LevelTransitioner : MonoBehaviour {
         StopCoroutine(Dots());
         _dots = 4;
         text.text = "loaded";
-        //GameManager.GetLoginScreen().SetUser();
+        GameManager.GetLoginScreen().SetUser();
         yield return new WaitForSecondsRealtime(_minimumWait/2);
         CrossFade(0, _fadeTime);
         Time.timeScale = 1;

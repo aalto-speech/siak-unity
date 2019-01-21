@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
@@ -24,8 +24,10 @@ public class LevelSelect : MonoBehaviour {
     void OnEnable() {
         UpdateScreens();
         if (SceneManager.GetActiveScene().buildIndex == 0) {
-            home.SetActive(false);
-            character.SetActive(true);
+            //home.SetActive(false);
+            //character.SetActive(true);
+		 home.SetActive(true);
+            character.SetActive(false);
         } else {
             home.SetActive(true);
             character.SetActive(false);

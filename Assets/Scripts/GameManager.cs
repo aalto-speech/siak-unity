@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour {
         _gm = this;
         DontDestroyOnLoad(this.gameObject);
         ResetSessionData();
-        SetLocalSessionData();
         //_username = PlayerPrefs.GetString("user", "");
         //_password = PlayerPrefs.GetString("password", "");
     }
@@ -90,7 +89,6 @@ public class GameManager : MonoBehaviour {
             return;
         if (finished) {
             _gm._highestLevel = Mathf.Max(_gm._highestLevel, (int)level);
-            PlayerPrefs.SetInt("HighestCompleted", _gm._highestLevel);
         }
         _gm._next = level;
         LevelManager.ToggleInput(false);
@@ -99,13 +97,11 @@ public class GameManager : MonoBehaviour {
             int newStars = LevelManager.ThisRunStars();
             if (newStars > _gm._collectedStars[current]) {
                 _gm._collectedStars[current] = newStars;
-                PlayerPrefs.SetInt("CollectedStars" + (int)current, newStars);
             }
             _gm._server.exit(newStars, LevelManager.NewSpends());
         }
         Instantiate(_gm.loader);
         _gm._counting = false;
-        PlayerPrefs.Save();
     }
 
     public static void SetLevelStars(Level level, int stars) {
@@ -223,15 +219,6 @@ public class GameManager : MonoBehaviour {
             }
             _gm.hasCheckedGroup = true;
         }
-    }
-
-    public static void SetLocalSessionData() {
-        for (int i = 1; i <= 27; ++i) {
-            _gm._collectedStars[(Level)i] = PlayerPrefs.GetInt("CollectedStars" + i, 0);
-            print(_gm._collectedStars[(Level)i]);
-        }
-        _gm._highestLevel = PlayerPrefs.GetInt("HighestCompleted", 1);
-        print( _gm._highestLevel);
     }
 
     public static LevelSelect GetLevelSelect() {
