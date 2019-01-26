@@ -76,10 +76,10 @@ public class LevelAdvancer : BaseActivateable {
         int check = 1 + (int)LevelManager.GetLevel();
         if (System.Enum.IsDefined(typeof(Level), check))
             next = (Level)check;
-        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 27)
+        /*(if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 27)
             next = (Level)99;
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex == 28)
-            next = (Level)1;
+            next = (Level)1;*/
 
         GameManager.ChangeLevel(next, true);
     }

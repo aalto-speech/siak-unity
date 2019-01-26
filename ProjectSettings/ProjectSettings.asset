@@ -113,7 +113,7 @@ PlayerSettings:
   ForceInternetPermission: 0
   ForceSDCardPermission: 0
   CreateWallpaper: 0
-  APKExpansionFiles: 0
+  APKExpansionFiles: 1
   preloadShaders: 0
   StripUnusedMeshComponents: 0
   VertexChannelCompressionMask:
@@ -165,8 +165,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: C:/Repositories/SIAK/Build/SIAK_Arab.keystore
+  AndroidKeyaliasName: siak arab
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
   androidEnableBanner: 1
