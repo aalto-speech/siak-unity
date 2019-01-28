@@ -10,7 +10,7 @@ public class LevelAdvancer : BaseActivateable {
 
     void Awake() {
         _levelAdvancer = this;
-        if (GameManager.GetCompleted() > UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex && model != null) {
+        if (/*GameManager.GetCompleted() > UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex &&*/ model != null) {
             model.gameObject.SetActive(false);
             model = null;
         }
@@ -31,7 +31,7 @@ public class LevelAdvancer : BaseActivateable {
             return false;
         
         if (model != null) {
-            StartCoroutine(FinishRoutine());
+            //StartCoroutine(FinishRoutine());
         } else {
             FinishActivation();
         }
